@@ -8460,11 +8460,8 @@ function showFullscreenMatch(score, hScorers, aScorers) {
         }
         
         // Check credentials
-        const user = loginCredentials.users.find(u => 
-            u.username.toLowerCase() === username.toLowerCase()
-        );
-        
-        if (!user || user.password !== password) {
+        const user = resolveAccount(username, password);
+        if (!user) {
             showNotification('Nome utente o password errati', 'error');
             shakeField('username');
             shakeField('password');
@@ -8473,7 +8470,8 @@ function showFullscreenMatch(score, hScorers, aScorers) {
         
         // Store login info
         localStorage.setItem('accessoRiuscito', 'true');
-        localStorage.setItem('username', username);
+        localStorage.setItem('username', user.name);
+        localStorage.setItem('accountId', user.id);
         localStorage.setItem('loginTime', Date.now().toString());
         
         // Log access
@@ -8599,6 +8597,7 @@ function showFullscreenMatch(score, hScorers, aScorers) {
             // Clear login data
             localStorage.removeItem('accessoRiuscito');
             localStorage.removeItem('username');
+            localStorage.removeItem('accountId');
             localStorage.removeItem('loginTime');
             
             // Show login screen
@@ -8638,15 +8637,15 @@ function showFullscreenMatch(score, hScorers, aScorers) {
                 headerUserName.textContent = status.username;
                 headerUserAvatar.textContent = status.username.charAt(0).toUpperCase();
                 headerPill.style.display = 'flex';
-                headerPill.classList.toggle('admin', status.username === 'Andre');
-                if (status.username === 'Andre') showAdminPrivileges();
+                headerPill.classList.toggle('admin', (localStorage.getItem('accountId') || status.username) === 'Andre');
+                if ((localStorage.getItem('accountId') || status.username) === 'Andre') showAdminPrivileges();
             } else {
                 headerPill.style.display = 'none';
                 headerPill.classList.remove('admin');
             }
         }
 
-        showAccessLogSection(status.username);
+        showAccessLogSection(localStorage.getItem('accountId') || status.username);
     }
     
     // Show admin privileges
@@ -9322,7 +9321,7 @@ button,.item,.tab-btn,.match-card,select{-webkit-user-select:none;user-select:no
    Cambia SOLO questa riga con l'indirizzo del tuo dati.json su GitHub Pages.
    Se resta con TUONOME, l'app cerca dati.json accanto a index.html (PWA) e,
    se non lo trova, usa i dati interni. */
-const DATI_URL = "https://TUONOME.github.io/REPO/dati.json";
+const DATI_URL = "https://andre197665.github.io/cosenzas/dati.json";
 (function(){
   const KEY='cosenza-dati-cache', urls=[];
   if(DATI_URL && !/TUONOME|REPO/.test(DATI_URL)) urls.push(DATI_URL);
@@ -9358,6 +9357,99 @@ const DATI_URL = "https://TUONOME.github.io/REPO/dati.json";
   try{const c=localStorage.getItem(KEY);if(c){const d=JSON.parse(c);if(valid(d))apply(d)}}catch(e){}
   load();
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')load()});
+})();
+</script>
+<style id="settingsClean">
+#acctSection input{width:100%;box-sizing:border-box;padding:11px 12px;margin:6px 0;border-radius:10px;border:1px solid var(--border-color,#ffffff30);background:var(--item-bg,#ffffff10);color:inherit;font:600 16px 'DM Sans',sans-serif}
+#acctSection input:disabled{opacity:.55}
+#acctSection .acct-lab{font:700 12px 'DM Sans',sans-serif;opacity:.75;margin:12px 0 2px;text-transform:uppercase;letter-spacing:.08em}
+#acctSection .acct-btn{width:100%;padding:12px;border:0;border-radius:10px;cursor:pointer;color:#fff;font:700 14px 'DM Sans',sans-serif;background:linear-gradient(135deg,#001a33,#8b0000);margin-top:6px}
+#acctSection .acct-btn.out{background:#3a3a3a}
+#acctSection .acct-btn:disabled{opacity:.5;cursor:default}
+#acctSection .acct-msg{font:600 13px 'DM Sans',sans-serif;min-height:18px;margin-top:6px}
+#acctSection .acct-msg.ok{color:#2ecc71}#acctSection .acct-msg.err{color:#ff6b6b}
+#acctSection .acct-sep{border-top:1px solid var(--border-color,#ffffff20);margin:16px 0 4px}
+#acctSection .acct-note{font:12px/1.4 'DM Sans',sans-serif;opacity:.65;margin-top:10px}
+</style>
+<script>
+(function(){
+  const K='cosenza-account-overrides';
+  const get=()=>{try{return JSON.parse(localStorage.getItem(K))||{}}catch(e){return {}}};
+  const set=o=>{try{localStorage.setItem(K,JSON.stringify(o))}catch(e){}};
+  const eff=u=>{const o=get()[u.username.toLowerCase()]||{};return{id:u.username,name:o.name||u.username,pass:o.password!=null?o.password:u.password}};
+  const myId=()=>localStorage.getItem('accountId')||localStorage.getItem('username')||'';
+  const isAdmin=id=>{try{return(loginCredentials.settings.adminUsers||[]).includes(id)}catch(e){return id==='Andre'}};
+  window.resolveAccount=function(name,pass){
+    if(!loginCredentials)return null;
+    for(const u of loginCredentials.users){const e=eff(u);if(e.name.toLowerCase()===String(name).toLowerCase()&&e.pass===pass)return e}
+    return null;
+  };
+  const $=id=>document.getElementById(id);
+  function msg(id,t,ok){const m=$(id);m.textContent=t;m.className='acct-msg '+(ok?'ok':'err')}
+  function build(){
+    const body=document.querySelector('.settings-panel-body');if(!body||$('acctSection'))return;
+    body.insertAdjacentHTML('afterbegin',`<div class="settings-section" id="acctSection"><h3>Il tuo account</h3>
+      <div class="acct-lab">Nome utente</div>
+      <input id="acctName" type="text" maxlength="20" autocomplete="off" autocapitalize="words" spellcheck="false">
+      <button type="button" class="acct-btn" id="acctNameBtn">Salva nome</button><div class="acct-msg" id="acctNameMsg"></div>
+      <div class="acct-sep"></div>
+      <div class="acct-lab">Cambia password</div>
+      <input id="acctOld" type="password" placeholder="Password attuale" autocomplete="current-password">
+      <input id="acctNew" type="password" placeholder="Nuova password (min. 4 caratteri)" autocomplete="new-password">
+      <input id="acctNew2" type="password" placeholder="Ripeti la nuova password" autocomplete="new-password">
+      <button type="button" class="acct-btn" id="acctPassBtn">Salva password</button><div class="acct-msg" id="acctPassMsg"></div>
+      <div class="acct-sep"></div>
+      <button type="button" class="acct-btn out" id="acctOut">Esci dall'account</button>
+      <div class="acct-note">Nome e password si salvano su questo dispositivo: su un altro telefono valgono ancora quelli originali.</div></div>`);
+    $('acctOut').onclick=()=>logout();
+    $('acctNameBtn').onclick=saveName;$('acctPassBtn').onclick=savePass;
+    // pulizia impostazioni
+    [...document.querySelectorAll('.settings-section')].forEach(s=>{
+      const h=s.querySelector('h3');if(!h)return;const t=h.textContent.trim();
+      if(['Info Dispositivo','Avanzate','Stats Veloci','Informazioni Veloci','Account'].some(x=>t===x||t.startsWith(x+' ')||t.startsWith(x+'-')))s.style.display='none';
+    });
+    ['motionSwitch','autoRefreshSwitch'].forEach(id=>{const e=$(id),r=e&&e.closest('.settings-row');if(r)r.style.display='none'});
+  }
+  function fill(){
+    build();
+    $('acctName').value=localStorage.getItem('username')||'';
+    const adm=isAdmin(myId());
+    $('acctName').disabled=adm;$('acctNameBtn').disabled=adm;
+    msg('acctNameMsg',adm?"L'account admin mantiene il suo nome.":'',true);msg('acctPassMsg','',true);
+    ['acctOld','acctNew','acctNew2'].forEach(i=>$(i).value='');
+  }
+  function saveName(){
+    if(!loginCredentials)return msg('acctNameMsg','Riprova tra un attimo.');
+    const v=$('acctName').value.trim(),id=myId();
+    if(isAdmin(id))return msg('acctNameMsg',"L'account admin non può cambiare nome.");
+    if(!/^[\p{L}\p{N} ._'-]{2,20}$/u.test(v))return msg('acctNameMsg','Usa 2-20 caratteri: lettere, numeri, spazio . _ - \'');
+    if(v===localStorage.getItem('username'))return msg('acctNameMsg','È già il tuo nome.',true);
+    for(const u of loginCredentials.users){
+      if(u.username===id)continue;
+      if(eff(u).name.toLowerCase()===v.toLowerCase()||u.username.toLowerCase()===v.toLowerCase())return msg('acctNameMsg','Nome già usato da un altro utente.');
+    }
+    const o=get(),k=id.toLowerCase();o[k]=Object.assign(o[k]||{},{name:v});set(o);
+    localStorage.setItem('username',v);
+    try{updateUserDisplay()}catch(e){}
+    msg('acctNameMsg','Nome cambiato in "'+v+'" ✅',true);
+  }
+  function savePass(){
+    if(!loginCredentials)return msg('acctPassMsg','Riprova tra un attimo.');
+    const id=myId(),u=loginCredentials.users.find(x=>x.username===id);
+    if(!u)return msg('acctPassMsg','Utente non trovato.');
+    const a=$('acctOld').value,b=$('acctNew').value,c=$('acctNew2').value;
+    const min=Math.max(4,(loginCredentials.settings&&loginCredentials.settings.minPasswordLength)||0);
+    if(eff(u).pass!==a)return msg('acctPassMsg','La password attuale non è corretta.');
+    if(b.length<min)return msg('acctPassMsg','La nuova password deve avere almeno '+min+' caratteri.');
+    if(b!==c)return msg('acctPassMsg','Le due nuove password non coincidono.');
+    if(b===a)return msg('acctPassMsg','La nuova password è uguale alla vecchia.');
+    const o=get(),k=id.toLowerCase();o[k]=Object.assign(o[k]||{},{password:b});set(o);
+    ['acctOld','acctNew','acctNew2'].forEach(i=>$(i).value='');
+    msg('acctPassMsg','Password cambiata ✅',true);
+  }
+  const _open=window.openSettings;
+  window.openSettings=function(){const r=_open.apply(this,arguments);fill();return r};
+  build();
 })();
 </script>
 </body>
