@@ -1,0 +1,1953 @@
+{
+ "stagioni": {
+  "2025-26": {
+   "seriea": {
+    "classifica": [
+     {
+      "pos": 1,
+      "team": "Cosenza",
+      "p": 38,
+      "w": 30,
+      "d": 3,
+      "l": 5,
+      "gf": 84,
+      "ga": 32,
+      "pts": 93,
+      "form": [
+       "W",
+       "W",
+       "L",
+       "W",
+       "D",
+       "W"
+      ],
+      "me": false
+     },
+     {
+      "pos": 2,
+      "team": "Inter",
+      "p": 38,
+      "w": 29,
+      "d": 4,
+      "l": 5,
+      "gf": 52,
+      "ga": 21,
+      "pts": 91,
+      "form": [
+       "W",
+       "D",
+       "W",
+       "W",
+       "W"
+      ],
+      "me": false
+     },
+     {
+      "pos": 3,
+      "team": "Milan",
+      "p": 38,
+      "w": 27,
+      "d": 4,
+      "l": 5,
+      "gf": 49,
+      "ga": 24,
+      "pts": 85,
+      "form": [
+       "W",
+       "W",
+       "D",
+       "W",
+       "L"
+      ],
+      "me": false
+     },
+     {
+      "pos": 4,
+      "team": "Juventus",
+      "p": 38,
+      "w": 26,
+      "d": 4,
+      "l": 5,
+      "gf": 47,
+      "ga": 23,
+      "pts": 82,
+      "form": [
+       "W",
+       "W",
+       "D",
+       "W",
+       "L"
+      ],
+      "me": true
+     },
+     {
+      "pos": 5,
+      "team": "Roma",
+      "p": 38,
+      "w": 25,
+      "d": 5,
+      "l": 8,
+      "gf": 45,
+      "ga": 22,
+      "pts": 80,
+      "form": [
+       "D",
+       "W",
+       "W",
+       "L",
+       "W"
+      ],
+      "me": false
+     },
+     {
+      "pos": 6,
+      "team": "Bologna",
+      "p": 38,
+      "w": 24,
+      "d": 6,
+      "l": 8,
+      "gf": 43,
+      "ga": 25,
+      "pts": 78,
+      "form": [
+       "W",
+       "L",
+       "W",
+       "D",
+       "W"
+      ],
+      "me": false
+     },
+     {
+      "pos": 7,
+      "team": "Como",
+      "p": 38,
+      "w": 16,
+      "d": 11,
+      "l": 11,
+      "gf": 55,
+      "ga": 41,
+      "pts": 59,
+      "form": [
+       "W",
+       "W",
+       "D",
+       "L",
+       "W"
+      ],
+      "me": false
+     },
+     {
+      "pos": 8,
+      "team": "Atalanta",
+      "p": 38,
+      "w": 15,
+      "d": 10,
+      "l": 13,
+      "gf": 51,
+      "ga": 46,
+      "pts": 55,
+      "form": [
+       "L",
+       "W",
+       "D",
+       "W",
+       "L"
+      ],
+      "me": false
+     },
+     {
+      "pos": 9,
+      "team": "Fiorentina",
+      "p": 38,
+      "w": 14,
+      "d": 10,
+      "l": 14,
+      "gf": 46,
+      "ga": 45,
+      "pts": 52,
+      "form": [
+       "W",
+       "L",
+       "W",
+       "L",
+       "D"
+      ],
+      "me": false
+     },
+     {
+      "pos": 10,
+      "team": "Brics",
+      "p": 38,
+      "w": 13,
+      "d": 12,
+      "l": 13,
+      "gf": 42,
+      "ga": 42,
+      "pts": 51,
+      "form": [
+       "D",
+       "W",
+       "L",
+       "W",
+       "W"
+      ],
+      "me": false
+     },
+     {
+      "pos": 11,
+      "team": "Napoli",
+      "p": 38,
+      "w": 12,
+      "d": 11,
+      "l": 15,
+      "gf": 43,
+      "ga": 46,
+      "pts": 47,
+      "form": [
+       "W",
+       "L",
+       "D",
+       "L",
+       "W"
+      ],
+      "me": false
+     },
+     {
+      "pos": 12,
+      "team": "Hellas Verona",
+      "p": 38,
+      "w": 10,
+      "d": 12,
+      "l": 16,
+      "gf": 38,
+      "ga": 48,
+      "pts": 42,
+      "form": [
+       "L",
+       "W",
+       "D",
+       "W",
+       "L"
+      ],
+      "me": false
+     },
+     {
+      "pos": 13,
+      "team": "Torino",
+      "p": 38,
+      "w": 9,
+      "d": 13,
+      "l": 16,
+      "gf": 35,
+      "ga": 49,
+      "pts": 40,
+      "form": [
+       "D",
+       "L",
+       "L",
+       "W",
+       "D"
+      ],
+      "me": false
+     },
+     {
+      "pos": 14,
+      "team": "Udinese",
+      "p": 38,
+      "w": 8,
+      "d": 12,
+      "l": 18,
+      "gf": 32,
+      "ga": 51,
+      "pts": 36,
+      "form": [
+       "W",
+       "L",
+       "W",
+       "L",
+       "L"
+      ],
+      "me": false
+     },
+     {
+      "pos": 15,
+      "team": "Lazio",
+      "p": 38,
+      "w": 6,
+      "d": 15,
+      "l": 17,
+      "gf": 30,
+      "ga": 54,
+      "pts": 33,
+      "form": [
+       "L",
+       "D",
+       "L",
+       "W",
+       "L"
+      ],
+      "me": false
+     },
+     {
+      "pos": 16,
+      "team": "Sassuolo",
+      "p": 38,
+      "w": 6,
+      "d": 13,
+      "l": 19,
+      "gf": 33,
+      "ga": 58,
+      "pts": 31,
+      "form": [
+       "L",
+       "W",
+       "L",
+       "D",
+       "W"
+      ],
+      "me": false
+     },
+     {
+      "pos": 17,
+      "team": "Cremonese",
+      "p": 38,
+      "w": 4,
+      "d": 16,
+      "l": 18,
+      "gf": 27,
+      "ga": 55,
+      "pts": 28,
+      "form": [
+       "D",
+       "L",
+       "W",
+       "L",
+       "D"
+      ],
+      "me": false
+     },
+     {
+      "pos": 18,
+      "team": "Pisa",
+      "p": 38,
+      "w": 4,
+      "d": 14,
+      "l": 20,
+      "gf": 26,
+      "ga": 57,
+      "pts": 26,
+      "form": [
+       "W",
+       "L",
+       "L",
+       "D",
+       "L"
+      ],
+      "me": false
+     },
+     {
+      "pos": 19,
+      "team": "Genoa",
+      "p": 38,
+      "w": 3,
+      "d": 11,
+      "l": 24,
+      "gf": 23,
+      "ga": 61,
+      "pts": 20,
+      "form": [
+       "L",
+       "W",
+       "L",
+       "L",
+       "W"
+      ],
+      "me": false
+     },
+     {
+      "pos": 20,
+      "team": "Parma",
+      "p": 38,
+      "w": 1,
+      "d": 8,
+      "l": 29,
+      "gf": 19,
+      "ga": 90,
+      "pts": 11,
+      "form": [
+       "L",
+       "L",
+       "D",
+       "L",
+       "L"
+      ],
+      "me": false
+     }
+    ],
+    "goals": [
+     {
+      "player": "Ferreri",
+      "goals": 21
+     },
+     {
+      "player": "Erbacci",
+      "goals": 21
+     },
+     {
+      "player": "Bortolotti",
+      "goals": 14
+     },
+     {
+      "player": "Dido",
+      "goals": 13
+     },
+     {
+      "player": "Etien",
+      "goals": 11
+     },
+     {
+      "player": "Zagnoni",
+      "goals": 10
+     },
+     {
+      "player": "Foresti",
+      "goals": 8
+     },
+     {
+      "player": "Longo",
+      "goals": 7
+     },
+     {
+      "player": "Rega",
+      "goals": 7
+     }
+    ],
+    "assists": [
+     {
+      "player": "Bortolotti",
+      "assists": 16
+     },
+     {
+      "player": "Dido",
+      "assists": 15
+     },
+     {
+      "player": "Zagnoni",
+      "assists": 10
+     },
+     {
+      "player": "Erbacci",
+      "assists": 10
+     },
+     {
+      "player": "Longo",
+      "assists": 8
+     },
+     {
+      "player": "Ferreri",
+      "assists": 6
+     }
+    ],
+    "partite": [
+     {
+      "match": "Torino - Cosenza",
+      "score": "5 - 6",
+      "scorers": "Barcola (12, 34, 56, 78, 90+2), Laurientè (23, 45)",
+      "opponentscorers": "Sanabria (15, 33, 67), Adams (44), Ilic (71), Ricci (88)"
+     },
+     {
+      "match": "Cosenza - Pisa",
+      "score": "1 - 0",
+      "scorers": "Barcola (67)",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Hellas Verona - Cosenza",
+      "score": "2 - 3",
+      "scorers": "Barcola (23), Laurientè (56), Belle Palle (89)",
+      "opponentscorers": "Tengstedt (12), Suslov (45)"
+     },
+     {
+      "match": "Cosenza - Cremonese",
+      "score": "2 - 0",
+      "scorers": "Barcola (34), Pustolini (78)",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Brics - Cosenza",
+      "score": "1 - 2",
+      "scorers": "Laurientè (45), Belle Palle (67)",
+      "opponentscorers": "Marcatore1 (23)"
+     },
+     {
+      "match": "Cosenza - Milan",
+      "score": "4 - 5",
+      "scorers": "Barcola (12, 56, 78), Laurientè (34)",
+      "opponentscorers": "Leao (15, 45), Nkunku (33, 67), Fofana Y. (89)"
+     },
+     {
+      "match": "Como - Cosenza",
+      "score": "0 - 1",
+      "scorers": "Barcola (78)",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Cosenza - Bologna",
+      "score": "3 - 1",
+      "scorers": "Barcola (23), Laurientè (45), Belle Palle (67)",
+      "opponentscorers": "Orsolini (34)"
+     },
+     {
+      "match": "Napoli - Cosenza",
+      "score": "1 - 2",
+      "scorers": "Barcola (56), Laurientè (89)",
+      "opponentscorers": "Kvaratskhelia (23)"
+     },
+     {
+      "match": "Cosenza - Genoa",
+      "score": "1 - 0",
+      "scorers": "Pustolini (45)",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Udinese - Cosenza",
+      "score": "0 - 2",
+      "scorers": "Barcola (34), Laurientè (67)",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Cosenza - Sassuolo",
+      "score": "4 - 2",
+      "scorers": "Barcola (12, 45), Laurientè (56), Belle Palle (78)",
+      "opponentscorers": "Berardi (23), Pinamonti (67)"
+     },
+     {
+      "match": "Juventus - Cosenza",
+      "score": "1 - 5",
+      "scorers": "Barcola (15, 34, 56, 78), Laurientè (89)",
+      "opponentscorers": "Vlahovic (45)"
+     },
+     {
+      "match": "Cosenza - Roma",
+      "score": "5 - 7",
+      "scorers": "Barcola (12, 34, 56, 78), Laurientè (90+2)",
+      "opponentscorers": "Dybala (15, 33), Malen (45, 67), Soulé (23), Pellegrini (88), Dovbyk (90+1)"
+     },
+     {
+      "match": "Parma - Cosenza",
+      "score": "0 - 3",
+      "scorers": "Barcola (23), Laurientè (45), Belle Palle (67)",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Cosenza - Lazio",
+      "score": "1 - 0",
+      "scorers": "Barcola (56)",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Inter - Cosenza",
+      "score": "2 - 1",
+      "scorers": "Barcola (78)",
+      "opponentscorers": "Lautaro Martinez (23), Thuram (45)"
+     },
+     {
+      "match": "Cosenza - Atalanta",
+      "score": "3 - 1",
+      "scorers": "Barcola (12), Laurientè (34), Belle Palle (67)",
+      "opponentscorers": "Lookman (45)"
+     },
+     {
+      "match": "Fiorentina - Cosenza",
+      "score": "0 - 4",
+      "scorers": "Barcola (23, 45), Laurientè (67), Pustolini (89)",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Pisa - Cosenza",
+      "score": "0 - 2",
+      "scorers": "Barcola (34), Laurientè (78)",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Cosenza - Hellas Verona",
+      "score": "2 - 2",
+      "scorers": "Barcola (23), Laurientè (67)",
+      "opponentscorers": "Tengstedt (12), Suslov (45)"
+     },
+     {
+      "match": "Cosenza - Torino",
+      "score": "4 - 3",
+      "scorers": "Barcola (15, 34, 56), Belle Palle (78)",
+      "opponentscorers": "Sanabria (23), Adams (45), Ilic (67)"
+     },
+     {
+      "match": "Cremonese - Cosenza",
+      "score": "1 - 2",
+      "scorers": "Barcola (45), Laurientè (67)",
+      "opponentscorers": "Vardy (23)"
+     },
+     {
+      "match": "Milan - Cosenza",
+      "score": "4 - 3",
+      "scorers": "Barcola (12, 56, 78)",
+      "opponentscorers": "Leao (15, 34, 89), Nkunku (67)"
+     },
+     {
+      "match": "Cosenza - Brics",
+      "score": "3 - 0",
+      "scorers": "Barcola (23), Laurientè (45), Belle Palle (67)",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Bologna - Cosenza",
+      "score": "0 - 1",
+      "scorers": "Barcola (78)",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Cosenza - Como",
+      "score": "3 - 2",
+      "scorers": "Barcola (12, 45), Laurientè (67)",
+      "opponentscorers": "Morata (23), Baturina (56)"
+     },
+     {
+      "match": "Cosenza - Napoli",
+      "score": "3 - 2",
+      "scorers": "Barcola (15, 34), Laurientè (78)",
+      "opponentscorers": "Kvaratskhelia (23), Lukaku (67)"
+     },
+     {
+      "match": "Genoa - Cosenza",
+      "score": "0 - 2",
+      "scorers": "Barcola (45), Laurientè (67)",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Cosenza - Udinese",
+      "score": "3 - 4",
+      "scorers": "Barcola (12, 56), Belle Palle (78)",
+      "opponentscorers": "Thauvin (15, 34, 67), Lucca (89)"
+     },
+     {
+      "match": "Sassuolo - Cosenza",
+      "score": "2 - 5",
+      "scorers": "Barcola (15, 34, 56, 78), Laurientè (90+2)",
+      "opponentscorers": "Berardi (23), Laurienté (45)"
+     },
+     {
+      "match": "Cosenza - Juventus",
+      "score": "6 - 3",
+      "scorers": "Barcola (12, 34, 56, 78), Laurientè (45), Belle Palle (89)",
+      "opponentscorers": "Vlahovic (23), Koopmeiners (67), Yildiz (90+1)"
+     },
+     {
+      "match": "Roma - Cosenza",
+      "score": "6 - 1",
+      "scorers": "Barcola (45)",
+      "opponentscorers": "Dybala (12, 34, 56), Malen (23, 67), Soulé (78), Dovbyk (89)"
+     },
+     {
+      "match": "Cosenza - Parma",
+      "score": "2 - 2",
+      "scorers": "Barcola (23), Laurientè (67)",
+      "opponentscorers": "Mihaila (15), Bonny (45)"
+     },
+     {
+      "match": "Lazio - Cosenza",
+      "score": "1 - 2",
+      "scorers": "Barcola (56), Laurientè (78)",
+      "opponentscorers": "Castellanos (23)"
+     },
+     {
+      "match": "Atalanta - Cosenza",
+      "score": "2 - 3",
+      "scorers": "Barcola (34), Laurientè (56), Belle Palle (89)",
+      "opponentscorers": "Lookman (12), De Ketelaere (45)"
+     },
+     {
+      "match": "Cosenza - Fiorentina",
+      "score": "0 - 1",
+      "scorers": "",
+      "opponentscorers": "Gudmundsson (67)"
+     },
+     {
+      "match": "Cosenza - Inter",
+      "score": "3 - 2",
+      "scorers": "Barcola (15, 45, 78)",
+      "opponentscorers": "Lautaro Martinez (23), Thuram (67)"
+     }
+    ]
+   },
+   "champions": {
+    "classifica": [
+     {
+      "pos": 1,
+      "team": "Cosenza",
+      "p": 6,
+      "w": 5,
+      "d": 1,
+      "l": 0,
+      "gf": 18,
+      "ga": 8,
+      "pts": 16,
+      "form": [
+       "W",
+       "W",
+       "D",
+       "W",
+       "W",
+       "W"
+      ],
+      "me": true
+     },
+     {
+      "pos": 2,
+      "team": "Manchester United",
+      "p": 6,
+      "w": 4,
+      "d": 0,
+      "l": 2,
+      "gf": 14,
+      "ga": 11,
+      "pts": 12,
+      "form": [
+       "W",
+       "L",
+       "W",
+       "W",
+       "L",
+       "W"
+      ],
+      "me": false
+     },
+     {
+      "pos": 3,
+      "team": "Galatasaray",
+      "p": 6,
+      "w": 3,
+      "d": 1,
+      "l": 2,
+      "gf": 12,
+      "ga": 10,
+      "pts": 10,
+      "form": [
+       "W",
+       "D",
+       "L",
+       "W",
+       "W",
+       "L"
+      ],
+      "me": false
+     },
+     {
+      "pos": 4,
+      "team": "Olympique Marseille",
+      "p": 6,
+      "w": 2,
+      "d": 1,
+      "l": 3,
+      "gf": 11,
+      "ga": 13,
+      "pts": 7,
+      "form": [
+       "L",
+       "W",
+       "D",
+       "L",
+       "W",
+       "L"
+      ],
+      "me": false
+     }
+    ],
+    "goals": [
+     {
+      "player": "Barcola",
+      "goals": 22
+     },
+     {
+      "player": "Belle Palle",
+      "goals": 9
+     },
+     {
+      "player": "Laurientè",
+      "goals": 7
+     },
+     {
+      "player": "Pustolini",
+      "goals": 3
+     },
+     {
+      "player": "Ulisse",
+      "goals": 2
+     },
+     {
+      "player": "Spalmer",
+      "goals": 1
+     }
+    ],
+    "assists": [
+     {
+      "player": "Belle Palle",
+      "assists": 6
+     },
+     {
+      "player": "Laurientè",
+      "assists": 5
+     },
+     {
+      "player": "Pustolini",
+      "assists": 4
+     },
+     {
+      "player": "Barcola",
+      "assists": 3
+     },
+     {
+      "player": "Spalmer",
+      "assists": 2
+     }
+    ],
+    "partite": [
+     {
+      "match": "Cosenza - Bodo Glimt",
+      "score": "3 - 2",
+      "scorers": "Barcola (78, 89), Laurientè (75)",
+      "opponentscorers": "Hauge (34), Saltnes (56)"
+     },
+     {
+      "match": "Cosenza - Inter",
+      "score": "3 - 3",
+      "scorers": "Barcola (54, 66), Laurientè (15)",
+      "opponentscorers": "Lautaro (30), Thuram (34), Zielinski (68)"
+     },
+     {
+      "match": "Atletico Madrid - Cosenza",
+      "score": "6 - 7",
+      "scorers": "Barcola (12, 21, 46), Belle Palle (30, 45+3), Laurientè (76, 90+1)",
+      "opponentscorers": "Alvarez (24, 90+5), Griezmann (23, 65), Llorente (54), Lookman (83)"
+     },
+     {
+      "match": "Cosenza - Olympique Marseille",
+      "score": "5 - 4",
+      "scorers": "Barcola (65, 69, 75), Ulisse (51), Laurientè (43)",
+      "opponentscorers": "Greenwood (16, 21), Timber (84, 90+1)"
+     },
+     {
+      "match": "Olympique Marseille - Cosenza",
+      "score": "4 - 2",
+      "scorers": "Pustolini (12, 78), Belle Palle (31, 89)",
+      "opponentscorers": "Greenwood (15, 18)"
+     },
+     {
+      "match": "Cosenza - Galatasaray",
+      "score": "4 - 1",
+      "scorers": "Barcola (78), Belle Palle (43, 81), Ulisse (90+3)",
+      "opponentscorers": "Lang (45)"
+     },
+     {
+      "match": "Galatasaray - Cosenza",
+      "score": "7 - 6",
+      "scorers": "Barcola (78, 89, 90), Laurientè (75, 84), Belle Palle (12, 76)",
+      "opponentscorers": "Lang (12, 45, 89), Osimhen (50, 80, 82)"
+     },
+     {
+      "match": "Manchester United - Cosenza",
+      "score": "4 - 5",
+      "scorers": "Barcola (78, 89, 90), Belle Palle (12, 76)",
+      "opponentscorers": "Zirkzee (12, 31, 67), Bruno Fernandes (81)"
+     },
+     {
+      "match": "Cosenza - Manchester United",
+      "score": "4 - 3",
+      "scorers": "Barcola (5, 34, 90+1), Belle Palle (24)",
+      "opponentscorers": "Zirkzee (12, 31), Bruno Fernandes (81)"
+     },
+     {
+      "match": "Chelsea - Cosenza",
+      "score": "3 - 4",
+      "scorers": "Barcola (17, 32), Spalmer (21), Pustolini (67)",
+      "opponentscorers": "Palmer (23, 48, 72)"
+     }
+    ],
+    "knockout": [
+     {
+      "round": "Ottavi di Finale",
+      "match": "R16-1",
+      "feeds": [
+       "QF-L1"
+      ],
+      "home": "Cosenza",
+      "away": "Olympique Marseille",
+      "andataScore": "5 - 4",
+      "ritornoScore": "2 - 4",
+      "aggregate": "7-7 (4-3 dcr)",
+      "winner": "Cosenza",
+      "homeScorers": "Barcola (65, 69, 75), Ulisse (51), Laurientè (43)",
+      "awayScorers": "Greenwood (16, 21), Timber (84, 90+1)",
+      "cosenzaTie": true
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "R16-2",
+      "feeds": [
+       "QF-L1"
+      ],
+      "home": "Galatasaray",
+      "away": "Bodo Glimt",
+      "andataScore": "3 - 1",
+      "ritornoScore": "1 - 2",
+      "aggregate": "4 - 3",
+      "winner": "Galatasaray",
+      "homeScorers": "Osimhen (23, 67), Mertens (45)",
+      "awayScorers": "Hauge (34, 78)"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "R16-3",
+      "feeds": [
+       "QF-L2"
+      ],
+      "home": "Manchester United",
+      "away": "Inter",
+      "andataScore": "2 - 1",
+      "ritornoScore": "1 - 1",
+      "aggregate": "3 - 2",
+      "winner": "Manchester United",
+      "homeScorers": "Bruno Fernandes (34), Rashford (67)",
+      "awayScorers": "Lautaro (56)"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "R16-4",
+      "feeds": [
+       "QF-L2"
+      ],
+      "home": "Real Madrid",
+      "away": "Bayern München",
+      "andataScore": "2 - 1",
+      "ritornoScore": "1 - 1",
+      "aggregate": "3 - 2",
+      "winner": "Real Madrid",
+      "homeScorers": "Vinicius (23), Bellingham (56)",
+      "awayScorers": "Kane (45)"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "R16-5",
+      "feeds": [
+       "QF-R1"
+      ],
+      "home": "Liverpool",
+      "away": "Paris SG",
+      "andataScore": "1 - 0",
+      "ritornoScore": "2 - 2",
+      "aggregate": "3 - 2",
+      "winner": "Liverpool",
+      "homeScorers": "Salah (34)",
+      "awayScorers": "Mbappé (56, 78)"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "R16-6",
+      "feeds": [
+       "QF-R1"
+      ],
+      "home": "Barcelona",
+      "away": "Atletico Madrid",
+      "andataScore": "3 - 2",
+      "ritornoScore": "0 - 1",
+      "aggregate": "3 - 3 (ag)",
+      "winner": "Barcelona",
+      "homeScorers": "Lewandowski (12, 67), Yamal (34)",
+      "awayScorers": "Griezmann (23, 65)"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "R16-7",
+      "feeds": [
+       "QF-R2"
+      ],
+      "home": "Arsenal",
+      "away": "Borussia Dortmund",
+      "andataScore": "1 - 1",
+      "ritornoScore": "2 - 1",
+      "aggregate": "3 - 2",
+      "winner": "Arsenal",
+      "homeScorers": "Saka (34)",
+      "awayScorers": "Adeyemi (67)"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "R16-8",
+      "feeds": [
+       "QF-R2"
+      ],
+      "home": "Chelsea",
+      "away": "Juventus",
+      "andataScore": "2 - 0",
+      "ritornoScore": "1 - 1",
+      "aggregate": "3 - 1",
+      "winner": "Chelsea",
+      "homeScorers": "Palmer (23, 78)",
+      "awayScorers": "Vlahovic (56)"
+     },
+     {
+      "round": "Quarti di Finale",
+      "match": "QF-L1",
+      "from": [
+       "R16-1",
+       "R16-2"
+      ],
+      "feeds": [
+       "SF-L"
+      ],
+      "home": "Cosenza",
+      "away": "Galatasaray",
+      "andataScore": "4 - 1",
+      "ritornoScore": "7 - 6",
+      "aggregate": "10 - 8",
+      "winner": "Cosenza",
+      "homeScorers": "Barcola (78), Belle Palle (43, 81), Ulisse (90+3)",
+      "awayScorers": "Lang (12, 45, 89), Osimhen (50, 80, 82)",
+      "cosenzaTie": true
+     },
+     {
+      "round": "Quarti di Finale",
+      "match": "QF-L2",
+      "from": [
+       "R16-3",
+       "R16-4"
+      ],
+      "feeds": [
+       "SF-L"
+      ],
+      "home": "Manchester United",
+      "away": "Real Madrid",
+      "andataScore": "1 - 2",
+      "ritornoScore": "2 - 1",
+      "aggregate": "3 - 3 (4-3 dcr)",
+      "winner": "Manchester United",
+      "homeScorers": "Bruno Fernandes (67), Rashford (78)",
+      "awayScorers": "Vinicius (12), Rodrygo (45)"
+     },
+     {
+      "round": "Quarti di Finale",
+      "match": "QF-R1",
+      "from": [
+       "R16-5",
+       "R16-6"
+      ],
+      "feeds": [
+       "SF-R"
+      ],
+      "home": "Liverpool",
+      "away": "Barcelona",
+      "andataScore": "1 - 2",
+      "ritornoScore": "2 - 2",
+      "aggregate": "3 - 4",
+      "winner": "Barcelona",
+      "homeScorers": "Salah (34), Nunez (67)",
+      "awayScorers": "Lewandowski (23), Yamal (56)"
+     },
+     {
+      "round": "Quarti di Finale",
+      "match": "QF-R2",
+      "from": [
+       "R16-7",
+       "R16-8"
+      ],
+      "feeds": [
+       "SF-R"
+      ],
+      "home": "Arsenal",
+      "away": "Chelsea",
+      "andataScore": "1 - 0",
+      "ritornoScore": "2 - 2",
+      "aggregate": "3 - 2",
+      "winner": "Chelsea",
+      "homeScorers": "Saka (23)",
+      "awayScorers": "Jackson (34), Palmer (67)"
+     },
+     {
+      "round": "Semifinali",
+      "match": "SF-L",
+      "from": [
+       "QF-L1",
+       "QF-L2"
+      ],
+      "feeds": [
+       "FINALE"
+      ],
+      "home": "Cosenza",
+      "away": "Manchester United",
+      "andataScore": "4 - 5",
+      "ritornoScore": "4 - 3",
+      "firstLegHome": "Manchester United",
+      "aggregate": "9 - 7",
+      "winner": "Cosenza",
+      "homeScorers": "Barcola (78, 89, 90), Belle Palle (12, 76)",
+      "awayScorers": "Zirkzee (12, 31, 67), Bruno Fernandes (81)",
+      "cosenzaTie": true
+     },
+     {
+      "round": "Semifinali",
+      "match": "SF-R",
+      "from": [
+       "QF-R1",
+       "QF-R2"
+      ],
+      "feeds": [
+       "FINALE"
+      ],
+      "home": "Barcelona",
+      "away": "Chelsea",
+      "andataScore": "2 - 2",
+      "ritornoScore": "0 - 1",
+      "aggregate": "2 - 3",
+      "winner": "Chelsea",
+      "homeScorers": "Lewandowski (34), Yamal (67)",
+      "awayScorers": "Palmer (23), Jackson (78)"
+     },
+     {
+      "round": "Finale",
+      "match": "FINALE",
+      "from": [
+       "SF-L",
+       "SF-R"
+      ],
+      "home": "Chelsea",
+      "away": "Cosenza",
+      "score": "3 - 4",
+      "winner": "Cosenza",
+      "homeScorers": "Palmer (23, 48, 72)",
+      "awayScorers": "Barcola (17, 32), Spalmer (21), Pustolini (67)",
+      "cosenzaTie": true
+     }
+    ]
+   },
+   "statistics": {
+    "players": [
+     {
+      "player": "Barcola",
+      "appearances": 38,
+      "minutes": 3420,
+      "yellowCards": 3,
+      "redCards": 0
+     },
+     {
+      "player": "Laurientè",
+      "appearances": 36,
+      "minutes": 3100,
+      "yellowCards": 2,
+      "redCards": 0
+     },
+     {
+      "player": "Belle Palle",
+      "appearances": 35,
+      "minutes": 2900,
+      "yellowCards": 4,
+      "redCards": 0
+     },
+     {
+      "player": "Pustolini",
+      "appearances": 32,
+      "minutes": 2600,
+      "yellowCards": 1,
+      "redCards": 0
+     }
+    ],
+    "teamStats": {
+     "totalMatches": 38,
+     "totalGoals": 84,
+     "totalConceded": 32,
+     "goalDifference": 52,
+     "possessionAvg": 55.2,
+     "shotsPerMatch": 12.5,
+     "passAccuracy": 82.3,
+     "cleanSheets": 0,
+     "yellowCards": 0,
+     "redCards": 0,
+     "penaltiesScored": 0,
+     "penaltiesMissed": 0,
+     "corners": 0
+    },
+    "records": [],
+    "awards": []
+   },
+   "coppaitalia": {
+    "classifica": [],
+    "goals": [
+     {
+      "player": "Barcola",
+      "goals": 1,
+      "team": "Cosenza"
+     },
+     {
+      "player": "Laurientè",
+      "goals": 1,
+      "team": "Cosenza"
+     },
+     {
+      "player": "Marcatore2",
+      "goals": 3,
+      "team": "Udinese"
+     },
+     {
+      "player": "Marcatore3",
+      "goals": 6,
+      "team": "Bari"
+     },
+     {
+      "player": "Marcatore4",
+      "goals": 1,
+      "team": "Spezia"
+     },
+     {
+      "player": "Marcatore5",
+      "goals": 5,
+      "team": "Como"
+     },
+     {
+      "player": "Marcatore6",
+      "goals": 1,
+      "team": "Brics"
+     },
+     {
+      "player": "Marcatore7",
+      "goals": 2,
+      "team": "Cosenza"
+     },
+     {
+      "player": "Marcatore8",
+      "goals": 6,
+      "team": "Palermo"
+     },
+     {
+      "player": "Marcatore9",
+      "goals": 4,
+      "team": "Avellino"
+     },
+     {
+      "player": "Marcatore10",
+      "goals": 5,
+      "team": "Pescara"
+     },
+     {
+      "player": "Marcatore11",
+      "goals": 2,
+      "team": "Venezia"
+     },
+     {
+      "player": "Marcatore12",
+      "goals": 4,
+      "team": "Pisa"
+     },
+     {
+      "player": "Marcatore13",
+      "goals": 3,
+      "team": "Verona"
+     },
+     {
+      "player": "Marcatore14",
+      "goals": 3,
+      "team": "Sassuolo"
+     },
+     {
+      "player": "Marcatore15",
+      "goals": 4,
+      "team": "Parma"
+     }
+    ],
+    "assists": [
+     {
+      "player": "Barcola",
+      "assists": 1,
+      "team": "Cosenza"
+     },
+     {
+      "player": "Assist1",
+      "assists": 2,
+      "team": "Milan"
+     },
+     {
+      "player": "Assist2",
+      "assists": 1,
+      "team": "Udinese"
+     },
+     {
+      "player": "Assist3",
+      "assists": 3,
+      "team": "Bari"
+     },
+     {
+      "player": "Assist4",
+      "assists": 1,
+      "team": "Spezia"
+     },
+     {
+      "player": "Assist5",
+      "assists": 2,
+      "team": "Como"
+     },
+     {
+      "player": "Assist6",
+      "assists": 1,
+      "team": "Brics"
+     },
+     {
+      "player": "Assist7",
+      "assists": 1,
+      "team": "Cosenza"
+     },
+     {
+      "player": "Assist8",
+      "assists": 2,
+      "team": "Palermo"
+     },
+     {
+      "player": "Assist9",
+      "assists": 1,
+      "team": "Avellino"
+     },
+     {
+      "player": "Assist10",
+      "assists": 3,
+      "team": "Pescara"
+     },
+     {
+      "player": "Assist11",
+      "assists": 1,
+      "team": "Venezia"
+     },
+     {
+      "player": "Assist12",
+      "assists": 2,
+      "team": "Pisa"
+     },
+     {
+      "player": "Assist13",
+      "assists": 1,
+      "team": "Verona"
+     },
+     {
+      "player": "Assist14",
+      "assists": 2,
+      "team": "Sassuolo"
+     },
+     {
+      "player": "Assist15",
+      "assists": 2,
+      "team": "Parma"
+     }
+    ],
+    "partite": [
+     {
+      "round": "Ottavi di Finale",
+      "match": "O1",
+      "home": "Milan",
+      "away": "Udinese",
+      "score": "5 - 3 dcr",
+      "date": "2024-08-24",
+      "status": "completed",
+      "homeScorers": "Marcatore1 (15), Marcatore2 (32), Marcatore3 (67), Marcatore4 (78), Marcatore5 (89)",
+      "awayScorers": "Marcatore1 (21), Marcatore2 (45), Marcatore3 (88)"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O2",
+      "home": "Spezia",
+      "away": "Bari",
+      "score": "1 - 6",
+      "date": "2024-08-24",
+      "status": "completed",
+      "homeScorers": "Marcatore1 (55)",
+      "awayScorers": "Marcatore1 (12), Marcatore2 (28), Marcatore3 (41), Marcatore4 (63), Marcatore5 (77), Marcatore6 (90+2)"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O3",
+      "home": "Como",
+      "away": "Brics",
+      "score": "5 - 1",
+      "date": "2024-08-25",
+      "status": "completed",
+      "homeScorers": "Marcatore1 (18), Marcatore2 (35), Marcatore3 (52), Marcatore4 (71), Marcatore5 (85)",
+      "awayScorers": "Marcatore1 (33)"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O4",
+      "home": "Modena",
+      "away": "Cosenza",
+      "score": "0 - 2",
+      "date": "2024-08-25",
+      "status": "completed",
+      "homeScorers": "",
+      "awayScorers": ""
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O5",
+      "home": "Avellino",
+      "away": "Palermo",
+      "score": "4 - 6",
+      "date": "2024-08-26",
+      "status": "completed",
+      "homeScorers": "Marcatore1 (22), Marcatore2 (39), Marcatore3 (58), Marcatore4 (81)",
+      "awayScorers": "Marcatore1 (15), Marcatore2 (31), Marcatore3 (47), Marcatore4 (64), Marcatore5 (73), Marcatore6 (90+1)"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O6",
+      "home": "Venezia",
+      "away": "Pescara",
+      "score": "2 - 5",
+      "date": "2024-08-26",
+      "status": "completed",
+      "homeScorers": "Marcatore1 (27), Marcatore2 (69)",
+      "awayScorers": "Marcatore1 (19), Marcatore2 (38), Marcatore3 (56), Marcatore4 (74), Marcatore5 (88)"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O7",
+      "home": "Pisa",
+      "away": "Verona",
+      "score": "4 - 3",
+      "date": "2024-08-27",
+      "status": "completed",
+      "homeScorers": "Marcatore1 (13), Marcatore2 (34), Marcatore3 (67), Marcatore4 (90+3)",
+      "awayScorers": "Marcatore1 (25), Marcatore2 (51), Marcatore3 (79)"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O8",
+      "home": "Sassuolo",
+      "away": "Parma",
+      "score": "3 - 4",
+      "date": "2024-08-27",
+      "status": "completed",
+      "homeScorers": "Marcatore1 (29), Marcatore2 (54), Marcatore3 (82)",
+      "awayScorers": "Marcatore1 (17), Marcatore2 (43), Marcatore3 (61), Marcatore4 (90+2)"
+     },
+     {
+      "round": "Quarti di Finale",
+      "match": "Q1",
+      "home": "Milan",
+      "away": "Bari",
+      "score": " 4 - 0 ",
+      "date": "2024-09-01",
+      "status": " - ",
+      "homeScorers": "Nessun marcatore",
+      "awayScorers": "Nessun marcatore"
+     },
+     {
+      "round": "Quarti di Finale",
+      "match": "Q2",
+      "home": "Como",
+      "away": "Cosenza",
+      "score": " 4 - 5",
+      "date": "2024-09-01",
+      "status": " - ",
+      "homeScorers": "Nessun marcatore",
+      "awayScorers": "Nessun marcatore"
+     },
+     {
+      "round": "Quarti di Finale",
+      "match": "Q3",
+      "home": "Palermo",
+      "away": "Pescara",
+      "score": " - ",
+      "date": "2024-09-02",
+      "status": " - ",
+      "homeScorers": "Nessun marcatore",
+      "awayScorers": "Nessun marcatore"
+     },
+     {
+      "round": "Quarti di Finale",
+      "match": "Q4",
+      "home": "Pisa",
+      "away": "Roma",
+      "score": " - ",
+      "date": "2024-09-02",
+      "status": " - ",
+      "homeScorers": "Nessun marcatore",
+      "awayScorers": "Nessun marcatore"
+     },
+     {
+      "round": "Semifinali",
+      "match": "SF1",
+      "home": " - ",
+      "away": " - ",
+      "andataScore": " - ",
+      "ritornoScore": " - ",
+      "date": "2024-09-08",
+      "status": " - ",
+      "homeScorers": "Nessun marcatore",
+      "awayScorers": "Nessun marcatore"
+     },
+     {
+      "round": "Semifinali",
+      "match": "SF2",
+      "home": " - ",
+      "away": " - ",
+      "andataScore": " - ",
+      "ritornoScore": " - ",
+      "date": "2024-09-08",
+      "status": " - ",
+      "homeScorers": "Nessun marcatore",
+      "awayScorers": "Nessun marcatore"
+     },
+     {
+      "round": "Finale",
+      "match": "FINALE",
+      "home": "Cosenza",
+      "away": "Chelsea",
+      "score": " - ",
+      "date": "2024-09-15",
+      "status": " - ",
+      "homeScorers": "Nessun marcatore",
+      "awayScorers": "Nessun marcatore"
+     }
+    ]
+   },
+   "mundial": {
+    "classifica": [
+     {
+      "pos": 1,
+      "team": "Al Ahly",
+      "pts": 7,
+      "group": "A"
+     },
+     {
+      "pos": 2,
+      "team": "Esperance Tunis",
+      "pts": 6,
+      "group": "A"
+     },
+     {
+      "pos": 3,
+      "team": "Salisburgo",
+      "pts": 4,
+      "group": "A"
+     },
+     {
+      "pos": 4,
+      "team": "Atletico Madrid",
+      "pts": 3,
+      "group": "A"
+     },
+     {
+      "pos": 1,
+      "team": "Inter Miami",
+      "pts": 9,
+      "group": "B"
+     },
+     {
+      "pos": 2,
+      "team": "Porto",
+      "pts": 6,
+      "group": "B"
+     },
+     {
+      "pos": 3,
+      "team": "Al Ain",
+      "pts": 4,
+      "group": "B"
+     },
+     {
+      "pos": 4,
+      "team": "Bayern Monaco",
+      "pts": 3,
+      "group": "B"
+     },
+     {
+      "pos": 1,
+      "team": "Fluminense",
+      "pts": 7,
+      "group": "C"
+     },
+     {
+      "pos": 2,
+      "team": "Juventus",
+      "pts": 5,
+      "group": "C"
+     },
+     {
+      "pos": 3,
+      "team": "Seattle",
+      "pts": 4,
+      "group": "C"
+     },
+     {
+      "pos": 4,
+      "team": "River",
+      "pts": 0,
+      "group": "C"
+     },
+     {
+      "pos": 1,
+      "team": "Palmeiras",
+      "pts": 7,
+      "group": "D"
+     },
+     {
+      "pos": 2,
+      "team": "Cosenza",
+      "pts": 4,
+      "group": "D"
+     },
+     {
+      "pos": 3,
+      "team": "Los Angeles",
+      "pts": 4,
+      "group": "D"
+     },
+     {
+      "pos": 4,
+      "team": "Monterrey",
+      "pts": 3,
+      "group": "D"
+     },
+     {
+      "pos": 1,
+      "team": "Benfica",
+      "pts": 9,
+      "group": "E"
+     },
+     {
+      "pos": 2,
+      "team": "Boca",
+      "pts": 6,
+      "group": "E"
+     },
+     {
+      "pos": 3,
+      "team": "Man City",
+      "pts": 5,
+      "group": "E"
+     },
+     {
+      "pos": 4,
+      "team": "Wydad",
+      "pts": 1,
+      "group": "E"
+     },
+     {
+      "pos": 1,
+      "team": "Chelsea",
+      "pts": 7,
+      "group": "F"
+     },
+     {
+      "pos": 2,
+      "team": "Dortmund",
+      "pts": 6,
+      "group": "F"
+     },
+     {
+      "pos": 3,
+      "team": "Mamelodi",
+      "pts": 4,
+      "group": "F"
+     },
+     {
+      "pos": 4,
+      "team": "Auckland",
+      "pts": 1,
+      "group": "F"
+     },
+     {
+      "pos": 1,
+      "team": "Pachuca",
+      "pts": 7,
+      "group": "G"
+     },
+     {
+      "pos": 2,
+      "team": "Botafogo",
+      "pts": 4,
+      "group": "G"
+     },
+     {
+      "pos": 3,
+      "team": "Urawa Red Diamonds",
+      "pts": 3,
+      "group": "G"
+     },
+     {
+      "pos": 4,
+      "team": "Real Madrid",
+      "pts": 1,
+      "group": "G"
+     },
+     {
+      "pos": 1,
+      "team": "PSG",
+      "pts": 9,
+      "group": "H"
+     },
+     {
+      "pos": 2,
+      "team": "Al Hilal",
+      "pts": 4,
+      "group": "H"
+     },
+     {
+      "pos": 3,
+      "team": "Ulsa HD",
+      "pts": 4,
+      "group": "H"
+     },
+     {
+      "pos": 4,
+      "team": "Flamengo",
+      "pts": 1,
+      "group": "H"
+     }
+    ],
+    "goals": [
+     {
+      "player": "Bortolotti",
+      "goals": 3,
+      "team": "Cosenza"
+     },
+     {
+      "player": "Ferreri",
+      "goals": 3,
+      "team": "Cosenza"
+     },
+     {
+      "player": "Foresti",
+      "goals": 3,
+      "team": "Cosenza"
+     },
+     {
+      "player": "Erbacci",
+      "goals": 2,
+      "team": "Real Madrid"
+     },
+     {
+      "player": "Zagnoni",
+      "goals": 2,
+      "team": "Manchester City"
+     },
+     {
+      "player": "Rega",
+      "goals": 1,
+      "team": "Real Madrid"
+     },
+     {
+      "player": "Zana",
+      "goals": 1,
+      "team": "Real Madrid"
+     }
+    ],
+    "assists": [
+     {
+      "player": "Bortolotti",
+      "assists": 2,
+      "team": "Cosenza"
+     },
+     {
+      "player": "Dido",
+      "assists": 0,
+      "team": "Cosenza"
+     },
+     {
+      "player": "Zagnoni",
+      "assists": 0,
+      "team": "Cosenza"
+     },
+     {
+      "player": "Rodri",
+      "assists": 0,
+      "team": "Manchester City"
+     },
+     {
+      "player": "De Bruyne",
+      "assists": 0,
+      "team": "Manchester City"
+     },
+     {
+      "player": "Belle Palle",
+      "assists": 0,
+      "team": "Cosenza"
+     },
+     {
+      "player": "Laurientè",
+      "assists": 0,
+      "team": "Cosenza"
+     }
+    ],
+    "partite": [
+     {
+      "match": "Los Angeles FC - Cosenza",
+      "score": "3 - 2",
+      "scorers": "Barcola (34), Laurientè (67)",
+      "opponentscorers": "Bouanga (12, 45), Vela (78)"
+     },
+     {
+      "match": "Cosenza - Losanna",
+      "score": "3 - 3",
+      "scorers": "Barcola (15, 56), Belle Palle (89)",
+      "opponentscorers": "Zesiger (23), Shaqiri (45), Montenegro (78)"
+     },
+     {
+      "match": "Cosenza - Palmeiras",
+      "score": "3 - 1",
+      "scorers": "Belle Palle (23), Spalmer (45, 78)",
+      "opponentscorers": "Endrick (67)"
+     }
+    ]
+   }
+  },
+  "2026-27": {
+   "seriea": {
+    "classifica": [],
+    "goals": [],
+    "assists": [],
+    "partite": []
+   },
+   "champions": {
+    "classifica": [],
+    "goals": [],
+    "assists": [],
+    "partite": [],
+    "knockout": []
+   },
+   "coppaitalia": {
+    "classifica": [],
+    "goals": [],
+    "assists": [],
+    "partite": []
+   },
+   "mundial": {
+    "classifica": [],
+    "goals": [],
+    "assists": [],
+    "partite": []
+   },
+   "statistics": {
+    "players": [],
+    "teamStats": {
+     "totalMatches": 0,
+     "totalGoals": 0,
+     "totalConceded": 0,
+     "goalDifference": 0,
+     "possessionAvg": 0,
+     "shotsPerMatch": 0,
+     "passAccuracy": 0,
+     "cleanSheets": 0,
+     "yellowCards": 0,
+     "redCards": 0,
+     "penaltiesScored": 0,
+     "penaltiesMissed": 0,
+     "corners": 0
+    },
+    "records": [],
+    "awards": []
+   }
+  }
+ },
+ "notizie": {
+  "2025-26": [
+   {
+    "date": "2026-05-24",
+    "category": "Dichiarazioni",
+    "title": "Mister Bortolo: \"Questa squadra ha un cuore enorme\"",
+    "body": "Dopo la vittoria contro l'Inter, il tecnico rossoblù ha elogiato il gruppo: \"Abbiamo sofferto ma non abbiamo mai mollato, è lo spirito che ci ha portato fin qui\"."
+   },
+   {
+    "date": "2026-05-10",
+    "category": "Curiosità",
+    "title": "Barcola supera quota 30 gol stagionali",
+    "body": "Con la doppietta al Torino, l'attaccante entra nella storia recente del club come miglior marcatore in una singola stagione tra tutte le competizioni."
+   },
+   {
+    "date": "2026-04-02",
+    "category": "Infortuni",
+    "title": "Pustolini recuperato per la volata finale",
+    "body": "Il centrocampista, fermo per un problema muscolare, è tornato ad allenarsi in gruppo in vista degli ultimi impegni di campionato e Champions."
+   },
+   {
+    "date": "2026-03-15",
+    "category": "Formazione",
+    "title": "Modulo a sorpresa contro la Juventus",
+    "body": "Il mister ha cambiato assetto passando a un più offensivo 3-4-3, mossa che ha spiazzato i bianconeri e regalato una vittoria roboante."
+   },
+   {
+    "date": "2026-02-01",
+    "category": "Calciomercato",
+    "title": "Rinnovo in vista per Laurientè",
+    "body": "Le due parti sarebbero vicine a un accordo per il prolungamento di contratto fino al 2029, secondo quanto trapela dall'ambiente rossoblù."
+   },
+   {
+    "date": "2026-01-08",
+    "category": "Vigilia",
+    "title": "Cosenza-Roma, la sfida che vale una stagione",
+    "body": "All'andata finì 7-5 per i rossoblù: alla vigilia del ritorno la squadra si prepara a un'altra sfida spettacolo."
+   }
+  ],
+  "2026-27": []
+ },
+ "profili": {
+  "Barcola": {
+   "number": 9,
+   "role": "Attaccante",
+   "bio": "Centravanti rapido e implacabile sottoporta, capocannoniere di quasi ogni competizione disputata.",
+   "moment": "Tripletta nella rimonta di Champions contro il Galatasaray."
+  },
+  "Laurientè": {
+   "number": 7,
+   "role": "Ala sinistra",
+   "bio": "Dribbling secco e cross chirurgici, è il rifornitore ufficiale dell'attacco rossoblù.",
+   "moment": "Gol decisivo nella finale di Champions League contro il Chelsea."
+  },
+  "Belle Palle": {
+   "number": 11,
+   "role": "Trequartista",
+   "bio": "Fantasia e imprevedibilità: quando accelera lui, la difesa avversaria trema.",
+   "moment": "Doppietta nella storica notte di Coppa Italia."
+  },
+  "Pustolini": {
+   "number": 5,
+   "role": "Centrocampista",
+   "bio": "Regista instancabile, recupera palloni e imposta l'azione con freddezza.",
+   "moment": "Rigore decisivo nel derby contro il Cosenza... di sé stesso, impossibile: contro la Juventus."
+  },
+  "Ulisse": {
+   "number": 4,
+   "role": "Difensore",
+   "bio": "Roccia del reparto arretrato, all'occorrenza sa farsi trovare pronto anche in area avversaria."
+  },
+  "Spalmer": {
+   "number": 17,
+   "role": "Centrocampista",
+   "bio": "Jolly di centrocampo, si adatta a più ruoli con la stessa efficacia."
+  },
+  "Bortolotti": {
+   "number": 10,
+   "role": "Fantasista",
+   "bio": "Il nome dice tutto: l'uomo copertina della stagione tra Serie A e Coppe."
+  },
+  "Dido": {
+   "number": 21,
+   "role": "Attaccante",
+   "bio": "Velocità e imprevedibilità sulla trequarti avversaria."
+  },
+  "Erbacci": {
+   "number": 8,
+   "role": "Centrocampista",
+   "bio": "Gol pesanti nei momenti che contano di più."
+  },
+  "Zagnoni": {
+   "number": 3,
+   "role": "Difensore",
+   "bio": "Assist a sorpresa dalle retrovie, spinta costante sulla fascia."
+  }
+ }
+}
