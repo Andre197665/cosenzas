@@ -7401,7 +7401,56 @@
    "classifica": [],
    "goals": [],
    "assists": [],
-   "partite": []
+   "partite": [
+    {
+     "round": "Ottavi di Finale",
+     "match": "O1",
+     "home": "Cosenza",
+     "away": "Sassuolo"
+    },
+    {
+     "round": "Ottavi di Finale",
+     "match": "O2",
+     "home": "Napoli",
+     "away": "Udinese"
+    },
+    {
+     "round": "Ottavi di Finale",
+     "match": "O3",
+     "home": "Milan",
+     "away": "Fiorentina"
+    },
+    {
+     "round": "Ottavi di Finale",
+     "match": "O4",
+     "home": "Juventus",
+     "away": "Verona"
+    },
+    {
+     "round": "Ottavi di Finale",
+     "match": "O5",
+     "home": "Inter",
+     "away": "Canti Cantanti"
+    },
+    {
+     "round": "Ottavi di Finale",
+     "match": "O6",
+     "home": "Atalanta",
+     "away": "Cremonese"
+    },
+    {
+     "round": "Ottavi di Finale",
+     "match": "O7",
+     "home": "Como",
+     "away": "Palermo"
+    },
+    {
+     "round": "Ottavi di Finale",
+     "match": "O8",
+     "home": "Roma",
+     "away": "Genoa"
+    }
+   ]
   },
   "mundial": {
    "classifica": [],
@@ -8391,13 +8440,14 @@
                     <div class="aggregate-line">Tot. ${agg}</div></div>`;
             }
 
-            const p = parseScore((m.score||'0 - 0').trim());
-            const w = m.winner || (p.home > p.away ? m.home : m.away);
+            const hasScore = typeof m.score === 'string' && /\d/.test(m.score);
+            const p = hasScore ? parseScore(m.score.trim()) : null;
+            const w = m.winner || (p && (p.home > p.away ? m.home : p.away > p.home ? m.away : null));
             const finCls = m.round === 'Finale' ? ' final-match' : '';
             const title = `${m.home} - ${m.away} ${m.score||''}`;
             return `<div class="bracket-match${finCls}${heroCls}"${idAttr} style="animation-delay:${delay}s" onclick="showDetails('${this.esc(title)}','${this.esc(m.homeScorers||m.scorers)}','${this.esc(m.awayScorers||m.opponentscorers)}')">
-                <div class="bracket-team ${w===m.home?'winner':''}"><span>${m.home}</span><span class="bracket-score">${p.home}</span></div>
-                <div class="bracket-team ${w===m.away?'winner':''}"><span>${m.away}</span><span class="bracket-score">${p.away}</span></div></div>`;
+                <div class="bracket-team ${w===m.home?'winner':''}"><span>${m.home}</span><span class="bracket-score">${p ? p.home : 'TBD'}</span></div>
+                <div class="bracket-team ${w===m.away?'winner':''}"><span>${m.away}</span><span class="bracket-score">${p ? p.away : 'TBD'}</span></div></div>`;
         },
 
         renderColumn(ids, map, opts, title, type, dir, delayBase) {

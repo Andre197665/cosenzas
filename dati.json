@@ -2313,7 +2313,56 @@
     "classifica": [],
     "goals": [],
     "assists": [],
-    "partite": []
+    "partite": [
+     {
+      "round": "Ottavi di Finale",
+      "match": "O1",
+      "home": "Cosenza",
+      "away": "Sassuolo"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O2",
+      "home": "Napoli",
+      "away": "Udinese"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O3",
+      "home": "Milan",
+      "away": "Fiorentina"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O4",
+      "home": "Juventus",
+      "away": "Verona"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O5",
+      "home": "Inter",
+      "away": "Canti Cantanti"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O6",
+      "home": "Atalanta",
+      "away": "Cremonese"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O7",
+      "home": "Como",
+      "away": "Palermo"
+     },
+     {
+      "round": "Ottavi di Finale",
+      "match": "O8",
+      "home": "Roma",
+      "away": "Genoa"
+     }
+    ]
    },
    "mundial": {
     "classifica": [],
