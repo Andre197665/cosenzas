@@ -1855,10 +1855,22 @@
  },
  "notizie": {
   "2025-26": [
+    {
+    "date": "2026-10-16",
+    "category": "Campionato",
+    "title": "Torna la serie A \"Sassuolo-Cosenza il 25 ottobre alle 16:00\"",
+    "body": "Torna il campionato dopo una lunga attesa \"Sassuolo-Cosenza sarà tenuta al Mapei Stadium di sassuolo il 25 ottobre alle 16:00\"."
+   },
+    {
+    "date": "2026-10-16",
+    "category": "Calciomercato",
+    "title": "Scambio Barcola-Malen \"Barcola scambiato per Donyell Malen\"",
+    "body": "Di seguito i dettagli dell operazione: \"Malen diventa un nuovo elemento del gruppo, Barcola lascia il club, buona fortuna Bradley!\"."
+   },
    {
     "date": "2026-05-24",
     "category": "Dichiarazioni",
-    "title": "Mister Bortolo: \"Questa squadra ha un cuore enorme\"",
+    "title": "Mister Bortolo-Erbacci: \"Questa squadra ha un cuore enorme\"",
     "body": "Dopo la vittoria contro l'Inter, il tecnico rossoblù ha elogiato il gruppo: \"Abbiamo sofferto ma non abbiamo mai mollato, è lo spirito che ci ha portato fin qui\"."
    },
    {
