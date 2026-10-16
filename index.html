@@ -9341,6 +9341,7 @@ const DATI_URL = "https://andre197665.github.io/cosenzas/dati.json";
     try{changeLeague()}catch(e){}
     try{renderNews()}catch(e){}
   }
+  window.__dati={last:0,state:'init'};
   async function load(){
     for(const u of urls){
       try{
@@ -9350,15 +9351,20 @@ const DATI_URL = "https://andre197665.github.io/cosenzas/dati.json";
         if(!valid(d))continue;
         const str=JSON.stringify(d);let prev=null;
         try{prev=localStorage.getItem(KEY)}catch(e){}
+        window.__dati.last=Date.now();window.__dati.state='online';
         if(str!==prev){
           try{localStorage.setItem(KEY,str)}catch(e){}
           apply(d);
           if(prev&&typeof showNotification==='function')showNotification('Dati aggiornati ✅','info');
+          return 'changed';
         }
-        return;
+        return 'same';
       }catch(e){}
     }
+    window.__dati.state=(function(){try{return localStorage.getItem(KEY)?'cache':'inline'}catch(e){return 'inline'}})();
+    return 'fail';
   }
+  window.__dati.reload=load;
   try{const c=localStorage.getItem(KEY);if(c){const d=JSON.parse(c);if(valid(d))apply(d)}}catch(e){}
   load();
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')load()});
@@ -9455,6 +9461,184 @@ const DATI_URL = "https://andre197665.github.io/cosenzas/dati.json";
   const _open=window.openSettings;
   window.openSettings=function(){const r=_open.apply(this,arguments);fill();return r};
   build();
+})();
+</script>
+<style id="extrasCSS">
+@media (max-width:700px){.header-left select{font-size:.74rem;letter-spacing:.02em;padding-left:12px;padding-right:28px}.header-actions .search-container{flex:1 1 0;max-width:none;width:auto}}
+
+/* header su telefono: sempre due righe (selettori sopra, ricerca sotto) */
+@media (max-width:700px){
+  header{flex-wrap:wrap}
+  .header-left{flex:1 1 100%;min-width:0}
+  .header-left select{flex:1 1 0;min-width:0}
+  .header-actions{flex:1 1 100%}
+}
+
+#appSection .settings-btn{min-width:104px;white-space:nowrap;padding:9px 14px;flex-shrink:0}
+#anExtra{margin-top:12px}
+
+/* ===== MODALITÀ OTTIMIZZATA: stesso aspetto, meno lavoro per la GPU/CPU ===== */
+html.perf *{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html.perf .item,html.perf .news-card{content-visibility:auto;contain-intrinsic-size:auto 80px}
+/* offline */
+#offPill{position:fixed;top:calc(env(safe-area-inset-top,0px) + 6px);left:50%;transform:translateX(-50%);z-index:99998;background:#b45309;color:#fff;font:700 12px 'DM Sans',sans-serif;padding:5px 12px;border-radius:20px;display:none;box-shadow:0 2px 10px #0006}
+/* extra analisi / storico */
+.x-chips{display:flex;gap:6px;flex-wrap:wrap}
+.x-chip{display:flex;flex-direction:column;align-items:center;min-width:52px;padding:6px 8px;border-radius:10px;font:700 12px 'DM Sans',sans-serif;color:#fff}
+.x-chip b{font-size:15px}.x-chip small{font-weight:600;opacity:.85;font-size:10px;max-width:64px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.x-W{background:#1e8449}.x-D{background:#7f8c8d}.x-L{background:#a93226}
+.x-sel{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.x-sel select{flex:1;min-width:0;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-container,var(--item-bg));color:var(--text-main);font:600 16px 'DM Sans',sans-serif}
+.x-cmp{display:grid;grid-template-columns:1fr 64px 1fr;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--border-color);font:600 14px 'DM Sans',sans-serif}
+.x-cmp:last-child{border:0}
+.x-cmp .lab{text-align:center;font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:.06em}
+.x-bar{height:22px;border-radius:6px;background:#ffffff14;display:flex}
+.x-bar i{display:flex;align-items:center;padding:0 8px;border-radius:6px;font:800 13px 'DM Sans',sans-serif;color:#fff;min-width:26px;background:#555}
+.x-bar.l{justify-content:flex-end}.x-bar i.win{background:linear-gradient(135deg,#8b0000,#c0392b)}.x-bar.r i.win{background:linear-gradient(135deg,#1f5fb4,#3498db)}
+.x-sub{font:12px 'DM Sans',sans-serif;opacity:.7;text-align:center;margin-top:2px}
+</style>
+<div id="offPill">📴 Offline · dati salvati</div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id),H=document.documentElement;
+  /* ---------- OFFLINE PILL ---------- */
+  const pill=$('offPill'),upd=()=>{pill.style.display=navigator.onLine?'none':'block'};
+  addEventListener('online',upd);addEventListener('offline',upd);upd();
+
+  /* ---------- MODALITÀ OTTIMIZZATA ---------- */
+  const PK='cosenza-perf',KEEP=new Set(['spin','bounceDots','newsTickerScroll','blink']);
+  const want=()=>{let v=null;try{v=localStorage.getItem(PK)}catch(e){}return v==='on'?true:v==='off'?false:(navigator.maxTouchPoints>0)};
+  function settle(){
+    if(!H.classList.contains('perf'))return;
+    try{document.getAnimations().forEach(a=>{
+      if(typeof CSSAnimation!=='undefined'&&!(a instanceof CSSAnimation))return;
+      const t=a.effect&&a.effect.getComputedTiming();
+      if(t&&t.iterations===Infinity&&!KEEP.has(a.animationName))a.cancel();
+    })}catch(e){}
+  }
+  let tm;const mo=new MutationObserver(()=>{clearTimeout(tm);tm=setTimeout(settle,250)});
+  function applyPerf(on){
+    H.classList.toggle('perf',on);
+    if(on){settle();mo.observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class']})}else mo.disconnect();
+  }
+  applyPerf(want());
+  // ricerca con debounce
+  const _ps=window.performSearch;
+  if(typeof _ps==='function'){let t;window.performSearch=function(){
+    if(!H.classList.contains('perf'))return _ps.apply(this,arguments);
+    const a=arguments;clearTimeout(t);t=setTimeout(()=>_ps.apply(null,a),140)}}
+
+  /* ---------- IMPOSTAZIONI: Prestazioni + Dati e app ---------- */
+  let deferred=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e});
+  const native=()=>{try{return !!(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform())}catch(e){return false}};
+  const standalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+  const isiOS=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const baseUrl=()=>{try{return DATI_URL.replace(/dati\.json$/,'')}catch(e){return location.origin+location.pathname}};
+  function buildSettings(){
+    const a=$('acctSection');if(!a||$('perfSection'))return;
+    a.insertAdjacentHTML('afterend',`
+    <div class="settings-section" id="perfSection"><h3>Prestazioni</h3>
+      <div class="settings-row"><span>⚡ Modalità ottimizzata<span class="settings-row-desc">Stesso aspetto ma più fluida: ferma le animazioni decorative e alleggerisce effetti e liste</span></span>
+      <button type="button" class="settings-switch" id="perfSwitch" role="switch" aria-checked="false" aria-label="Modalità ottimizzata"></button></div></div>
+    <div class="settings-section" id="appSection"><h3>Dati e app</h3>
+      <div class="settings-row"><span>Dati<span class="settings-row-desc" id="datiInfo">—</span></span><button type="button" class="settings-btn" id="datiBtn">Aggiorna</button></div>
+      <div class="settings-row" id="installRow"><span>Installa l'app<span class="settings-row-desc">Aggiungila alla schermata Home</span></span><button type="button" class="settings-btn" id="installBtn">Installa</button></div>
+      <div class="settings-row"><span>Invita un amico<span class="settings-row-desc">Manda il link dell'app</span></span><button type="button" class="settings-btn" id="shareBtn">Condividi</button></div></div>`);
+    $('perfSwitch').onclick=()=>{
+      const on=$('perfSwitch').getAttribute('aria-checked')!=='true';
+      try{localStorage.setItem(PK,on?'on':'off')}catch(e){}
+      $('perfSwitch').setAttribute('aria-checked',on);
+      if(on){applyPerf(true);if(typeof showNotification==='function')showNotification('Modalità ottimizzata attiva ⚡','success')}
+      else{if(typeof showNotification==='function')showNotification('Ripristino gli effetti…','info');setTimeout(()=>location.reload(),700)}
+    };
+    $('datiBtn').onclick=async()=>{
+      const b=$('datiBtn');b.disabled=true;b.textContent='…';
+      let r='fail';try{r=await window.__dati.reload()}catch(e){}
+      b.disabled=false;b.textContent='Aggiorna';fillInfo();
+      if(typeof showNotification==='function')showNotification(r==='changed'?'Dati aggiornati ✅':r==='same'?'Sei già aggiornato ✅':'Impossibile aggiornare: uso i dati salvati',r==='fail'?'error':'info');
+    };
+    $('installBtn').onclick=async()=>{
+      if(deferred){deferred.prompt();try{await deferred.userChoice}catch(e){}deferred=null;return}
+      alert(isiOS?"Su iPhone: apri il link con Safari, tocca Condividi (il quadrato con la freccia) e poi 'Aggiungi alla schermata Home'.":"Dal menu ⋮ del browser scegli 'Installa app' (o 'Aggiungi a schermata Home').");
+    };
+    $('shareBtn').onclick=async()=>{
+      const url=baseUrl(),d={title:'Cosenza FC',text:"L'app del Bortolo: classifiche, statistiche e simulatore del Cosenza",url};
+      try{if(navigator.share){await navigator.share(d);return}}catch(e){if(e&&e.name==='AbortError')return}
+      try{await navigator.clipboard.writeText(url);if(typeof showNotification==='function')showNotification('Link copiato 📋','success')}catch(e){prompt('Copia il link:',url)}
+    };
+  }
+  function fillInfo(){
+    const d=window.__dati||{},t=d.last?new Date(d.last).toLocaleTimeString('it',{hour:'2-digit',minute:'2-digit'}):null;
+    $('datiInfo').textContent=d.state==='online'&&t?'Aggiornati alle '+t:d.state==='cache'?'Offline: ultimi dati salvati':'Dati inclusi nell\'app';
+  }
+  function fillSettings(){
+    buildSettings();if(!$('perfSwitch'))return;
+    $('perfSwitch').setAttribute('aria-checked',H.classList.contains('perf'));
+    $('installRow').style.display=(native()||standalone())?'none':'';
+    fillInfo();
+  }
+  const _open=window.openSettings;
+  window.openSettings=function(){const r=_open.apply(this,arguments);fillSettings();return r};
+
+  /* ---------- SIMULATORE: storico scontri ---------- */
+  const COMP={seriea:'Serie A',champions:'Champions',coppaitalia:'Coppa Italia',mundial:'Mundial'};
+  function h2h(){
+    const hn=$('simHome').value,an=$('simAway').value,out=$('simOut');
+    if(!out||(hn!=='Cosenza'&&an!=='Cosenza')||hn===an)return;
+    const opp=hn==='Cosenza'?an:hn,rows=[];
+    Object.entries(jsonDataBySeason).forEach(([season,S])=>Object.entries(S).forEach(([k,L])=>{
+      if(!L||!Array.isArray(L.partite))return;
+      L.partite.forEach(p=>{
+        const t=(p.match||'').split(' - ').map(x=>x.trim()),sc=(p.score||'').split('-').map(x=>parseInt(x));
+        if(t.length<2||isNaN(sc[0])||isNaN(sc[1]))return;
+        if(!((t[0]==='Cosenza'&&t[1]===opp)||(t[1]==='Cosenza'&&t[0]===opp)))return;
+        const home=t[0]==='Cosenza',gf=home?sc[0]:sc[1],ga=home?sc[1]:sc[0];
+        rows.push({season,comp:COMP[k]||k,home,gf,ga,txt:`${t[0]} ${sc[0]}-${sc[1]} ${t[1]}`});
+      });
+    }));
+    const w=rows.filter(r=>r.gf>r.ga).length,d=rows.filter(r=>r.gf===r.ga).length,l=rows.length-w-d;
+    out.insertAdjacentHTML('beforeend',`<div class="sim-card"><b>📜 Storico Cosenza vs ${opp}</b>`+(rows.length?
+      `<div class="x-sub" style="margin:6px 0 8px">${w}V · ${d}N · ${l}P — gol ${rows.reduce((s,r)=>s+r.gf,0)}:${rows.reduce((s,r)=>s+r.ga,0)}</div>`+
+      rows.map(r=>`<div class="st-row"><span>${r.txt}<br><small style="opacity:.65">${r.comp} · ${r.season}</small></span><span class="x-chip x-${r.gf>r.ga?'W':r.gf===r.ga?'D':'L'}" style="min-width:34px"><b>${r.gf>r.ga?'V':r.gf===r.ga?'N':'P'}</b></span></div>`).join('')
+      :'<div class="x-sub" style="margin-top:6px">Mai incontrate nei dati dell\'app.</div>')+'</div>');
+  }
+  const _sp=window.simPredict;
+  if(typeof _sp==='function')window.simPredict=function(){const r=_sp.apply(this,arguments);try{h2h()}catch(e){}return r};
+
+  /* ---------- ANALISI: forma recente + confronto giocatori ---------- */
+  function lg(){try{return $('leagueSelect').value}catch(e){return 'seriea'}}
+  function L(){return (typeof jsonData!=='undefined'&&(jsonData[lg()]||jsonData.seriea))||{}}
+  function extras(){
+    const body=$('anBody');if(!body)return;
+    const old=$('anExtra');if(old)old.remove();
+    const D=L(),P=(D.partite||[]).map(p=>{
+      const t=(p.match||'').split(' - ').map(x=>x.trim()),sc=(p.score||'').split('-').map(x=>parseInt(x));
+      if(t.length<2||isNaN(sc[0])||isNaN(sc[1])||(t[0]!=='Cosenza'&&t[1]!=='Cosenza'))return null;
+      const home=t[0]==='Cosenza';return{opp:home?t[1]:t[0],gf:home?sc[0]:sc[1],ga:home?sc[1]:sc[0]};
+    }).filter(Boolean).slice(0,5);
+    const stats={};
+    (D.goals||[]).forEach(x=>{(stats[x.player]=stats[x.player]||{g:0,a:0}).g=x.goals});
+    (D.assists||[]).forEach(x=>{(stats[x.player]=stats[x.player]||{g:0,a:0}).a=x.assists});
+    const names=Object.keys(stats).sort((a,b)=>(stats[b].g+stats[b].a)-(stats[a].g+stats[a].a));
+    let html='<div id="anExtra">';
+    if(P.length)html+=`<div class="st-card"><h4>📈 Forma recente</h4><div class="x-chips">${P.map(p=>{const c=p.gf>p.ga?'W':p.gf===p.ga?'D':'L';return`<div class="x-chip x-${c}"><b>${p.gf}-${p.ga}</b><small>${p.opp}</small></div>`}).join('')}</div></div>`;
+    if(names.length>=2)html+=`<div class="st-card"><h4>⚔️ Confronto giocatori</h4>
+      <div class="x-sel"><select id="cmpA">${names.map(n=>`<option>${n}</option>`).join('')}</select><b>VS</b><select id="cmpB">${names.map(n=>`<option>${n}</option>`).join('')}</select></div><div id="cmpOut"></div></div>`;
+    body.insertAdjacentHTML('beforeend',html+'</div>');
+    if(names.length>=2){
+      $('cmpA').value=names[0];$('cmpB').value=names[1];
+      const draw=()=>{
+        const a=$('cmpA').value,b=$('cmpB').value,A=stats[a],B=stats[b],pr=n=>(typeof playerProfiles!=='undefined'&&playerProfiles[n])||{};
+        const row=(lab,x,y)=>{const m=Math.max(x,y,1);return`<div class="x-cmp"><div class="x-bar l"><i class="${x>=y&&x>0?'win':''}" style="width:${Math.max(x/m*100,14)}%">${x}</i></div><div class="lab">${lab}</div><div class="x-bar r"><i class="${y>=x&&y>0?'win':''}" style="width:${Math.max(y/m*100,14)}%">${y}</i></div></div>`};
+        const sub=n=>{const p=pr(n);return[p.number?'#'+p.number:'',p.role||''].filter(Boolean).join(' · ')};
+        $('cmpOut').innerHTML=`<div class="x-cmp" style="border:0"><div style="text-align:center;font-weight:800">${a}<div class="x-sub">${sub(a)}</div></div><div></div><div style="text-align:center;font-weight:800">${b}<div class="x-sub">${sub(b)}</div></div></div>`+
+          row('Gol',A.g,B.g)+row('Assist',A.a,B.a)+row('G+A',A.g+A.a,B.g+B.a);
+      };
+      $('cmpA').onchange=draw;$('cmpB').onchange=draw;draw();
+    }
+  }
+  document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#analisi-tab'))setTimeout(extras,160)});
+  const ls=$('leagueSelect');ls&&ls.addEventListener('change',()=>setTimeout(()=>{const a=$('analisi');if(a&&a.classList.contains('active'))setTimeout(extras,200)},150));
 })();
 </script>
 </body>

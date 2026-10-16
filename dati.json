@@ -476,7 +476,7 @@
      },
      {
       "match": "Brics - Cosenza",
-      "score": "1 - 3",
+      "score": "1 - 2",
       "scorers": "Laurientè (45), Belle Palle (67)",
       "opponentscorers": "Marcatore1 (23)"
      },
@@ -1856,21 +1856,9 @@
  "notizie": {
   "2025-26": [
    {
-    "date": "2026-10-15",
-    "category": "Campionato",
-    "title": "Comincia la stagione di Serie A a breve",
-    "body": "La stagione 2026/27 di Serie A è programmata per ricominciare il 25 ottobre 2026 con Cosenza-Sassuolo"
-   },
-   {
-    "date": "2026-10-15",
-    "category": "Calciomercato",
-    "title": "Barcola scambiato con Malen",
-    "body": "Lo storico bomber del Cosenza viene scambiato con Donyell Malen dopo la stratosferica stagione."
-   },
-   {
     "date": "2026-05-24",
     "category": "Dichiarazioni",
-    "title": "Mister Bortolo-Erbacci: \"Questa squadra ha un cuore enorme\"",
+    "title": "Mister Bortolo: \"Questa squadra ha un cuore enorme\"",
     "body": "Dopo la vittoria contro l'Inter, il tecnico rossoblù ha elogiato il gruppo: \"Abbiamo sofferto ma non abbiamo mai mollato, è lo spirito che ci ha portato fin qui\"."
    },
    {
