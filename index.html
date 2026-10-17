@@ -4734,6 +4734,8 @@
         <button class="tab-btn" id="news-tab" onclick="openTab(event, 'notizie')"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></span>Notizie</button>
         <button class="tab-btn" id="sim-tab" onclick="openTab(event, 'simulatore')"><span class="tab-icon" aria-hidden="true" style="font-size:16px;line-height:1">🔮</span>Simulatore</button>
         <button class="tab-btn" id="analisi-tab" onclick="openTab(event, 'analisi')"><span class="tab-icon" aria-hidden="true" style="font-size:16px;line-height:1">🧠</span>Analisi</button>
+        <button class="tab-btn" id="rosa-tab" onclick="openTab(event, 'rosa')"><span class="tab-icon" aria-hidden="true" style="font-size:16px;line-height:1">👕</span>Rosa</button>
+        <button class="tab-btn" id="quiz-tab" onclick="openTab(event, 'quiz')"><span class="tab-icon" aria-hidden="true" style="font-size:16px;line-height:1">🎯</span>Quiz</button>
     </div>
 
     <div class="content-area">
@@ -4787,6 +4789,8 @@
 .st-share{width:100%;padding:12px;border:0;border-radius:10px;color:#fff;cursor:pointer;font:700 14px 'DM Sans',sans-serif;background:linear-gradient(135deg,var(--cosenza-blue),var(--cosenza-red))}
 </style>
 <div id="analisi" class="content"><h3>🧠 Analisi Cosenza</h3><div id="anBody"></div></div>
+        <div id="rosa" class="content"><h3>👕 La rosa</h3><div id="rosaBody"></div></div>
+        <div id="quiz" class="content"><h3>🎯 Quiz Cosenza</h3><div id="quizBody"></div></div>
         <div id="notizie" class="content"><h3>Notizie Cosenza</h3><div id="news-body"></div></div>
     </div>
     <footer class="app-footer">App del Bortolo · <strong>Forza Cosenza</strong></footer>
@@ -7391,11 +7395,375 @@
    ]
   },
   "champions": {
-   "classifica": [],
+   "classifica": [
+    {
+     "pos": 1,
+     "team": "AEK",
+     "p": 0,
+     "w": 0,
+     "d": 0,
+     "l": 0,
+     "gf": 0,
+     "ga": 0,
+     "pts": 0,
+     "form": [],
+     "me": false,
+     "group": "A"
+    },
+    {
+     "pos": 2,
+     "team": "Manchester United",
+     "p": 0,
+     "w": 0,
+     "d": 0,
+     "l": 0,
+     "gf": 0,
+     "ga": 0,
+     "pts": 0,
+     "form": [],
+     "me": false,
+     "group": "A"
+    },
+    {
+     "pos": 3,
+     "team": "Porto",
+     "p": 0,
+     "w": 0,
+     "d": 0,
+     "l": 0,
+     "gf": 0,
+     "ga": 0,
+     "pts": 0,
+     "form": [],
+     "me": false,
+     "group": "A"
+    },
+    {
+     "pos": 1,
+     "team": "Cosenza",
+     "p": 0,
+     "w": 0,
+     "d": 0,
+     "l": 0,
+     "gf": 0,
+     "ga": 0,
+     "pts": 0,
+     "form": [],
+     "me": true,
+     "group": "B"
+    },
+    {
+     "pos": 2,
+     "team": "Manchester City",
+     "p": 0,
+     "w": 0,
+     "d": 0,
+     "l": 0,
+     "gf": 0,
+     "ga": 0,
+     "pts": 0,
+     "form": [],
+     "me": false,
+     "group": "B"
+    },
+    {
+     "pos": 3,
+     "team": "LASK",
+     "p": 0,
+     "w": 0,
+     "d": 0,
+     "l": 0,
+     "gf": 0,
+     "ga": 0,
+     "pts": 0,
+     "form": [],
+     "me": false,
+     "group": "B"
+    },
+    {
+     "pos": 1,
+     "team": "Lipsia",
+     "p": 0,
+     "w": 0,
+     "d": 0,
+     "l": 0,
+     "gf": 0,
+     "ga": 0,
+     "pts": 0,
+     "form": [],
+     "me": false,
+     "group": "C"
+    },
+    {
+     "pos": 2,
+     "team": "Galatasaray",
+     "p": 0,
+     "w": 0,
+     "d": 0,
+     "l": 0,
+     "gf": 0,
+     "ga": 0,
+     "pts": 0,
+     "form": [],
+     "me": false,
+     "group": "C"
+    },
+    {
+     "pos": 3,
+     "team": "Liverpool",
+     "p": 0,
+     "w": 0,
+     "d": 0,
+     "l": 0,
+     "gf": 0,
+     "ga": 0,
+     "pts": 0,
+     "form": [],
+     "me": false,
+     "group": "C"
+    }
+   ],
    "goals": [],
    "assists": [],
-   "partite": [],
-   "knockout": []
+   "partite": [
+    {
+     "match": "Cosenza - Manchester City",
+     "score": " - ",
+     "scorers": "",
+     "opponentscorers": ""
+    },
+    {
+     "match": "LASK - Cosenza",
+     "score": " - ",
+     "scorers": "",
+     "opponentscorers": ""
+    },
+    {
+     "match": "Manchester City - Cosenza",
+     "score": " - ",
+     "scorers": "",
+     "opponentscorers": ""
+    },
+    {
+     "match": "Cosenza - LASK",
+     "score": " - ",
+     "scorers": "",
+     "opponentscorers": ""
+    }
+   ],
+   "knockout": [],
+   "gironi": [
+    {
+     "girone": "A",
+     "squadre": [
+      "AEK",
+      "Manchester United",
+      "Porto"
+     ],
+     "partite": [
+      {
+       "giornata": 1,
+       "fase": "Andata",
+       "home": "AEK",
+       "away": "Manchester United",
+       "match": "AEK - Manchester United",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 2,
+       "fase": "Andata",
+       "home": "Porto",
+       "away": "AEK",
+       "match": "Porto - AEK",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 3,
+       "fase": "Andata",
+       "home": "Manchester United",
+       "away": "Porto",
+       "match": "Manchester United - Porto",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 4,
+       "fase": "Ritorno",
+       "home": "Manchester United",
+       "away": "AEK",
+       "match": "Manchester United - AEK",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 5,
+       "fase": "Ritorno",
+       "home": "AEK",
+       "away": "Porto",
+       "match": "AEK - Porto",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 6,
+       "fase": "Ritorno",
+       "home": "Porto",
+       "away": "Manchester United",
+       "match": "Porto - Manchester United",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      }
+     ]
+    },
+    {
+     "girone": "B",
+     "squadre": [
+      "Cosenza",
+      "Manchester City",
+      "LASK"
+     ],
+     "partite": [
+      {
+       "giornata": 1,
+       "fase": "Andata",
+       "home": "Cosenza",
+       "away": "Manchester City",
+       "match": "Cosenza - Manchester City",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 2,
+       "fase": "Andata",
+       "home": "LASK",
+       "away": "Cosenza",
+       "match": "LASK - Cosenza",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 3,
+       "fase": "Andata",
+       "home": "Manchester City",
+       "away": "LASK",
+       "match": "Manchester City - LASK",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 4,
+       "fase": "Ritorno",
+       "home": "Manchester City",
+       "away": "Cosenza",
+       "match": "Manchester City - Cosenza",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 5,
+       "fase": "Ritorno",
+       "home": "Cosenza",
+       "away": "LASK",
+       "match": "Cosenza - LASK",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 6,
+       "fase": "Ritorno",
+       "home": "LASK",
+       "away": "Manchester City",
+       "match": "LASK - Manchester City",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      }
+     ]
+    },
+    {
+     "girone": "C",
+     "squadre": [
+      "Lipsia",
+      "Galatasaray",
+      "Liverpool"
+     ],
+     "partite": [
+      {
+       "giornata": 1,
+       "fase": "Andata",
+       "home": "Lipsia",
+       "away": "Galatasaray",
+       "match": "Lipsia - Galatasaray",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 2,
+       "fase": "Andata",
+       "home": "Liverpool",
+       "away": "Lipsia",
+       "match": "Liverpool - Lipsia",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 3,
+       "fase": "Andata",
+       "home": "Galatasaray",
+       "away": "Liverpool",
+       "match": "Galatasaray - Liverpool",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 4,
+       "fase": "Ritorno",
+       "home": "Galatasaray",
+       "away": "Lipsia",
+       "match": "Galatasaray - Lipsia",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 5,
+       "fase": "Ritorno",
+       "home": "Lipsia",
+       "away": "Liverpool",
+       "match": "Lipsia - Liverpool",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      },
+      {
+       "giornata": 6,
+       "fase": "Ritorno",
+       "home": "Liverpool",
+       "away": "Galatasaray",
+       "match": "Liverpool - Galatasaray",
+       "score": " - ",
+       "scorers": "",
+       "opponentscorers": ""
+      }
+     ]
+    }
+   ]
   },
   "coppaitalia": {
    "classifica": [],
@@ -7492,7 +7860,7 @@
     // ============================================
     let newsBySeason = {
  "2025-26": [
- {
+  {
    "date": "2026-05-24",
    "category": "Dichiarazioni",
    "title": "Mister Bortolo-Erbacci: \"Questa squadra ha un cuore enorme\"",
@@ -8446,14 +8814,13 @@
                     <div class="aggregate-line">Tot. ${agg}</div></div>`;
             }
 
-            const hasScore = typeof m.score === 'string' && /\d/.test(m.score);
-            const p = hasScore ? parseScore(m.score.trim()) : null;
-            const w = m.winner || (p && (p.home > p.away ? m.home : p.away > p.home ? m.away : null));
+            const p = parseScore((m.score||'0 - 0').trim());
+            const w = m.winner || (p.home > p.away ? m.home : m.away);
             const finCls = m.round === 'Finale' ? ' final-match' : '';
             const title = `${m.home} - ${m.away} ${m.score||''}`;
             return `<div class="bracket-match${finCls}${heroCls}"${idAttr} style="animation-delay:${delay}s" onclick="showDetails('${this.esc(title)}','${this.esc(m.homeScorers||m.scorers)}','${this.esc(m.awayScorers||m.opponentscorers)}')">
-                <div class="bracket-team ${w===m.home?'winner':''}"><span>${m.home}</span><span class="bracket-score">${p ? p.home : 'TBD'}</span></div>
-                <div class="bracket-team ${w===m.away?'winner':''}"><span>${m.away}</span><span class="bracket-score">${p ? p.away : 'TBD'}</span></div></div>`;
+                <div class="bracket-team ${w===m.home?'winner':''}"><span>${m.home}</span><span class="bracket-score">${p.home}</span></div>
+                <div class="bracket-team ${w===m.away?'winner':''}"><span>${m.away}</span><span class="bracket-score">${p.away}</span></div></div>`;
         },
 
         renderColumn(ids, map, opts, title, type, dir, delayBase) {
@@ -11774,6 +12141,443 @@ html.perf .item,html.perf .news-card{content-visibility:auto;contain-intrinsic-s
   }
   document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#analisi-tab'))setTimeout(extras,160)});
   const ls=$('leagueSelect');ls&&ls.addEventListener('change',()=>setTimeout(()=>{const a=$('analisi');if(a&&a.classList.contains('active'))setTimeout(extras,200)},150));
+})();
+</script>
+<style id="extras2CSS">
+html{overscroll-behavior-y:contain}
+/* zone classifica */
+.cla-item[data-zona]{position:relative}
+.cla-item[data-zona=ucl]{box-shadow:inset 4px 0 0 #2ecc71}
+.cla-item[data-zona=uel]{box-shadow:inset 4px 0 0 #3498db}
+.cla-item[data-zona=ret]{box-shadow:inset 4px 0 0 #e74c3c}
+.zona-leg{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:14px 0 6px;font:600 12px 'DM Sans',sans-serif;opacity:.85}
+.zona-leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* traguardi */
+.bd-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.bd{display:flex;gap:10px;align-items:center;padding:10px;border-radius:12px;border:1px solid var(--border-color);background:var(--bg-container,#ffffff08)}
+.bd .ic{font-size:26px;filter:grayscale(1);opacity:.45}
+.bd b{display:block;font:700 13px 'DM Sans',sans-serif}.bd small{font:11px/1.3 'DM Sans',sans-serif;opacity:.7}
+.bd.on{border-color:#c9a227;background:linear-gradient(135deg,#c9a22722,transparent)}
+.bd.on .ic{filter:none;opacity:1}
+.bd .pg{height:4px;border-radius:2px;background:#ffffff1c;margin-top:5px;overflow:hidden}.bd .pg i{display:block;height:100%;background:#c9a227}
+/* decisivi */
+.dc-row{display:grid;grid-template-columns:96px 1fr 30px;gap:8px;align-items:center;padding:4px 0;font:600 13px 'DM Sans',sans-serif}
+.dc-row span.n{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-bar{display:flex;height:16px;border-radius:5px;overflow:hidden;background:#ffffff12}
+.dc-bar i{display:block;height:100%}.dc-bar i.g{background:#8b0000}.dc-bar i.a{background:#1f5fb4}
+/* pull to refresh + share match */
+#ptr{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 8px);transform:translate(-50%,-70px);z-index:99997;background:#001a33;color:#fff;border:1px solid #c9a227;border-radius:20px;padding:8px 16px;font:700 13px 'DM Sans',sans-serif;box-shadow:0 4px 14px #0008;pointer-events:none}
+#fsShareBtn{position:absolute;top:10px;right:60px;z-index:50;height:40px;padding:0 14px;border-radius:20px;border:1px solid #ffffff40;background:#ffffff18;color:#fff;font:700 13px 'DM Sans',sans-serif;cursor:pointer}
+</style>
+<div id="ptr">⬇ Tira per aggiornare</div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id),Q=(s,r)=>(r||document).querySelector(s),QA=(s,r)=>[...(r||document).querySelectorAll(s)];
+  const note=(m,t)=>{try{showNotification(m,t||'info')}catch(e){}};
+  /* ---------- ZONE CLASSIFICA ---------- */
+  function zone(){
+    const c=$('classifica');if(!c)return;
+    const rows=QA('.cla-item',c).filter(r=>Q('.cla-pos',r));
+    if(rows.length<16)return;
+    rows.forEach(r=>{const n=parseInt(Q('.cla-pos',r).textContent);
+      const z=n<=4?'ucl':n<=6?'uel':n>rows.length-3?'ret':'';
+      if(z)r.dataset.zona=z;else delete r.dataset.zona});
+    if(!Q('.zona-leg',c))c.insertAdjacentHTML('beforeend','<div class="zona-leg"><span><i style="background:#2ecc71"></i>Champions</span><span><i style="background:#3498db"></i>Europa</span><span><i style="background:#e74c3c"></i>Retrocessione</span></div>');
+  }
+  let zt;const cl=$('classifica');
+  if(cl)new MutationObserver(()=>{clearTimeout(zt);zt=setTimeout(zone,120)}).observe(cl,{childList:true,subtree:true});
+  zone();
+
+  /* ---------- ANALISI: traguardi + decisivi ---------- */
+  const lg=()=>{try{return $('leagueSelect').value}catch(e){return 'seriea'}};
+  const Ld=()=>(typeof jsonData!=='undefined'&&(jsonData[lg()]||jsonData.seriea))||{};
+  const mins=s=>{const o=[];(s||'').replace(/([^,(]+?)\s*\(([^)]*)\)/g,(m,n,b)=>{n=n.replace(/^[\s,]+/,'').trim();b.split(',').forEach(x=>{const v=parseInt(x);if(!isNaN(v))o.push({n,m:v})})});return o};
+  function badges(){
+    const host=$('anExtra');if(!host)return;
+    const old=$('anBadges');if(old)old.remove();
+    const D=Ld(),P=(D.partite||[]).map(p=>{
+      const t=(p.match||'').split(' - ').map(x=>x.trim()),sc=(p.score||'').split('-').map(x=>parseInt(x));
+      if(t.length<2||isNaN(sc[0])||isNaN(sc[1])||(t[0]!=='Cosenza'&&t[1]!=='Cosenza'))return null;
+      const home=t[0]==='Cosenza';return{home,gf:home?sc[0]:sc[1],ga:home?sc[1]:sc[0],sc:mins(p.scorers)};
+    }).filter(Boolean);
+    if(!P.length)return;
+    let cur=0,mW=0,u=0,mU=0;P.forEach(p=>{cur=p.gf>p.ga?cur+1:0;mW=Math.max(mW,cur);u=p.gf>=p.ga?u+1:0;mU=Math.max(mU,u)});
+    const gf=P.reduce((s,p)=>s+p.gf,0),cs=P.filter(p=>p.ga===0).length;
+    const hw=P.filter(p=>p.home&&p.gf>p.ga).length,aw=P.filter(p=>!p.home&&p.gf>p.ga).length;
+    const big=Math.max(...P.map(p=>p.gf-p.ga)),wild=Math.max(...P.map(p=>p.gf+p.ga));
+    let hat=0,late=0;P.forEach(p=>{const per={};p.sc.forEach(x=>{per[x.n]=(per[x.n]||0)+1;if(x.m>=85)late++});if(Object.values(per).some(v=>v>=3))hat++});
+    const B=[['🔥','Striscia d\'oro','5 vittorie di fila',mW,5],['🧱','Imbattibile','10 partite senza perdere',mU,10],['🛡️','Il Muro','10 porte inviolate',cs,10],
+      ['🎩','Hat-trick hero','una tripletta',hat,1],['💥','Goleada','vittoria con 4+ gol di scarto',big,4],['🚀','Cannoniere','100 gol stagionali',gf,100],
+      ['🏠','Fortino','10 vittorie in casa',hw,10],['✈️','Globetrotter','10 vittorie in trasferta',aw,10],['🌀','Thriller','partita da 8+ gol',wild,8],['⏰','Cuore Cosenza','3 gol dopo l\'85\'',late,3]];
+    const got=B.filter(b=>b[3]>=b[4]).length;
+    host.insertAdjacentHTML('afterbegin',`<div class="st-card" id="anBadges"><h4>🏅 Traguardi · ${got}/${B.length}</h4><div class="bd-grid">${B.map(b=>`<div class="bd ${b[3]>=b[4]?'on':''}"><span class="ic">${b[0]}</span><div style="flex:1;min-width:0"><b>${b[1]}</b><small>${b[2]}</small>${b[3]>=b[4]?'':`<div class="pg"><i style="width:${Math.min(100,b[3]/b[4]*100)}%"></i></div>`}</div></div>`).join('')}</div></div>`);
+    // decisivi
+    const st={};(D.goals||[]).forEach(x=>{(st[x.player]=st[x.player]||{g:0,a:0}).g=x.goals});(D.assists||[]).forEach(x=>{(st[x.player]=st[x.player]||{g:0,a:0}).a=x.assists});
+    const top=Object.entries(st).sort((a,b)=>(b[1].g+b[1].a)-(a[1].g+a[1].a)).slice(0,8),mx=Math.max(1,...top.map(([,v])=>v.g+v.a));
+    if(top.length)$('anBadges').insertAdjacentHTML('afterend',`<div class="st-card" id="anDec"><h4>⭐ Giocatori decisivi (gol + assist)</h4>${top.map(([n,v])=>`<div class="dc-row"><span class="n">${n}</span><div class="dc-bar"><i class="g" style="width:${v.g/mx*100}%"></i><i class="a" style="width:${v.a/mx*100}%"></i></div><b>${v.g+v.a}</b></div>`).join('')}<div class="x-sub" style="margin-top:6px">rosso = gol · blu = assist</div></div>`);
+  }
+  document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#analisi-tab'))setTimeout(()=>{const o=$('anDec');if(o)o.remove();badges()},320)});
+  const ls=$('leagueSelect');ls&&ls.addEventListener('change',()=>setTimeout(()=>{const a=$('analisi');if(a&&a.classList.contains('active'))setTimeout(()=>{const o=$('anDec');if(o)o.remove();badges()},450)},150));
+
+  /* ---------- SWIPE TRA TAB ---------- */
+  let sx,sy,st0,ok=false;
+  const blocked=t=>!t.closest||t.closest('input,select,textarea,.tabs,.news-ticker,#settingsPanel,.settings-panel,.x-chips,.st-min')||(()=>{for(let e=t;e&&e!==document.body;e=e.parentElement){if(e.scrollWidth>e.clientWidth+4&&/(auto|scroll)/.test(getComputedStyle(e).overflowX))return true}return false})();
+  const appOn=()=>{const m=$('mainApp');return m&&m.classList.contains('active')&&!Q('.fullscreen-match.active')&&!Q('.settings-panel.open,.settings-panel.active,.settings-overlay.active')};
+  document.addEventListener('touchstart',e=>{ok=e.touches.length===1&&appOn()&&!blocked(e.target);if(ok){sx=e.touches[0].clientX;sy=e.touches[0].clientY;st0=Date.now()}},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(!ok)return;ok=false;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;
+    if(Math.abs(dx)<80||Math.abs(dx)<Math.abs(dy)*2||Date.now()-st0>600)return;
+    const tabs=QA('.tabs .tab-btn'),i=tabs.findIndex(b=>b.classList.contains('active')),n=i+(dx<0?1:-1);
+    if(i>=0&&n>=0&&n<tabs.length){tabs[n].click();try{navigator.vibrate&&navigator.vibrate(8)}catch(_){}}
+  },{passive:true});
+
+  /* ---------- TIRA PER AGGIORNARE ---------- */
+  const ptr=$('ptr');let py=0,pull=0,pon=false,busy=false;
+  addEventListener('touchstart',e=>{pon=!busy&&e.touches.length===1&&(document.scrollingElement.scrollTop<=0)&&appOn()&&!blocked(e.target);if(pon){py=e.touches[0].clientY;pull=0}},{passive:true});
+  addEventListener('touchmove',e=>{
+    if(!pon)return;pull=e.touches[0].clientY-py;
+    if(pull<=0){ptr.style.transform='translate(-50%,-70px)';return}
+    const d=Math.min(pull*.5,70);ptr.style.transition='none';ptr.style.transform=`translate(-50%,${d-70+20}px)`;
+    ptr.textContent=pull>110?'⬆ Rilascia per aggiornare':'⬇ Tira per aggiornare';
+  },{passive:true});
+  addEventListener('touchend',async()=>{
+    if(!pon)return;pon=false;ptr.style.transition='transform .25s';
+    if(pull>110&&window.__dati&&!busy){
+      busy=true;ptr.textContent='⏳ Aggiorno…';ptr.style.transform='translate(-50%,16px)';
+      let r='fail';try{r=await window.__dati.reload()}catch(e){}
+      ptr.style.transform='translate(-50%,-70px)';busy=false;
+      note(r==='changed'?'Dati aggiornati ✅':r==='same'?'Sei già aggiornato ✅':'Sei offline: uso i dati salvati',r==='fail'?'error':'info');
+    }else ptr.style.transform='translate(-50%,-70px)';
+  },{passive:true});
+
+  /* ---------- CONDIVIDI PARTITA ---------- */
+  function mount(){
+    const fm=Q('#fullscreenMatch .fs-header')||$('fullscreenMatch');if(!fm||$('fsShareBtn'))return;
+    fm.insertAdjacentHTML('beforeend','<button type="button" id="fsShareBtn">📸 Condividi</button>');
+    $('fsShareBtn').onclick=shareMatch;
+  }
+  function lines(id){return QA('.fs-scorer-text',$(id)).map(x=>x.textContent.trim()).filter(Boolean)}
+  function shareMatch(){
+    const W=1080,H=1350,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d'),cx=W/2;
+    const g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#001a33');g.addColorStop(1,'#8b0000');x.fillStyle=g;x.fillRect(0,0,W,H);
+    x.beginPath();x.moveTo(cx,60);x.lineTo(cx+75,82);x.lineTo(cx+75,160);x.lineTo(cx,250);x.lineTo(cx-75,160);x.lineTo(cx-75,82);x.closePath();
+    x.fillStyle='#8b0000';x.fill();x.lineWidth=8;x.strokeStyle='#c9a227';x.stroke();
+    x.textAlign='center';x.textBaseline='middle';x.fillStyle='#fff';x.font='800 58px sans-serif';x.fillText('CS',cx,145);
+    x.font='700 34px sans-serif';x.fillStyle='#c9a227';x.fillText(($('fsCompetition').textContent||'').toUpperCase(),cx,310);
+    const fit=(t,y,mx)=>{let s=64;do{x.font=`800 ${s}px sans-serif`;s-=2}while(x.measureText(t).width>mx&&s>26);x.fillText(t,cx,y)};
+    x.fillStyle='#fff';const hn=$('fsHomeTeam').textContent.trim(),an=$('fsAwayTeam').textContent.trim();
+    fit(hn,400,W-140);x.font='700 34px sans-serif';x.fillStyle='#ffffff99';x.fillText('VS',cx,465);x.fillStyle='#fff';fit(an,530,W-140);
+    x.font='800 200px sans-serif';x.fillStyle='#c9a227';x.shadowColor='#000a';x.shadowBlur=30;
+    x.fillText(($('fsHomeScore').textContent.trim()||'-')+' – '+($('fsAwayScore').textContent.trim()||'-'),cx,740);x.shadowBlur=0;
+    const col=(arr,xc,title)=>{x.textAlign='center';x.font='700 30px sans-serif';x.fillStyle='#c9a227';x.fillText(title,xc,900);x.font='600 27px sans-serif';x.fillStyle='#fff';
+      arr.slice(0,6).forEach((l,i)=>{let t=l;while(x.measureText(t).width>500&&t.length>6)t=t.slice(0,-2);x.fillText(t+(t!==l?'…':''),xc,955+i*52)})};
+    col(lines('fsHomeScorers'),W/4+10,'MARCATORI CASA');col(lines('fsAwayScorers'),W*3/4-10,'MARCATORI OSPITI');
+    x.textAlign='center';x.font='600 28px sans-serif';x.fillStyle='#ffffff88';x.fillText('Cosenza app del Bortolo',cx,1290);
+    c.toBlob(async b=>{
+      const f=new File([b],'cosenza-partita.png',{type:'image/png'});
+      try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:hn+' - '+an});return}}catch(e){if(e&&e.name==='AbortError')return}
+      const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='cosenza-partita.png';a.click();note('Immagine scaricata 📸','success');
+    });
+  }
+  mount();
+})();
+</script>
+<style id="extras3CSS">
+.x-flt{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none;align-items:center}
+.x-flt::-webkit-scrollbar{display:none}
+.x-flt button{flex:0 0 auto;padding:7px 13px;border-radius:18px;border:1px solid var(--border-color);background:var(--item-bg);color:var(--text-main);font:700 12px 'DM Sans',sans-serif;cursor:pointer;white-space:nowrap}
+.x-flt button.on{background:linear-gradient(135deg,#001a33,#8b0000);color:#fff;border-color:transparent}
+.x-flt small{margin-left:auto;flex:0 0 auto;font:700 12px 'DM Sans',sans-serif;opacity:.65;padding-left:8px}
+#rosa h3,#quiz h3{margin:0 0 12px}
+.rs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.rs-card{position:relative;background:var(--item-bg);border:1px solid var(--border-color);border-radius:16px;padding:14px 12px;text-align:center;cursor:pointer;overflow:hidden}
+.rs-card:active{transform:scale(.97)}
+.rs-num{position:absolute;top:4px;right:10px;font:800 34px 'Syne',sans-serif;opacity:.14}
+.rs-av{width:54px;height:54px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font:800 20px 'Syne',sans-serif;color:#fff;background:linear-gradient(135deg,#001a33,#8b0000);border:2px solid #c9a227}
+.rs-card b{display:block;font:700 15px 'DM Sans',sans-serif}
+.rs-card small{display:block;font:600 11px 'DM Sans',sans-serif;opacity:.65;margin:2px 0 8px;text-transform:uppercase;letter-spacing:.06em}
+.rs-st{display:flex;gap:6px;justify-content:center}
+.rs-st span{background:var(--bg-container,#ffffff10);border-radius:8px;padding:3px 8px;font:700 12px 'DM Sans',sans-serif}
+.qz-card{background:var(--item-bg);border:1px solid var(--border-color);border-radius:16px;padding:16px}
+.qz-top{display:flex;justify-content:space-between;font:700 12px 'DM Sans',sans-serif;opacity:.75;margin-bottom:8px}
+.qz-prog{height:5px;border-radius:3px;background:#ffffff1c;margin-bottom:14px;overflow:hidden}.qz-prog i{display:block;height:100%;background:linear-gradient(90deg,#8b0000,#c9a227);transition:width .3s}
+.qz-q{font:800 clamp(17px,4.6vw,21px)/1.3 'Syne',sans-serif;margin-bottom:14px}
+.qz-opt{display:block;width:100%;text-align:left;margin:8px 0;padding:13px 14px;border-radius:12px;border:1px solid var(--border-color);background:var(--bg-container,#ffffff0d);color:var(--text-main);font:700 15px 'DM Sans',sans-serif;cursor:pointer}
+.qz-opt.ok{background:#1e8449;border-color:#2ecc71;color:#fff}.qz-opt.no{background:#a93226;border-color:#e74c3c;color:#fff}.qz-opt:disabled{cursor:default}
+.qz-note{font:13px/1.4 'DM Sans',sans-serif;opacity:.85;margin-top:10px;min-height:18px}
+.qz-big{font:800 64px 'Syne',sans-serif;text-align:center;color:#c9a227;margin:6px 0}
+.qz-btn{width:100%;padding:13px;border:0;border-radius:12px;margin-top:10px;color:#fff;font:700 15px 'DM Sans',sans-serif;cursor:pointer;background:linear-gradient(135deg,#001a33,#8b0000)}
+.qz-btn.alt{background:var(--bg-container,#ffffff14);color:var(--text-main);border:1px solid var(--border-color)}
+.tr-svg{width:100%;height:auto;display:block}
+</style>
+<script>
+(function(){
+  const $=id=>document.getElementById(id),Q=(s,r)=>(r||document).querySelector(s),QA=(s,r)=>[...(r||document).querySelectorAll(s)];
+  const lg=()=>{try{return $('leagueSelect').value}catch(e){return 'seriea'}};
+  const Ld=()=>(typeof jsonData!=='undefined'&&(jsonData[lg()]||jsonData.seriea))||{};
+  const sh=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+  const cosMatches=()=>(Ld().partite||[]).map(p=>{
+    const t=(p.match||'').split(' - ').map(x=>x.trim()),sc=(p.score||'').split('-').map(x=>parseInt(x));
+    if(t.length<2||isNaN(sc[0])||isNaN(sc[1])||(t[0]!=='Cosenza'&&t[1]!=='Cosenza'))return null;
+    const home=t[0]==='Cosenza';return{match:p.match,score:p.score,opp:home?t[1]:t[0],home,gf:home?sc[0]:sc[1],ga:home?sc[1]:sc[0]};
+  }).filter(Boolean);
+
+  /* ================= FILTRI PARTITE ================= */
+  let F='all';
+  const FL=[['all','Tutte'],['W','Vittorie'],['D','Pareggi'],['L','Sconfitte'],['H','Casa'],['A','Trasferta']];
+  function parseRow(r){
+    const m=(r.getAttribute('onclick')||'').match(/showDetails\('([^']*)'/);if(!m)return null;
+    const x=m[1].match(/^(.+?) - (.+?) (\d+) - (\d+)$/);if(!x)return null;
+    const home=x[1].trim()==='Cosenza',gf=+(home?x[3]:x[4]),ga=+(home?x[4]:x[3]);
+    if(x[1].trim()!=='Cosenza'&&x[2].trim()!=='Cosenza')return null;
+    return{home,res:gf>ga?'W':gf===ga?'D':'L'};
+  }
+  function applyF(){
+    const rows=QA('#calendario .item');let n=0;
+    rows.forEach(r=>{const p=parseRow(r);let show=true;
+      if(p&&F!=='all')show=('WDL'.includes(F))?p.res===F:(F==='H'?p.home:!p.home);
+      r.style.display=show?'':'none';if(show)n++});
+    const c=$('fltCount');if(c)c.textContent=n+'/'+rows.length;
+  }
+  function ensureBar(){
+    const cal=$('calendario');if(!cal)return;const rows=QA('.item',cal);if(!rows.length)return;
+    if(!$('fltBar')){
+      rows[0].parentElement.insertAdjacentHTML('afterbegin','<div class="x-flt" id="fltBar">'+FL.map(([k,l])=>`<button type="button" data-f="${k}" class="${k===F?'on':''}">${l}</button>`).join('')+'<small id="fltCount"></small></div>');
+      QA('#fltBar button').forEach(b=>b.onclick=()=>{F=b.dataset.f;QA('#fltBar button').forEach(x=>x.classList.toggle('on',x===b));applyF()});
+    }
+    applyF();
+  }
+  let ft;const cal=$('calendario');
+  if(cal)new MutationObserver(()=>{clearTimeout(ft);ft=setTimeout(ensureBar,150)}).observe(cal,{childList:true,subtree:true});
+  ensureBar();
+
+  /* ================= ROSA ================= */
+  const ORD=['portiere','difensore','centrocampista','attaccante'];
+  let RF='Tutti';
+  function rosa(){
+    const body=$('rosaBody');if(!body)return;
+    const pr=(typeof playerProfiles!=='undefined')?playerProfiles:{},D=Ld(),st={};
+    (D.goals||[]).forEach(x=>{(st[x.player]=st[x.player]||{g:0,a:0}).g=x.goals});
+    (D.assists||[]).forEach(x=>{(st[x.player]=st[x.player]||{g:0,a:0}).a=x.assists});
+    const names=Object.keys(pr);
+    if(!names.length){body.innerHTML='<div class="st-card">Nessun profilo disponibile.</div>';return}
+    const roles=['Tutti',...[...new Set(names.map(n=>pr[n].role).filter(Boolean))].sort((a,b)=>ORD.indexOf(a.toLowerCase())-ORD.indexOf(b.toLowerCase()))];
+    if(!roles.includes(RF))RF='Tutti';
+    const list=names.filter(n=>RF==='Tutti'||pr[n].role===RF).sort((a,b)=>(ORD.indexOf((pr[a].role||'').toLowerCase())-ORD.indexOf((pr[b].role||'').toLowerCase()))||((pr[a].number||99)-(pr[b].number||99)));
+    body.innerHTML=`<div class="x-flt" id="rsFlt">${roles.map(r=>`<button type="button" data-r="${r}" class="${r===RF?'on':''}">${r==='Tutti'?'Tutti':r}</button>`).join('')}<small>${list.length} giocatori</small></div>
+      <div class="rs-grid">${list.map(n=>{const p=pr[n],s=st[n]||{g:0,a:0},ini=n.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+        return`<div class="rs-card" data-n="${n.replace(/"/g,'&quot;')}"><span class="rs-num">${p.number??''}</span><div class="rs-av">${ini}</div><b>${n}</b><small>${p.role||''}</small><div class="rs-st"><span>⚽ ${s.g}</span><span>🅰️ ${s.a}</span></div></div>`}).join('')}</div>`;
+    QA('#rsFlt button').forEach(b=>b.onclick=()=>{RF=b.dataset.r;rosa()});
+    QA('.rs-card').forEach(c=>c.onclick=()=>{try{openPlayerCard(c.dataset.n)}catch(e){}});
+  }
+  document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#rosa-tab'))setTimeout(rosa,60)});
+
+  /* ================= CAMMINO STAGIONALE (Analisi) ================= */
+  function trend(){
+    const host=$('anExtra');if(!host)return;const old=$('anTrend');if(old)old.remove();
+    const P=cosMatches().slice().reverse();if(P.length<3)return;
+    let pts=0;const ys=[0].concat(P.map(p=>pts+=p.gf>p.ga?3:p.gf===p.ga?1:0)),mx=Math.max(...ys,1),n=P.length;
+    const W=320,H=140,L=26,B=22,T=10,R=8,X=i=>L+i/n*(W-L-R),Y=v=>T+(1-v/mx)*(H-T-B);
+    const line=ys.map((v,i)=>`${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' '),ideal=`${X(0)},${Y(0)} ${X(n)},${Y(Math.min(mx,n*2))}`;
+    const svg=`<svg class="tr-svg" viewBox="0 0 ${W} ${H}"><defs><linearGradient id="trG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a227" stop-opacity=".45"/><stop offset="1" stop-color="#c9a227" stop-opacity="0"/></linearGradient></defs>
+      ${[0,.5,1].map(f=>`<line x1="${L}" x2="${W-R}" y1="${Y(mx*f)}" y2="${Y(mx*f)}" stroke="#ffffff22" stroke-width="1"/><text x="${L-4}" y="${Y(mx*f)+3}" fill="#ffffff99" font-size="9" text-anchor="end">${Math.round(mx*f)}</text>`).join('')}
+      <polyline points="${ideal}" fill="none" stroke="#ffffff66" stroke-width="1.2" stroke-dasharray="4 4"/>
+      <polygon points="${X(0)},${Y(0)} ${line} ${X(n)},${Y(0)}" fill="url(#trG)"/>
+      <polyline points="${line}" fill="none" stroke="#c9a227" stroke-width="2.4" stroke-linejoin="round"/>
+      <circle cx="${X(n)}" cy="${Y(ys[n])}" r="4" fill="#fff" stroke="#c9a227" stroke-width="2"/>
+      <text x="${L}" y="${H-6}" fill="#ffffff99" font-size="9">1ª</text><text x="${W-R}" y="${H-6}" fill="#ffffff99" font-size="9" text-anchor="end">${n}ª giornata</text></svg>`;
+    const anchor=$('anDec')||$('anBadges');
+    const html=`<div class="st-card" id="anTrend"><h4>📊 Cammino stagionale</h4>${svg}<div class="x-sub">${ys[n]} punti in ${n} partite · tratteggio = ritmo da 2 punti a partita</div></div>`;
+    if(anchor)anchor.insertAdjacentHTML('afterend',html);else host.insertAdjacentHTML('afterbegin',html);
+  }
+  document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#analisi-tab'))setTimeout(trend,420)});
+
+  /* ================= QUIZ ================= */
+  const BK='cosenza-quiz-best';
+  const getBest=()=>{try{return +localStorage.getItem(BK)||0}catch(e){return 0}};
+  function mk(q,correct,others,note){
+    correct=String(correct);const o=[...new Set(others.map(String))].filter(x=>x!==correct);
+    if(o.length<3)return null;return{q,correct,options:sh([correct,...sh(o).slice(0,3)]),note};
+  }
+  const near=c=>[c-7,c-4,c-2,c-1,c+1,c+2,c+4,c+7].filter(v=>v>=0&&v!==c);
+  function pool(){
+    const D=Ld(),cla=D.classifica||[],G=(D.goals||[]).slice().sort((a,b)=>b.goals-a.goals),A=(D.assists||[]).slice().sort((a,b)=>b.assists-a.assists),M=cosMatches();
+    const pr=(typeof playerProfiles!=='undefined')?playerProfiles:{},P=[];
+    const add=x=>x&&P.push(x);
+    if(G.length>=4)add(mk('Chi è il capocannoniere della squadra?',G[0].player,G.slice(1).map(x=>x.player),`${G[0].player} ha segnato ${G[0].goals} gol.`));
+    if(A.length>=4)add(mk('Chi ha fornito più assist?',A[0].player,A.slice(1).map(x=>x.player),`${A[0].player}: ${A[0].assists} assist.`));
+    if(cla.length>=5){
+      add(mk('Chi comanda la classifica?',cla[0].team,cla.slice(1).map(x=>x.team),`${cla[0].team} è primo con ${cla[0].pts} punti.`));
+      add(mk('Chi è secondo in classifica?',cla[1].team,cla.filter((x,i)=>i!==1).map(x=>x.team),`${cla[1].team}: ${cla[1].pts} punti.`));
+      const c=cla.find(x=>x.team==='Cosenza');if(c)add(mk('Quanti punti ha il Cosenza?',c.pts,near(c.pts),`Il Cosenza è a quota ${c.pts}.`));
+    }
+    if(M.length){
+      const gf=M.reduce((s,m)=>s+m.gf,0);add(mk('Quanti gol ha segnato il Cosenza in totale?',gf,near(gf).concat([gf-12,gf+11,gf+15]).filter(v=>v>0),`${gf} gol fatti in ${M.length} partite.`));
+      sh(M).slice(0,2).forEach(m=>{const a=m.score.split('-').map(x=>x.trim()),x=+a[0],y=+a[1];
+        add(mk(`Com'è finita ${m.match}?`,`${x} - ${y}`,[`${x+1} - ${y}`,`${x} - ${y+1}`,`${y} - ${x}`,`${x+2} - ${y}`,`${Math.max(x-1,0)} - ${y}`,`${x} - ${Math.max(y-1,0)}`],`Finale: ${x} - ${y}.`))});
+      const bw=M.slice().sort((a,b)=>(b.gf-b.ga)-(a.gf-a.ga))[0];
+      if(bw.gf>bw.ga)add(mk('Contro chi è arrivata la vittoria più larga?',bw.opp,M.map(m=>m.opp),`${bw.match} ${bw.score}.`));
+    }
+    const names=Object.keys(pr);
+    if(names.length>=4){
+      const n=sh(names)[0],roles=[...new Set(names.map(k=>pr[k].role).filter(Boolean))];
+      add(mk(`Che numero di maglia porta ${n}?`,pr[n].number,names.map(k=>pr[k].number).concat([2,5,8,11,14,17,20,23]).filter(v=>v!=null),`${n} è il numero ${pr[n].number}.`));
+      const m2=sh(names)[0];add(mk(`Che ruolo ha ${m2}?`,pr[m2].role,roles,`${m2}: ${pr[m2].role}.`));
+    }
+    return sh(P);
+  }
+  let S=null;
+  const qz=()=>$('quizBody');
+  function start(){
+    const body=qz();if(!body)return;const b=getBest();
+    body.innerHTML=`<div class="qz-card"><div class="qz-big">🎯</div><div class="qz-q" style="text-align:center">Quanto conosci il Cosenza?</div>
+      <div class="qz-note" style="text-align:center">8 domande generate dai dati della stagione. Ogni volta diverse.${b?`<br><b>Il tuo record: ${b}/8</b>`:''}</div>
+      <button type="button" class="qz-btn" id="qzGo">Inizia il quiz</button></div>`;
+    $('qzGo').onclick=()=>{const q=pool().slice(0,8);if(q.length<3){body.innerHTML='<div class="qz-card">Dati insufficienti per questa competizione.</div>';return}S={q,i:0,s:0,done:false};ask()};
+  }
+  function ask(){
+    const body=qz(),q=S.q[S.i];
+    body.innerHTML=`<div class="qz-card"><div class="qz-top"><span>Domanda ${S.i+1}/${S.q.length}</span><span>Punti: ${S.s}</span></div><div class="qz-prog"><i style="width:${S.i/S.q.length*100}%"></i></div>
+      <div class="qz-q">${q.q}</div>${q.options.map((o,k)=>`<button type="button" class="qz-opt" data-k="${k}">${o}</button>`).join('')}<div class="qz-note" id="qzNote"></div></div>`;
+    QA('.qz-opt',body).forEach(btn=>btn.onclick=()=>{
+      if(S.done)return;S.done=true;const ok=btn.textContent===q.correct;if(ok)S.s++;
+      QA('.qz-opt',body).forEach(x=>{x.disabled=true;if(x.textContent===q.correct)x.classList.add('ok');else if(x===btn)x.classList.add('no')});
+      $('qzNote').textContent=(ok?'✅ Giusto! ':'❌ Era '+q.correct+'. ')+(q.note||'');
+      body.querySelector('.qz-card').insertAdjacentHTML('beforeend',`<button type="button" class="qz-btn" id="qzNext">${S.i+1<S.q.length?'Avanti →':'Vedi il risultato'}</button>`);
+      $('qzNext').onclick=()=>{S.done=false;S.i++;S.i<S.q.length?ask():end()};
+      try{navigator.vibrate&&navigator.vibrate(ok?10:[20,40,20])}catch(e){}
+    });
+  }
+  function end(){
+    const body=qz(),n=S.q.length,prev=getBest(),rec=S.s>prev;
+    if(rec)try{localStorage.setItem(BK,S.s)}catch(e){}
+    const msg=S.s===n?'Perfetto! Sei un vero ultras 🏆':S.s>=n*.75?'Tifoso doc! 🔥':S.s>=n*.5?'Niente male, ma si può fare meglio 👏':'Ripassa le statistiche! 📚';
+    body.innerHTML=`<div class="qz-card"><div class="qz-q" style="text-align:center">Risultato</div><div class="qz-big">${S.s}/${n}</div>
+      <div class="qz-note" style="text-align:center">${msg}${rec&&S.s>0?'<br><b>🎉 Nuovo record!</b>':''}</div>
+      <button type="button" class="qz-btn" id="qzAgain">Rigioca</button><button type="button" class="qz-btn alt" id="qzShare">📤 Sfida un amico</button></div>`;
+    $('qzAgain').onclick=start;
+    $('qzShare').onclick=async()=>{
+      const txt=`Ho fatto ${S.s}/${n} al quiz sul Cosenza! Riesci a battermi? 🔴🔵`;let url='';try{url=DATI_URL.replace(/dati\.json$/,'')}catch(e){}
+      try{if(navigator.share){await navigator.share({text:txt,url:url||undefined});return}}catch(e){if(e&&e.name==='AbortError')return}
+      try{await navigator.clipboard.writeText(txt+(url?' '+url:''));try{showNotification('Testo copiato 📋','success')}catch(e){}}catch(e){prompt('Copia:',txt)}
+    };
+  }
+  document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#quiz-tab'))setTimeout(()=>{if(!S||!qz().children.length)start()},60)});
+  const ls=$('leagueSelect');ls&&ls.addEventListener('change',()=>{S=null;const q=qz();if(q)q.innerHTML='';setTimeout(()=>{const a=$('quiz');if(a&&a.classList.contains('active'))start();const r=$('rosa');if(r&&r.classList.contains('active'))rosa()},200)});
+})();
+</script>
+<style id="extras4CSS">
+#champModeBar{margin:0 8px 0 0}
+#champGroups{display:none}
+.cg-sum{font:600 12px 'DM Sans',sans-serif;opacity:.7;margin:0 2px 10px}
+.cg-card{background:var(--item-bg);border:1px solid var(--border-color);border-radius:16px;padding:12px;margin-bottom:12px}
+.cg-card.me{border-color:#8b0000;box-shadow:0 0 0 1px #8b000055}
+.cg-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font:800 16px 'Syne',sans-serif}
+.cg-h small{font:700 11px 'DM Sans',sans-serif;background:#8b0000;color:#fff;border-radius:10px;padding:3px 9px}
+.cg-tb{display:grid;grid-template-columns:20px 1fr 22px 22px 22px 22px 30px 30px;gap:2px 4px;align-items:center;font:600 13px 'DM Sans',sans-serif}
+.cg-tb .th{font-size:10px;opacity:.55;text-transform:uppercase;text-align:center;padding-bottom:3px}
+.cg-tb .c{text-align:center}.cg-tb .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:6px 0}
+.cg-tb .pt{font-weight:800;color:#ffe566}
+.cg-tb .rowme{font-weight:800}
+.cg-sec{font:700 11px 'DM Sans',sans-serif;opacity:.6;text-transform:uppercase;letter-spacing:.08em;margin:12px 0 4px}
+.cg-m{display:grid;grid-template-columns:1fr 62px 1fr;gap:6px;align-items:center;padding:8px 6px;border-radius:10px;font:600 14px 'DM Sans',sans-serif}
+.cg-m + .cg-m{border-top:1px solid var(--border-color)}
+.cg-m .h{text-align:right;line-height:1.2;overflow-wrap:anywhere}.cg-m .a{line-height:1.2;overflow-wrap:anywhere}
+.cg-m .s{text-align:center;font:800 15px 'Syne',sans-serif;background:var(--bg-container,#ffffff10);border-radius:8px;padding:4px 0}
+.cg-m.todo .s{font:700 11px 'DM Sans',sans-serif;opacity:.6}
+.cg-m.cos{background:#8b000018;border-left:3px solid #8b0000;cursor:pointer}
+.cg-m.cos .h,.cg-m.cos .a{font-weight:800}
+</style>
+<div id="champGroups"></div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id),Q=(s,r)=>(r||document).querySelector(s);
+  const KEY='cosenza-champ-view';
+  const sc=s=>{const m=String(s||'').match(/(\d+)\s*-\s*(\d+)/);return m?[+m[1],+m[2]]:null};
+  const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const js=s=>String(s==null?'':s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;');
+
+  function standings(g){
+    const T={};(g.squadre||[]).forEach(t=>T[t]={team:t,p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0,form:[]});
+    (g.partite||[]).slice().sort((a,b)=>(a.giornata||0)-(b.giornata||0)).forEach(m=>{
+      const r=sc(m.score);T[m.home]=T[m.home]||{team:m.home,p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0,form:[]};T[m.away]=T[m.away]||{team:m.away,p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0,form:[]};
+      if(!r)return;const H=T[m.home],A=T[m.away];H.p++;A.p++;H.gf+=r[0];H.ga+=r[1];A.gf+=r[1];A.ga+=r[0];
+      if(r[0]>r[1]){H.w++;A.l++;H.pts+=3;H.form.push('W');A.form.push('L')}
+      else if(r[0]<r[1]){A.w++;H.l++;A.pts+=3;A.form.push('W');H.form.push('L')}
+      else{H.d++;A.d++;H.pts++;A.pts++;H.form.push('D');A.form.push('D')}
+    });
+    return Object.values(T).sort((a,b)=>b.pts-a.pts||(b.gf-b.ga)-(a.gf-a.ga)||b.gf-a.gf||a.team.localeCompare(b.team));
+  }
+  /* classifica e partite del Cosenza derivate dai gironi: aggiorni solo "gironi" e tutto il resto si allinea */
+  function derive(){
+    const ch=typeof jsonData!=='undefined'&&jsonData&&jsonData.champions;
+    if(!ch||!Array.isArray(ch.gironi)||!ch.gironi.length)return;
+    const cl=[];ch.gironi.forEach(g=>standings(g).forEach((r,i)=>cl.push({pos:i+1,team:r.team,p:r.p,w:r.w,d:r.d,l:r.l,gf:r.gf,ga:r.ga,pts:r.pts,form:r.form.slice(-6),me:r.team==='Cosenza',group:g.girone})));
+    ch.classifica=cl;
+    const mine=[];ch.gironi.forEach(g=>(g.partite||[]).forEach(p=>{if(p.home==='Cosenza'||p.away==='Cosenza')mine.push({match:p.home+' - '+p.away,score:p.score||' - ',scorers:p.scorers||'',opponentscorers:p.opponentscorers||''})}));
+    const keys=new Set(mine.map(m=>m.match));
+    ch.partite=mine.concat((ch.partite||[]).filter(p=>!keys.has(p.match)));
+  }
+
+  function renderGroups(){
+    const host=$('champGroups'),ch=jsonData.champions||{},G=ch.gironi||[];
+    const all=G.reduce((s,g)=>s+(g.partite||[]).length,0),done=G.reduce((s,g)=>s+(g.partite||[]).filter(m=>sc(m.score)).length,0);
+    host.innerHTML=`<div class="cg-sum">${G.reduce((s,g)=>s+(g.squadre||[]).length,0)} squadre · ${G.length} gironi · ${done}/${all} partite giocate</div>`+G.map(g=>{
+      const st=standings(g),me=(g.squadre||[]).includes('Cosenza');
+      const rows=st.map((r,i)=>`<span class="c ${r.team==='Cosenza'?'rowme':''}">${i+1}</span><span class="t ${r.team==='Cosenza'?'rowme':''}">${esc(r.team)}</span><span class="c">${r.p}</span><span class="c">${r.w}</span><span class="c">${r.d}</span><span class="c">${r.l}</span><span class="c">${r.gf-r.ga>0?'+':''}${r.gf-r.ga}</span><span class="c pt">${r.pts}</span>`).join('');
+      const sec=(fase)=>{const ms=(g.partite||[]).filter(m=>m.fase===fase);if(!ms.length)return'';
+        return`<div class="cg-sec">${fase} · giornate ${ms.map(m=>m.giornata).join('-')}</div>`+ms.map(m=>{
+          const r=sc(m.score),cos=m.home==='Cosenza'||m.away==='Cosenza';
+          const click=cos&&r?` onclick="showDetails('${js(m.home+' - '+m.away+' '+r[0]+' - '+r[1])}','${js(m.scorers)}','${js(m.opponentscorers)}')"`:'';
+          return`<div class="cg-m ${cos?'cos':''} ${r?'':'todo'}"${click}><span class="h">${esc(m.home)}</span><span class="s">${r?r[0]+' - '+r[1]:'da giocare'}</span><span class="a">${esc(m.away)}</span></div>`}).join('')};
+      return`<div class="cg-card ${me?'me':''}"><div class="cg-h"><span>Girone ${esc(g.girone)}</span>${me?'<small>⭐ Cosenza</small>':''}</div>
+        <div class="cg-tb"><span class="th">#</span><span class="th" style="text-align:left">Squadra</span><span class="th">G</span><span class="th">V</span><span class="th">N</span><span class="th">P</span><span class="th">DR</span><span class="th">Pt</span>${rows}</div>
+        ${sec('Andata')}${sec('Ritorno')}</div>`}).join('');
+  }
+
+  function claGroups(ch){
+    const cl=$('cla-list');if(!cl||!ch.classifica||!ch.classifica.length)return;
+    const by={};ch.classifica.forEach(t=>{(by[t.group||'?']=by[t.group||'?']||[]).push(t)});
+    cl.innerHTML=Object.keys(by).sort().map(k=>`<div class="group-section"><div class="group-header">Gruppo ${esc(k)}</div>${by[k].map(t=>`<div class="cla-item${t.team==='Cosenza'?' cosenza-row':''}"><span class="cla-pos">${t.pos}</span><span>${esc(t.team)}</span><span class="cla-pts">${t.pts}</span></div>`).join('')}</div>`).join('');
+  }
+  const MODES=[['groups','Gironi'],['bracket','Tabellone'],['list','Partite']];
+  function champUI(){
+    const lg=$('leagueSelect').value,area=$('bracket-toggle-area'),nat=area&&Q('.bracket-toggle-btn',area),bar=$('champModeBar'),host=$('champGroups');
+    if(lg!=='champions'){
+      if(bar)bar.style.display='none';if(host)host.style.display='none';if(nat)nat.style.display='';if(area)area.querySelectorAll('.bracket-tool-btn').forEach(x=>{if(x.id!=='highlightCosenzaBtn'&&x.id!=='journeyBtn')x.style.display=''});return;
+    }
+    const ch=jsonData.champions||{},hasG=Array.isArray(ch.gironi)&&ch.gironi.length>0,hasK=Array.isArray(ch.knockout)&&ch.knockout.length>0;
+    const allowed=['list','bracket'].concat(hasG?['groups']:[]);
+    let mode=null;try{mode=localStorage.getItem(KEY)}catch(e){}
+    if(!allowed.includes(mode))mode=hasG&&!hasK?'groups':hasK?'bracket':'list';
+    if(hasG)claGroups(ch);
+    if(!area)return;
+    if(!bar){area.insertAdjacentHTML('afterbegin','<div class="x-flt" id="champModeBar"></div>')}
+    const b=$('champModeBar');b.style.display='flex';if(nat)nat.style.display='none';
+    b.innerHTML=MODES.filter(([k])=>allowed.includes(k)).map(([k,l])=>`<button type="button" data-m="${k}" class="${k===mode?'on':''}">${l}</button>`).join('');
+    [...b.querySelectorAll('button')].forEach(btn=>btn.onclick=()=>{try{localStorage.setItem(KEY,btn.dataset.m)}catch(e){}champUI()});
+    const cal=$('cal-list'),br=$('coppa-bracket'),title=$('calendar-title');
+    let g=$('champGroups');if(!g&&br){br.insertAdjacentHTML('afterend','<div id="champGroups"></div>');g=$('champGroups')}
+    if(g&&br&&g.previousElementSibling!==br)br.insertAdjacentElement('afterend',g);
+    cal.style.display=mode==='list'?'block':'none';
+    const noKo=mode==='bracket'&&!hasK&&hasG;
+    br.style.display=(mode==='bracket'&&!noKo)?'block':'none';br.classList.toggle('active',mode==='bracket'&&!noKo);
+    if(g){g.style.display=(mode==='groups'||noKo)?'block':'none';
+      if(mode==='groups')renderGroups();
+      else if(noKo)g.innerHTML='<div class="cg-card" style="text-align:center;padding:28px 14px;font:600 15px \'DM Sans\',sans-serif">🏆<br><b>Il tabellone comparirà qui</b><br><small style="opacity:.7">al termine della fase a gironi</small></div>'}
+    if(title)title.textContent=mode==='groups'?'Gironi Champions League':mode==='bracket'?'Tabellone Champions League':'Partite Recenti';
+    ['highlightCosenzaBtn','journeyBtn'].forEach(id=>{const e=$(id);if(e)e.style.display=mode==='bracket'?'inline-flex':'none'});
+    area.querySelectorAll('.bracket-tool-btn').forEach(x=>{if(x.id==='highlightCosenzaBtn'||x.id==='journeyBtn')return;x.style.display=(mode==='bracket'&&!noKo)?'':'none'});
+  }
+
+  const _cl=window.changeLeague;
+  window.changeLeague=function(){
+    try{derive()}catch(e){}
+    const r=_cl.apply(this,arguments);
+    try{champUI()}catch(e){console.error(e)}
+    return r;
+  };
+  try{if($('leagueSelect')&&$('leagueSelect').value==='champions')window.changeLeague()}catch(e){}
 })();
 </script>
 </body>
