@@ -2971,31 +2971,25 @@
   ]
  },
  "profili": {
-  "Barcola": {
-   "number": 9,
-   "role": "Attaccante",
-   "bio": "Centravanti rapido e implacabile sottoporta, capocannoniere di quasi ogni competizione disputata.",
-   "moment": "Tripletta nella rimonta di Champions contro il Galatasaray."
-  },
   "Laurientè": {
    "number": 7,
    "role": "Ala sinistra",
    "bio": "Dribbling secco e cross chirurgici, è il rifornitore ufficiale dell'attacco rossoblù.",
    "moment": "Gol decisivo nella finale di Champions League contro il Chelsea."
   },
-  "Belle Palle": {
+  "Belle Palle (Borto)": {
    "number": 11,
    "role": "Trequartista",
-   "bio": "Fantasia e imprevedibilità: quando accelera lui, la difesa avversaria trema.",
-   "moment": "Doppietta nella storica notte di Coppa Italia."
+   "bio": "Miglior assistman della scorsa stagione, mette a segno anche 14 gol, freddissimo sotto porta, segna il 3-2 contro l' Inter che fa vincere il campionato al Cosenza un pilastro del Cosenza.",
+   "moment": "Gol decisivo nell ultima di campionato che permette al Cosenza di vincere il campionato contro l' Inter."
   },
-  "Pustolini": {
+  "Pustolini (Eti)": {
    "number": 5,
    "role": "Centrocampista",
    "bio": "Regista instancabile, recupera palloni e imposta l'azione con freddezza.",
    "moment": "Rigore decisivo nel derby contro il Cosenza... di sé stesso, impossibile: contro la Juventus."
   },
-  "Ulisse": {
+  "Ulisse (Forest)": {
    "number": 4,
    "role": "Difensore",
    "bio": "Roccia del reparto arretrato, all'occorrenza sa farsi trovare pronto anche in area avversaria."
@@ -3004,18 +2998,14 @@
    "number": 17,
    "role": "Centrocampista",
    "bio": "Jolly di centrocampo, si adatta a più ruoli con la stessa efficacia."
-  },
-  "Bortolotti": {
-   "number": 10,
-   "role": "Attaccante",
-   "bio": "Miglior assistman della scorsa stagione, mette a segno anche 14 gol, freddissimo sotto porta, segna il 3-2 contro l' Inter che fa vincere il campionato al Cosenza un pilastro del Cosenza."
+  }
   },
   "Dido": {
    "number": 21,
    "role": "Ala",
    "bio": "Velocità e imprevedibilità sulla trequarti avversaria, mette a segno 15 assist e 13 gol, che giocatore."
   },
-  "Erbacci": {
+  "Malen(Erbaz)": {
    "number": 8,
    "role": "Attaccante",
    "bio": "Una macchina, 21 gol in stagione, si ispira al suo idolo Donyell Malen e segna a raffica, un vero pilastro del Cosenza."
@@ -3035,17 +3025,8 @@
    "role": "Centrocampista",
    "bio": "Segna poco ma segna gol pesanti, un grandissimo difensore di qualità per il Cosenza che ha aiutato nella vittoria del double nel 2026."
   },
-  "Etien": {
-   "role": "Rosa Cosenza",
-   "bio": "Ha chiuso la stagione con 11 gol: presenza concreta e pericolosa in fase offensiva."
-  },
-  "Foresti": {
-   "role": "Rosa Cosenza",
-   "bio": "Ha contribuito alla stagione con 8 gol, facendosi trovare pronto sotto porta."
-  },
   "Longo": {
-   "role": "Rosa Cosenza",
+   "role": "Terzino",
    "bio": "Ha chiuso la stagione con 7 gol e 8 assist, dando un contributo prezioso sia in fase realizzativa che nella costruzione."
   }
  }
-}
