@@ -9401,7 +9401,7 @@
         let html = `<div class="st-context">${escapeHtml(leagueLabel)} · Stagione <strong>${seasonLabel}</strong></div>`;
 
         if (!cur.played) {
-            html += `<div class="empty-msg">Nessuna partita del Cosenza in questa competizione: aggiungile nel codice (EDIT YOUR FILES HERE) e le statistiche compaiono da sole.</div>`;
+            html += `<div class="empty-msg">Nessuna partita del Cosenza in questa competizione per la stagione ${seasonLabel}.</div>`;
         } else {
             html += `<h4 class="st-title">Cosenza in numeri</h4><div class="st-grid">`
                 + statsCard(cur.played, 'Partite', dl(cur.played, prev.played))
