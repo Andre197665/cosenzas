@@ -2998,7 +2998,32 @@
    "number": 17,
    "role": "Centrocampista",
    "bio": "Jolly di centrocampo, si adatta a più ruoli con la stessa efficacia."
-  }
+  },
+  "Hot Dog": {
+   "number": 1,
+   "role": "Portiere",
+   "bio": "Un muro. Incredibile nelle uscite e nei riflessi, ha parato 21 rigori in stagione.",
+   "moment": "Parate decisive in finale di Champions League contro il Chelsea, che hanno permesso al Cosenza di vincere la coppa."
+  },
+  "Calzino Bagnato": {
+   "role": "Difensore",
+   "bio": "Difensore attento e grintoso, protegge l'area e lotta su ogni pallone."
+  },
+  "Bisseck": {
+   "role": "Difensore",
+   "bio": "Difensore fisico e affidabile, un punto di riferimento nella retroguardia rossoblù."
+  },
+  "Pisilli": {
+   "role": "Centrocampista",
+   "bio": "Centrocampista dinamico, accompagna l'azione e contribuisce in entrambe le fasi."
+  },
+  "Robinio Vaz": {
+   "role": "Attaccante",
+   "bio": "Attaccante rapido e intraprendente, cerca la profondità e mette pressione alle difese."
+  },
+  "Malen": {
+   "role": "Attaccante",
+   "bio": "Attaccante versatile e incisivo, porta velocità e pericolosità al reparto offensivo."
   },
   "Dido": {
    "number": 21,
@@ -3030,3 +3055,4 @@
    "bio": "Ha chiuso la stagione con 7 gol e 8 assist, dando un contributo prezioso sia in fase realizzativa che nella costruzione."
   }
  }
+}
