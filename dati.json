@@ -2892,7 +2892,7 @@
     "players": [],
     "teamStats": {
      "totalMatches": 0,
-     "totalGoals": 0,
+     "totalGoals": 0.1,
      "totalConceded": 0,
      "goalDifference": 0,
      "possessionAvg": 0,
