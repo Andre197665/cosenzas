@@ -2306,48 +2306,6 @@
     "classifica": [
      {
       "pos": 1,
-      "team": "AEK",
-      "p": 0,
-      "w": 0,
-      "d": 0,
-      "l": 0,
-      "gf": 0,
-      "ga": 0,
-      "pts": 0,
-      "form": [],
-      "me": false,
-      "group": "A"
-     },
-     {
-      "pos": 2,
-      "team": "Manchester United",
-      "p": 0,
-      "w": 0,
-      "d": 0,
-      "l": 0,
-      "gf": 0,
-      "ga": 0,
-      "pts": 0,
-      "form": [],
-      "me": false,
-      "group": "A"
-     },
-     {
-      "pos": 3,
-      "team": "Porto",
-      "p": 0,
-      "w": 0,
-      "d": 0,
-      "l": 0,
-      "gf": 0,
-      "ga": 0,
-      "pts": 0,
-      "form": [],
-      "me": false,
-      "group": "A"
-     },
-     {
-      "pos": 1,
       "team": "Cosenza",
       "p": 0,
       "w": 0,
@@ -2357,25 +2315,10 @@
       "ga": 0,
       "pts": 0,
       "form": [],
-      "me": true,
-      "group": "B"
+      "me": true
      },
      {
       "pos": 2,
-      "team": "Manchester City",
-      "p": 0,
-      "w": 0,
-      "d": 0,
-      "l": 0,
-      "gf": 0,
-      "ga": 0,
-      "pts": 0,
-      "form": [],
-      "me": false,
-      "group": "B"
-     },
-     {
-      "pos": 3,
       "team": "LASK",
       "p": 0,
       "w": 0,
@@ -2385,12 +2328,11 @@
       "ga": 0,
       "pts": 0,
       "form": [],
-      "me": false,
-      "group": "B"
+      "me": false
      },
      {
-      "pos": 1,
-      "team": "Lipsia",
+      "pos": 3,
+      "team": "AEK",
       "p": 0,
       "w": 0,
       "d": 0,
@@ -2399,11 +2341,36 @@
       "ga": 0,
       "pts": 0,
       "form": [],
-      "me": false,
-      "group": "C"
+      "me": false
      },
      {
-      "pos": 2,
+      "pos": 4,
+      "team": "Manchester United",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 5,
+      "team": "Manchester City",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 6,
       "team": "Galatasaray",
       "p": 0,
       "w": 0,
@@ -2413,11 +2380,36 @@
       "ga": 0,
       "pts": 0,
       "form": [],
-      "me": false,
-      "group": "C"
+      "me": false
      },
      {
-      "pos": 3,
+      "pos": 7,
+      "team": "Lipsia",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 8,
+      "team": "Porto",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 9,
       "team": "Liverpool",
       "p": 0,
       "w": 0,
@@ -2427,19 +2419,363 @@
       "ga": 0,
       "pts": 0,
       "form": [],
-      "me": false,
-      "group": "C"
+      "me": false
+     },
+     {
+      "pos": 10,
+      "team": "Barcelona",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 11,
+      "team": "Benfica",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 12,
+      "team": "Arsenal",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 13,
+      "team": "Chelsea",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 14,
+      "team": "PSV",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 15,
+      "team": "Atalanta",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 16,
+      "team": "Bodo Glimt",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 17,
+      "team": "Atletico Madrid",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 18,
+      "team": "Sporting CP",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 19,
+      "team": "Inter",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 20,
+      "team": "Juventus",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 21,
+      "team": "Monaco",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 22,
+      "team": "Newcastle",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 23,
+      "team": "Napoli",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 24,
+      "team": "Olympique Marseille",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 25,
+      "team": "Villarreal",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 26,
+      "team": "Eintracht Francoforte",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 27,
+      "team": "Tottenham",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 28,
+      "team": "Paris SG",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 29,
+      "team": "Bayern München",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 30,
+      "team": "Club Brugge",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 31,
+      "team": "Real Madrid",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 32,
+      "team": "Borussia Dortmund",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 33,
+      "team": "Bayer Leverkusen",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 34,
+      "team": "Ajax",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 35,
+      "team": "Olympiacos",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
+     },
+     {
+      "pos": 36,
+      "team": "Athletic Club",
+      "p": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "pts": 0,
+      "form": [],
+      "me": false
      }
     ],
     "goals": [],
     "assists": [],
     "partite": [
-     {
-      "match": "Cosenza - Manchester City",
-      "score": " - ",
-      "scorers": "",
-      "opponentscorers": ""
-     },
      {
       "match": "LASK - Cosenza",
       "score": " - ",
@@ -2447,231 +2783,49 @@
       "opponentscorers": ""
      },
      {
-      "match": "Manchester City - Cosenza",
+      "match": "Cosenza - AEK",
       "score": " - ",
       "scorers": "",
       "opponentscorers": ""
      },
      {
-      "match": "Cosenza - LASK",
+      "match": "Manchester United - Cosenza",
+      "score": " - ",
+      "scorers": "",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Cosenza - Manchester City",
+      "score": " - ",
+      "scorers": "",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Galatasaray - Cosenza",
+      "score": " - ",
+      "scorers": "",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Cosenza - Lipsia",
+      "score": " - ",
+      "scorers": "",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Porto - Cosenza",
+      "score": " - ",
+      "scorers": "",
+      "opponentscorers": ""
+     },
+     {
+      "match": "Cosenza - Liverpool",
       "score": " - ",
       "scorers": "",
       "opponentscorers": ""
      }
     ],
-    "knockout": [],
-    "gironi": [
-     {
-      "girone": "A",
-      "squadre": [
-       "AEK",
-       "Manchester United",
-       "Porto"
-      ],
-      "partite": [
-       {
-        "giornata": 1,
-        "fase": "Andata",
-        "home": "AEK",
-        "away": "Manchester United",
-        "match": "AEK - Manchester United",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 2,
-        "fase": "Andata",
-        "home": "Porto",
-        "away": "AEK",
-        "match": "Porto - AEK",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 3,
-        "fase": "Andata",
-        "home": "Manchester United",
-        "away": "Porto",
-        "match": "Manchester United - Porto",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 4,
-        "fase": "Ritorno",
-        "home": "Manchester United",
-        "away": "AEK",
-        "match": "Manchester United - AEK",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 5,
-        "fase": "Ritorno",
-        "home": "AEK",
-        "away": "Porto",
-        "match": "AEK - Porto",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 6,
-        "fase": "Ritorno",
-        "home": "Porto",
-        "away": "Manchester United",
-        "match": "Porto - Manchester United",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       }
-      ]
-     },
-     {
-      "girone": "B",
-      "squadre": [
-       "Cosenza",
-       "Manchester City",
-       "LASK"
-      ],
-      "partite": [
-       {
-        "giornata": 1,
-        "fase": "Andata",
-        "home": "Cosenza",
-        "away": "Manchester City",
-        "match": "Cosenza - Manchester City",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 2,
-        "fase": "Andata",
-        "home": "LASK",
-        "away": "Cosenza",
-        "match": "LASK - Cosenza",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 3,
-        "fase": "Andata",
-        "home": "Manchester City",
-        "away": "LASK",
-        "match": "Manchester City - LASK",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 4,
-        "fase": "Ritorno",
-        "home": "Manchester City",
-        "away": "Cosenza",
-        "match": "Manchester City - Cosenza",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 5,
-        "fase": "Ritorno",
-        "home": "Cosenza",
-        "away": "LASK",
-        "match": "Cosenza - LASK",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 6,
-        "fase": "Ritorno",
-        "home": "LASK",
-        "away": "Manchester City",
-        "match": "LASK - Manchester City",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       }
-      ]
-     },
-     {
-      "girone": "C",
-      "squadre": [
-       "Lipsia",
-       "Galatasaray",
-       "Liverpool"
-      ],
-      "partite": [
-       {
-        "giornata": 1,
-        "fase": "Andata",
-        "home": "Lipsia",
-        "away": "Galatasaray",
-        "match": "Lipsia - Galatasaray",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 2,
-        "fase": "Andata",
-        "home": "Liverpool",
-        "away": "Lipsia",
-        "match": "Liverpool - Lipsia",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 3,
-        "fase": "Andata",
-        "home": "Galatasaray",
-        "away": "Liverpool",
-        "match": "Galatasaray - Liverpool",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 4,
-        "fase": "Ritorno",
-        "home": "Galatasaray",
-        "away": "Lipsia",
-        "match": "Galatasaray - Lipsia",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 5,
-        "fase": "Ritorno",
-        "home": "Lipsia",
-        "away": "Liverpool",
-        "match": "Lipsia - Liverpool",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       },
-       {
-        "giornata": 6,
-        "fase": "Ritorno",
-        "home": "Liverpool",
-        "away": "Galatasaray",
-        "match": "Liverpool - Galatasaray",
-        "score": " - ",
-        "scorers": "",
-        "opponentscorers": ""
-       }
-      ]
-     }
-    ]
+    "knockout": []
    },
    "coppaitalia": {
     "classifica": [],
