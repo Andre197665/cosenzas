@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-        <link rel="manifest" href="manifest.webmanifest">
-    <meta name="theme-color" content="#001a33">
+            <meta name="theme-color" content="#001a33">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Cosenza FC">
@@ -4590,6 +4589,40 @@
         .player-card-bio { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.55; text-align: left; }
         .player-card-moment { margin-top: 10px; font-size: 0.82rem; color: var(--text-main); text-align: left;
             padding: 8px 10px; border-radius: 8px; background: color-mix(in srgb, var(--comp-primary) 14%, transparent); }
+
+        /* ==================== CHAT LIVE ==================== */
+        .chat-tab-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 16px; height: 16px;
+            margin-left: 4px; padding: 0 4px; border-radius: 999px; background: var(--cosenza-red); color: #fff;
+            font-size: 0.6rem; font-weight: 800; vertical-align: top; }
+        .chat-online-count { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-left: 6px; }
+        .chat-setup-msg { padding: 18px; border-radius: 12px; background: var(--item-bg); border: 1px solid var(--border-color);
+            color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+        .chat-setup-msg code { background: rgba(128,128,128,0.2); padding: 1px 5px; border-radius: 4px; font-size: 0.85em; }
+        .chat-online-list { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px 12px; -webkit-overflow-scrolling: touch; }
+        .chat-online-pill { flex: 0 0 auto; display: flex; align-items: center; gap: 6px; padding: 5px 11px;
+            border-radius: 999px; background: var(--item-bg); border: 1px solid var(--border-color);
+            font-size: 0.78rem; font-weight: 600; color: var(--text-main); white-space: nowrap; }
+        .chat-online-pill.me { border-color: var(--cosenza-red); color: var(--cosenza-red); }
+        .chat-online-empty { font-size: 0.82rem; color: var(--text-secondary); padding: 6px 2px; }
+        .chat-dot { width: 8px; height: 8px; border-radius: 50%; background: #3ecf6e; flex-shrink: 0;
+            box-shadow: 0 0 0 0 rgba(62,207,110,0.6); animation: chatDotPing 2s ease infinite; }
+        @keyframes chatDotPing { 0% { box-shadow: 0 0 0 0 rgba(62,207,110,0.5); } 70% { box-shadow: 0 0 0 5px rgba(62,207,110,0); } 100% { box-shadow: 0 0 0 0 rgba(62,207,110,0); } }
+        .chat-messages { display: flex; flex-direction: column; gap: 10px; height: 46vh; min-height: 260px;
+            overflow-y: auto; padding: 10px; border-radius: 12px; background: var(--item-bg); border: 1px solid var(--border-color); }
+        .chat-msg { max-width: 78%; display: flex; flex-direction: column; gap: 2px; align-self: flex-start; }
+        .chat-msg.mine { align-self: flex-end; align-items: flex-end; }
+        .chat-msg-author { font-size: 0.7rem; font-weight: 700; color: var(--cosenza-red); margin-left: 4px; }
+        .chat-msg-bubble { padding: 8px 12px; border-radius: 14px; background: var(--border-color);
+            color: var(--text-main); font-size: 0.9rem; line-height: 1.4; overflow-wrap: anywhere; white-space: pre-wrap; }
+        .chat-msg.mine .chat-msg-bubble { background: var(--cosenza-red); color: #fff; }
+        .chat-msg-time { font-size: 0.64rem; color: var(--text-secondary); margin: 0 4px; }
+        .chat-input-row { display: flex; gap: 8px; margin-top: 10px; }
+        .chat-input-row input { flex: 1; padding: 11px 14px; border-radius: 999px; border: 1px solid var(--border-color);
+            background: var(--item-bg); color: var(--text-main); font-family: inherit; font-size: 0.9rem; }
+        .chat-send-btn { flex: 0 0 auto; width: 42px; height: 42px; border-radius: 50%; border: none; cursor: pointer;
+            background: var(--cosenza-red); color: #fff; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; }
+        .chat-send-btn:active { transform: scale(0.92); }
+        @media (prefers-reduced-motion: reduce) { .chat-dot { animation: none; } }
     </style>
 </head>
 <body>
@@ -4736,6 +4769,7 @@
         <button class="tab-btn" id="analisi-tab" onclick="openTab(event, 'analisi')"><span class="tab-icon" aria-hidden="true" style="font-size:16px;line-height:1">🧠</span>Analisi</button>
         <button class="tab-btn" id="rosa-tab" onclick="openTab(event, 'rosa')"><span class="tab-icon" aria-hidden="true" style="font-size:16px;line-height:1">👕</span>Rosa</button>
         <button class="tab-btn" id="quiz-tab" onclick="openTab(event, 'quiz')"><span class="tab-icon" aria-hidden="true" style="font-size:16px;line-height:1">🎯</span>Quiz</button>
+        <button class="tab-btn" id="chat-tab" onclick="openTab(event, 'chat')"><span class="tab-icon" aria-hidden="true" style="font-size:16px;line-height:1">💬</span>Chat<span id="chatTabBadge" class="chat-tab-badge" style="display:none">0</span></button>
     </div>
 
     <div class="content-area">
@@ -4792,6 +4826,7 @@
         <div id="rosa" class="content"><h3>👕 La rosa</h3><div id="rosaBody"></div></div>
         <div id="quiz" class="content"><h3>🎯 Quiz Cosenza</h3><div id="quizBody"></div></div>
         <div id="notizie" class="content"><h3>Notizie Cosenza</h3><div id="news-body"></div></div>
+        <div id="chat" class="content"><h3>💬 Chat Cosenza <span id="chatOnlineCount" class="chat-online-count"></span></h3><div id="chatBody"></div></div>
     </div>
     <footer class="app-footer">App del Bortolo · <strong>Forza Cosenza</strong></footer>
 
@@ -11779,7 +11814,6 @@ function showFullscreenMatch(score, hScorers, aScorers) {
   setTimeout(fill,1500);
 })();
 </script>
-<script>if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}</script>
 <style>
 .xt-bar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
 .xt-bar button{flex:1;min-width:110px;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--item-bg);color:var(--text-main);font:700 13px 'DM Sans',sans-serif;cursor:pointer}
@@ -12036,6 +12070,171 @@ const DATI_URL = "https://andre197665.github.io/cosenzas/dati.json";
   try{const c=localStorage.getItem(KEY);if(c){const d=JSON.parse(c);if(valid(d))apply(d)}}catch(e){}
   load();
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')load()});
+})();
+</script>
+<script>
+/* ===== CHAT LIVE (presenze online + messaggi in tempo reale) =====
+   Richiede un database gratuito Firebase Realtime Database (5 minuti, nessun costo):
+   1. Vai su https://console.firebase.google.com -> "Aggiungi progetto" (es. "cosenza-app") -> crealo.
+   2. Nel menu a sinistra: Build -> Realtime Database -> "Crea database" -> scegli una zona -> avvia in "modalita test".
+   3. Tab "Regole" del Realtime Database, incolla questo e premi "Pubblica":
+      {
+        "rules": {
+          "presence": { ".read": true, ".write": true },
+          "chat": { ".read": true, ".write": "auth == null || true" }
+        }
+      }
+      (regole aperte: va benissimo per un gruppo di amici; non mettere dati sensibili in chat)
+   4. Project settings (icona ingranaggio in alto) -> "Le tue app" -> icona "</>" -> registra una Web app.
+   5. Copia l'oggetto firebaseConfig che ti mostra e incollalo qui sotto al posto di null.
+      Deve avere anche "databaseURL" (es. "https://cosenza-app-default-rtdb.europe-west1.firebasedatabase.app").
+   Finche resta null la chat mostra solo un messaggio di configurazione, il resto dell'app funziona uguale. */
+const FIREBASE_CONFIG = null;
+// const FIREBASE_CONFIG = { apiKey: "...", authDomain: "...", databaseURL: "...", projectId: "...", storageBucket: "...", messagingSenderId: "...", appId: "..." };
+
+(function(){
+  const ONLINE_WINDOW_MS = 70000;
+  const HEARTBEAT_MS = 25000;
+  let db = null, myId = null, myName = null, presenceRef = null, chatReady = false, unreadCount = 0;
+
+  function loadScript(src){
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src; s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  function currentUser(){
+    let id = null, name = null;
+    try { id = localStorage.getItem('accountId') || localStorage.getItem('username'); name = localStorage.getItem('username'); } catch(e) {}
+    if (!id) {
+      try { id = sessionStorage.getItem('chatGuestId'); } catch(e) {}
+      if (!id) {
+        id = 'ospite-' + Math.random().toString(36).slice(2, 8);
+        try { sessionStorage.setItem('chatGuestId', id); } catch(e) {}
+      }
+    }
+    return { id: String(id), name: name || 'Ospite' };
+  }
+
+  function renderChatShell(){
+    const body = document.getElementById('chatBody');
+    if (!body) return;
+    if (!FIREBASE_CONFIG) {
+      body.innerHTML = '<div class="chat-setup-msg">La chat live non e ancora configurata.<br><br>' +
+        'Apri il codice, cerca <code>FIREBASE_CONFIG</code> poco dopo <code>DATI_URL</code> e segui le istruzioni nel commento qui sopra: 5 minuti su Firebase, gratis, e la chat si attiva da sola per tutti quelli che usano l\'app.</div>';
+      return;
+    }
+    body.innerHTML = '<div id="chatOnlineList" class="chat-online-list"></div>' +
+      '<div id="chatMessages" class="chat-messages"></div>' +
+      '<div class="chat-input-row"><input type="text" id="chatInput" placeholder="Scrivi un messaggio..." maxlength="500" onkeydown="chatInputKeydown(event)">' +
+      '<button type="button" class="chat-send-btn" onclick="sendChatMessage()" aria-label="Invia">&#10148;</button></div>';
+  }
+
+  function renderOnlineUsers(list){
+    const el = document.getElementById('chatOnlineList');
+    const count = document.getElementById('chatOnlineCount');
+    if (count) count.textContent = list.length ? ('(' + list.length + ' online)') : '';
+    if (!el) return;
+    if (!list.length) { el.innerHTML = '<div class="chat-online-empty">Nessuno online al momento</div>'; return; }
+    el.innerHTML = list.map(u =>
+      '<div class="chat-online-pill' + (u.id === myId ? ' me' : '') + '"><span class="chat-dot"></span>' + escapeHtml(u.name) + '</div>'
+    ).join('');
+  }
+
+  function appendMessage(m){
+    if (!m || !m.text) return;
+    const list = document.getElementById('chatMessages');
+    if (!list) return;
+    const mine = m.uid === myId;
+    const time = m.ts ? new Date(m.ts).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' }) : '';
+    const row = document.createElement('div');
+    row.className = 'chat-msg' + (mine ? ' mine' : '');
+    row.innerHTML = (mine ? '' : '<div class="chat-msg-author">' + escapeHtml(m.name || '?') + '</div>') +
+      '<div class="chat-msg-bubble">' + escapeHtml(m.text) + '</div>' +
+      '<div class="chat-msg-time">' + time + '</div>';
+    list.appendChild(row);
+    list.scrollTop = list.scrollHeight;
+    const chatTab = document.getElementById('chat');
+    if (!mine && (!chatTab || !chatTab.classList.contains('active'))) {
+      unreadCount++;
+      const badge = document.getElementById('chatTabBadge');
+      if (badge) { badge.textContent = unreadCount > 9 ? '9+' : String(unreadCount); badge.style.display = 'inline-flex'; }
+    }
+  }
+
+  function clearUnread(){
+    unreadCount = 0;
+    const badge = document.getElementById('chatTabBadge');
+    if (badge) badge.style.display = 'none';
+  }
+
+  function setupPresence(){
+    const u = currentUser(); myId = u.id; myName = u.name;
+    presenceRef = db.ref('presence/' + myId);
+    db.ref('.info/connected').on('value', snap => {
+      if (snap.val() === true) {
+        presenceRef.onDisconnect().remove();
+        presenceRef.set({ name: myName, lastSeen: firebase.database.ServerValue.TIMESTAMP });
+      }
+    });
+    setInterval(() => {
+      if (presenceRef) presenceRef.update({ name: myName, lastSeen: firebase.database.ServerValue.TIMESTAMP });
+    }, HEARTBEAT_MS);
+    db.ref('presence').on('value', snap => {
+      const data = snap.val() || {};
+      const now = Date.now();
+      const online = Object.keys(data)
+        .filter(id => data[id] && (now - (data[id].lastSeen || 0)) < ONLINE_WINDOW_MS)
+        .map(id => ({ id, name: data[id].name || id }));
+      renderOnlineUsers(online);
+    });
+  }
+
+  function setupChatListeners(){
+    db.ref('chat/messages').limitToLast(150).on('child_added', snap => appendMessage(snap.val()));
+  }
+
+  window.sendChatMessage = function(){
+    if (!chatReady || !db) return;
+    const input = document.getElementById('chatInput');
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+    db.ref('chat/messages').push({ uid: myId, name: myName, text: text.slice(0, 500), ts: firebase.database.ServerValue.TIMESTAMP });
+    input.value = '';
+  };
+
+  window.chatInputKeydown = function(e){
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChatMessage(); }
+  };
+
+  async function initChat(){
+    renderChatShell();
+    if (!FIREBASE_CONFIG) return;
+    try {
+      if (!window.firebase) {
+        await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js');
+        await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js');
+      }
+      firebase.initializeApp(FIREBASE_CONFIG);
+      db = firebase.database();
+      setupPresence();
+      setupChatListeners();
+      chatReady = true;
+    } catch (e) {
+      console.error('Chat non disponibile', e);
+      const body = document.getElementById('chatBody');
+      if (body) body.innerHTML = '<div class="chat-setup-msg">Chat non raggiungibile al momento (controlla la connessione o la configurazione di Firebase).</div>';
+    }
+  }
+
+  document.addEventListener('click', e => {
+    if (e.target && e.target.closest && e.target.closest('#chat-tab')) clearUnread();
+  });
+
+  initChat();
 })();
 </script>
 <style id="settingsClean">
