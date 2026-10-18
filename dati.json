@@ -2892,7 +2892,7 @@
     "players": [],
     "teamStats": {
      "totalMatches": 0,
-     "totalGoals": 0.1,
+     "totalGoals": 0,
      "totalConceded": 0,
      "goalDifference": 0,
      "possessionAvg": 0,
@@ -2916,37 +2916,43 @@
     "date": "2026-05-24",
     "category": "Dichiarazioni",
     "title": "Mister Bortolo-Erbacci: \"Questa squadra ha un cuore enorme\"",
-    "body": "Dopo la vittoria contro l'Inter, il tecnico rossoblù ha elogiato il gruppo: \"Abbiamo sofferto ma non abbiamo mai mollato, è lo spirito che ci ha portato fin qui\"."
+    "body": "Dopo la vittoria contro l'Inter, il tecnico rossoblù ha elogiato il gruppo: \"Abbiamo sofferto ma non abbiamo mai mollato, è lo spirito che ci ha portato fin qui\".",
+    "immagine": ""
    },
    {
     "date": "2026-05-10",
     "category": "Curiosità",
     "title": "Barcola supera quota 30 gol stagionali",
-    "body": "Con la doppietta al Torino, l'attaccante entra nella storia recente del club come miglior marcatore in una singola stagione tra tutte le competizioni."
+    "body": "Con la doppietta al Torino, l'attaccante entra nella storia recente del club come miglior marcatore in una singola stagione tra tutte le competizioni.",
+    "immagine": ""
    },
    {
     "date": "2026-04-02",
     "category": "Infortuni",
     "title": "Pustolini recuperato per la volata finale",
-    "body": "Il centrocampista, fermo per un problema muscolare, è tornato ad allenarsi in gruppo in vista degli ultimi impegni di campionato e Champions."
+    "body": "Il centrocampista, fermo per un problema muscolare, è tornato ad allenarsi in gruppo in vista degli ultimi impegni di campionato e Champions.",
+    "immagine": ""
    },
    {
     "date": "2026-03-15",
     "category": "Formazione",
     "title": "Modulo a sorpresa contro la Juventus",
-    "body": "Il mister ha cambiato assetto passando a un più offensivo 3-4-3, mossa che ha spiazzato i bianconeri e regalato una vittoria roboante."
+    "body": "Il mister ha cambiato assetto passando a un più offensivo 3-4-3, mossa che ha spiazzato i bianconeri e regalato una vittoria roboante.",
+    "immagine": ""
    },
    {
     "date": "2026-02-01",
     "category": "Calciomercato",
     "title": "Rinnovo in vista per Laurientè",
-    "body": "Le due parti sarebbero vicine a un accordo per il prolungamento di contratto fino al 2029, secondo quanto trapela dall'ambiente rossoblù."
+    "body": "Le due parti sarebbero vicine a un accordo per il prolungamento di contratto fino al 2029, secondo quanto trapela dall'ambiente rossoblù.",
+    "immagine": ""
    },
    {
     "date": "2026-01-08",
     "category": "Vigilia",
     "title": "Cosenza-Roma, la sfida che vale una stagione",
-    "body": "All'andata finì 7-5 per i rossoblù: alla vigilia del ritorno la squadra si prepara a un'altra sfida spettacolo."
+    "body": "All'andata finì 7-5 per i rossoblù: alla vigilia del ritorno la squadra si prepara a un'altra sfida spettacolo.",
+    "immagine": ""
    }
   ],
   "2026-27": [
@@ -2954,19 +2960,22 @@
     "date": "2026-10-16",
     "category": "Campionato",
     "title": "Svelati i calendari di Serie A e Coppa Italia del Cosenza",
-    "body": "I rossoblù affronteranno il Como in trasferta nella prossima giornata di Serie A e il Sassuolo agli ottavi di Coppa Italia. Tutte le sfide sono ora disponibili nell'app."
+    "body": "I rossoblù affronteranno il Como in trasferta nella prossima giornata di Serie A e il Sassuolo agli ottavi di Coppa Italia. Tutte le sfide sono ora disponibili nell'app.",
+    "immagine": "https://cdn.phototourl.com/member/2026-10-18-e1287344-052c-4eb2-9bf6-0cf95c9a84d5.jpg"
    },
    {
     "date": "2026-10-16",
     "category": "Campionato",
     "title": "Torna la Serie A \"Como-Cosenza il 25 ottobre alle 16:00\"",
-    "body": "Torna il campionato dopo una lunga attesa: \"Como-Cosenza si giocherà allo Stadio Giuseppe Sinigaglia di Como il 25 ottobre alle 16:00\"."
+    "body": "Torna il campionato dopo una lunga attesa: \"Como-Cosenza si giocherà allo Stadio Giuseppe Sinigaglia di Como il 25 ottobre alle 16:00\".",
+    "immagine": ""
    },
    {
     "date": "2026-10-16",
     "category": "Calciomercato",
     "title": "Scambio Barcola-Malen \"Barcola scambiato per Donyell Malen\"",
-    "body": "Di seguito i dettagli dell operazione: \"Malen diventa un nuovo elemento del gruppo, Barcola lascia il club, buona fortuna Bradley!\"."
+    "body": "Di seguito i dettagli dell operazione: \"Malen diventa un nuovo elemento del gruppo, Barcola lascia il club, buona fortuna Bradley!\".",
+    "immagine": ""
    }
   ]
  },
