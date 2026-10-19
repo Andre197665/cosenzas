@@ -11711,16 +11711,14 @@ function showFullscreenMatch(score, hScorers, aScorers) {
                 console.error('Error reloading credentials:', error);
                 showNotification('Errore nel caricamento delle credenziali', 'error');
                 
-                // Use fallback
+                // Fallback metadata only; never embed passwords in the public HTML.
                 loginCredentials = {
-                    users: [
-                        { username: "Andre", password: "Everybody viva il Forest" },
-                        { username: "Dido", password: "Everybody viva il Forest" }
-                    ],
+                    users: [{ username: "Andre" }, { username: "Dido" }],
                     settings: {
                         allowPasswordChange: true,
-                        minPasswordLength: 3,
-                        sessionTimeout: 86400000
+                        minPasswordLength: 6,
+                        sessionTimeout: 86400000,
+                        adminUsers: ["Andre"]
                     }
                 };
             });
