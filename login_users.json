@@ -27,7 +27,7 @@
   ],
   "settings": {
     "allowPasswordChange": true,
-    "minPasswordLength": 3,
+    "minPasswordLength": 6,
     "sessionTimeout": 86400000,
     "enableAccessLog": true,
     "adminUsers": [
