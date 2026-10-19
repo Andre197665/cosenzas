@@ -38,6 +38,10 @@ Only after accounts are imported and login is tested, replace the current Realti
   "rules": {
     ".read": false,
     ".write": false,
+    "leagueData": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
     "presence": {
       ".read": "auth != null",
       "$uid": {
@@ -64,5 +68,5 @@ These rules are for the chat/presence paths used by the current page. Do not pub
 - Firebase Auth accounts must be provisioned using the importer before the new login can work.
 - Realtime Database rules still deny access and must be updated in Firebase Console only after login testing.
 - Password overrides previously stored only in individual devices' localStorage are not included in the original JSON and are not migrated.
-- League tables, scores, matches, and other league data are still embedded in `index.html`; **they are not yet synchronized through Firestore/Realtime Database**.
+- League tables, scores, matches, and other league data still have embedded defaults in `index.html`; imported changes are now prepared to sync through Realtime Database at `leagueData/{season}/{league}` after Firebase login. This has not yet been tested against the live database.
 - Test on a separate branch and keep `main` unchanged until end-to-end testing succeeds.
