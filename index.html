@@ -11142,75 +11142,95 @@ function showFullscreenMatch(score, hScorers, aScorers) {
     }
     
     
+    // Firebase Auth: ogni nome utente ha un indirizzo tecnico dedicato.
+    function usernameToFirebaseEmail(username) {
+        const key = String(username || '').trim().toLowerCase();
+        if (!/^[a-z0-9._-]{1,40}$/.test(key)) return null;
+        return key + '@cosenza-app.firebaseapp.com';
+    }
+
+    async function signInCosenzaUser(username, password) {
+        const config = window.COSENZA_FIREBASE_CONFIG;
+        if (!config) throw new Error('Firebase non è ancora inizializzato.');
+        const loadScript = src => new Promise((resolve, reject) => {
+            const existing = Array.from(document.scripts).find(s => s.src === src);
+            if (existing) {
+                if (window.firebase && firebase.auth) return resolve();
+                existing.addEventListener('load', resolve, { once: true });
+                existing.addEventListener('error', reject, { once: true });
+                return;
+            }
+            const s = document.createElement('script');
+            s.src = src; s.onload = resolve; s.onerror = reject;
+            document.head.appendChild(s);
+        });
+        if (!window.firebase) await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js');
+        if (!firebase.auth) await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js');
+        if (!firebase.apps.length) firebase.initializeApp(config);
+        const email = usernameToFirebaseEmail(username);
+        if (!email) throw new Error('Usa il nome utente originale (lettere, numeri, punto, trattino o underscore).');
+        return firebase.auth().signInWithEmailAndPassword(email, password);
+    }
+
     // Login functionality
-    function handleLogin(event) {
+    async function handleLogin(event) {
         event.preventDefault();
-        
         const username = document.getElementById('username').value.trim();
-        const password = document.getElementById('password').value.trim();
-        
-        // Enhanced validation
+        const password = document.getElementById('password').value;
         if (!username) {
             showNotification('Inserisci il nome utente', 'error');
             shakeField('username');
             return;
         }
-        
         if (!password) {
             showNotification('Inserisci la password', 'error');
             shakeField('password');
             return;
         }
-        
         if (!loginCredentials) {
             showNotification('Credenziali non disponibili, riprova', 'error');
             return;
         }
-        
-        // Check credentials
-        const user = resolveAccount(username, password);
-        if (!user) {
+        const canonicalUser = loginCredentials.users.find(u => String(u.username).toLowerCase() === username.toLowerCase());
+        if (!canonicalUser) {
             showNotification('Nome utente o password errati', 'error');
-            shakeField('username');
-            shakeField('password');
+            shakeField('username'); shakeField('password');
             return;
         }
-        
-        // Store login info
+        let credential;
+        try {
+            credential = await signInCosenzaUser(canonicalUser.username, password);
+        } catch (error) {
+            console.error('Firebase Auth login failed:', error && error.code);
+            const code = error && error.code;
+            const message = code === 'auth/invalid-credential' || code === 'auth/wrong-password' || code === 'auth/user-not-found'
+                ? 'Nome utente o password errati'
+                : code === 'auth/too-many-requests'
+                    ? 'Troppi tentativi. Riprova più tardi.'
+                    : 'Accesso Firebase non pronto: gli account devono essere migrati prima di attivare questo login.';
+            showNotification(message, 'error');
+            shakeField('username'); shakeField('password');
+            return;
+        }
+        const user = canonicalUser;
         localStorage.setItem('accessoRiuscito', 'true');
-        localStorage.setItem('username', user.name);
-        localStorage.setItem('accountId', user.id);
+        localStorage.setItem('username', user.username);
+        localStorage.setItem('accountId', user.username);
+        localStorage.setItem('firebaseUid', credential.user.uid);
         localStorage.setItem('loginTime', Date.now().toString());
-        
-        // Log access
-        logAccess(username);
-        
-        // Add success animation
+        logAccess(user.username);
         const container = document.querySelector('.login-container');
-        container.style.animation = 'successPulse 0.6s';
-        
+        if (container) container.style.animation = 'successPulse 0.6s';
         setTimeout(() => {
-            // Hide login screen and show main app
             document.getElementById('loginScreen').classList.add('hidden');
             document.getElementById('mainApp').classList.add('active');
-            
-            console.log('Login successful for:', username);
-            
-            // Force update user display after login
-            setTimeout(() => {
-                updateUserDisplay();
-                console.log('Forced user display update after login');
-            }, 100);
-            
-            // Initialize the app after login
+            setTimeout(() => updateUserDisplay(), 100);
             loadJSONFromStorage();
             changeLeague();
             startAutoRefreshJSON();
-            
-            showNotification(`Benvenuto, ${username}!`, 'success');
+            showNotification(`Benvenuto, ${user.username}!`, 'success');
         }, 300);
     }
-    
     // Change password functionality
     function changePassword(oldPassword, newPassword) {
         if (!loginCredentials || !loginCredentials.settings.allowPasswordChange) {
@@ -12108,6 +12128,7 @@ const firebaseConfig = {
 
 // La chat usa l'API compat caricata dinamicamente più sotto.
 const FIREBASE_CONFIG = firebaseConfig;
+window.COSENZA_FIREBASE_CONFIG = FIREBASE_CONFIG;
 
 (function(){
   const ONLINE_WINDOW_MS = 70000;
@@ -12233,9 +12254,11 @@ const FIREBASE_CONFIG = firebaseConfig;
     try {
       if (!window.firebase) {
         await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js');
+      }
+      if (!firebase.database) {
         await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js');
       }
-      firebase.initializeApp(FIREBASE_CONFIG);
+      if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
       db = firebase.database();
       setupPresence();
       setupChatListeners();
