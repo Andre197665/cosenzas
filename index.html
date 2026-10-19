@@ -12157,6 +12157,7 @@ window.COSENZA_FIREBASE_CONFIG = FIREBASE_CONFIG;
   const ONLINE_WINDOW_MS = 70000;
   const HEARTBEAT_MS = 25000;
   let db = null, myId = null, myName = null, presenceRef = null, chatReady = false, unreadCount = 0;
+  let connectedListenerStarted = false, presenceListenerStarted = false, heartbeatTimer = null;
 
   function loadScript(src){
     return new Promise((resolve, reject) => {
@@ -12227,27 +12228,37 @@ window.COSENZA_FIREBASE_CONFIG = FIREBASE_CONFIG;
   }
 
   function setupPresence(){
-    const u = currentUser(); myId = u.id; myName = u.name;
+    const u = currentUser();
+    if (!u) return;
+    myId = u.id; myName = u.name;
     presenceRef = db.ref('presence/' + myId);
-    db.ref('.info/connected').on('value', snap => {
-      if (snap.val() === true) {
-        presenceRef.onDisconnect().remove();
-        presenceRef.set({ name: myName, lastSeen: firebase.database.ServerValue.TIMESTAMP });
+    if (!connectedListenerStarted) {
+      db.ref('.info/connected').on('value', snap => {
+        if (snap.val() === true && presenceRef) {
+          presenceRef.onDisconnect().remove();
+          presenceRef.set({ name: myName, lastSeen: firebase.database.ServerValue.TIMESTAMP });
+        }
+      });
+      connectedListenerStarted = true;
+    }
+    if (heartbeatTimer) clearInterval(heartbeatTimer);
+    heartbeatTimer = setInterval(() => {
+      if (presenceRef && firebase.auth().currentUser) {
+        presenceRef.update({ name: myName, lastSeen: firebase.database.ServerValue.TIMESTAMP });
       }
-    });
-    setInterval(() => {
-      if (presenceRef) presenceRef.update({ name: myName, lastSeen: firebase.database.ServerValue.TIMESTAMP });
     }, HEARTBEAT_MS);
-    db.ref('presence').on('value', snap => {
-      const data = snap.val() || {};
-      const now = Date.now();
-      const online = Object.keys(data)
-        .filter(id => data[id] && (now - (data[id].lastSeen || 0)) < ONLINE_WINDOW_MS)
-        .map(id => ({ id, name: data[id].name || id }));
-      renderOnlineUsers(online);
-    });
+    if (!presenceListenerStarted) {
+      db.ref('presence').on('value', snap => {
+        const data = snap.val() || {};
+        const now = Date.now();
+        const online = Object.keys(data)
+          .filter(id => data[id] && (now - (data[id].lastSeen || 0)) < ONLINE_WINDOW_MS)
+          .map(id => ({ id, name: data[id].name || id }));
+        renderOnlineUsers(online);
+      });
+      presenceListenerStarted = true;
+    }
   }
-
   function setupChatListeners(){
     db.ref('chat/messages').limitToLast(150).on('child_added', snap => appendMessage(snap.val()));
   }
