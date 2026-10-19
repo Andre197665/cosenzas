@@ -8232,6 +8232,11 @@
         }
     }
 
+    // Percorsi delle leghe modificati da un'importazione, da sincronizzare dopo il parsing.
+    const sharedLeagueChanges = new Set();
+    let sharedLeagueDb = null;
+    let sharedLeagueListenerStarted = false;
+
     // Applica dati importati (JSON o TXT) alla stagione/lega corretta.
     // partite / goals / assists: aggiunge le nuove voci o aggiorna quelle esistenti (stesso match / stesso giocatore).
     // classifica: sostituisce l'intera tabella (è sempre una foto completa).
@@ -8273,6 +8278,7 @@
         if (seasonKey === currentSeason) {
             jsonData = jsonDataBySeason[currentSeason];
         }
+        sharedLeagueChanges.add(seasonKey + '/' + league);
     }
 
     // Parsing di un file .txt per aggiungere/modificare dati con un formato semplice.
@@ -10955,7 +10961,12 @@ function showFullscreenMatch(score, hScorers, aScorers) {
             });
 
             changeLeague();
-            showNotification('Dati caricati con successo', 'success');
+            syncChangedLeagueData().then(() => {
+                showNotification('Dati importati e sincronizzati con la lega condivisa', 'success');
+            }).catch(syncError => {
+                console.error('Sincronizzazione lega fallita:', syncError);
+                showNotification('Dati importati su questo dispositivo, ma non sincronizzati. Controlla accesso e regole Firebase.', 'error');
+            });
         }).catch(error => {
             console.error('Errore nel caricamento dati:', error);
             showNotification('Errore nel caricamento dei file', 'error');
@@ -11017,7 +11028,7 @@ function showFullscreenMatch(score, hScorers, aScorers) {
     function loadLoginCredentials() {
         loginCredentials = null;
         const timestamp = Date.now();
-        const url = `login_credentials.json?t=${timestamp}`;
+        const url = `login_users.json?t=${timestamp}`;
         
         fetch(url, { cache: 'no-cache' })
             .then(response => {
@@ -11029,24 +11040,9 @@ function showFullscreenMatch(score, hScorers, aScorers) {
                 localStorage.setItem('loginCredentials', JSON.stringify(data));
             })
             .catch(error => {
-                loginCredentials = {
-                    users: [
-                        { username: "Andre", password: "Everybody viva il Forest" },
-                        { username: "Dido", password: "Everybody viva il Forest" },
-                        { username: "Rega", password: "Everybody viva il Forest" },
-                        { username: "Ferreri", password: "Everybody viva il Forest" },
-                        { username: "Etien", password: "Everybody viva il Forest" },
-                        { username: "Erbacci", password: "Everybody viva il Forest" },
-                        { username: "Zagnoni", password: "Everybody viva il Forest" }
-                    ],
-                    settings: {
-                        allowPasswordChange: true,
-                        minPasswordLength: 3,
-                        sessionTimeout: 86400000,
-                        enableAccessLog: true,
-                        adminUsers: ["Andre"]
-                    }
-                };
+                console.error('Could not load public username metadata:', error);
+                loginCredentials = null;
+                showNotification('Impossibile caricare i profili utente. Ricarica la pagina.', 'error');
             });
     }
     
@@ -11142,125 +11138,210 @@ function showFullscreenMatch(score, hScorers, aScorers) {
     }
     
     
+    // Firebase Auth: ogni nome utente ha un indirizzo tecnico dedicato.
+    function usernameToFirebaseEmail(username) {
+        const key = String(username || '').trim().toLowerCase();
+        if (!/^[a-z0-9._-]{1,40}$/.test(key)) return null;
+        return key + '@cosenza-app.firebaseapp.com';
+    }
+
+    async function ensureFirebaseAuth() {
+        const config = window.COSENZA_FIREBASE_CONFIG;
+        if (!config) throw new Error('Firebase non è ancora inizializzato.');
+        const loadScript = src => new Promise((resolve, reject) => {
+            const existing = Array.from(document.scripts).find(s => s.src === src);
+            if (existing) {
+                if (window.firebase && firebase.auth) return resolve();
+                existing.addEventListener('load', resolve, { once: true });
+                existing.addEventListener('error', reject, { once: true });
+                return;
+            }
+            const s = document.createElement('script');
+            s.src = src; s.onload = resolve; s.onerror = reject;
+            document.head.appendChild(s);
+        });
+        if (!window.firebase) await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js');
+        if (!firebase.auth) await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js');
+        if (!firebase.apps.length) firebase.initializeApp(config);
+        return firebase.auth();
+    }
+
+    async function ensureFirebaseDatabase() {
+        await ensureFirebaseAuth();
+        if (!firebase.database) {
+            const src = 'https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js';
+            await new Promise((resolve, reject) => {
+                const existing = Array.from(document.scripts).find(s => s.src === src);
+                if (existing) {
+                    if (firebase.database) return resolve();
+                    existing.addEventListener('load', resolve, { once: true });
+                    existing.addEventListener('error', reject, { once: true });
+                    return;
+                }
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+        sharedLeagueDb = firebase.database();
+        return sharedLeagueDb;
+    }
+
+    async function startSharedLeagueSync() {
+        const auth = await ensureFirebaseAuth();
+        const db = await ensureFirebaseDatabase();
+        if (!auth.currentUser || sharedLeagueListenerStarted) return;
+        db.ref('leagueData').on('value', snapshot => {
+            const remote = snapshot.val();
+            if (!remote || typeof remote !== 'object') return;
+            Object.keys(remote).forEach(season => {
+                if (!remote[season] || typeof remote[season] !== 'object') return;
+                if (!jsonDataBySeason[season]) jsonDataBySeason[season] = {};
+                Object.keys(remote[season]).forEach(league => {
+                    if (remote[season][league] && typeof remote[season][league] === 'object') {
+                        jsonDataBySeason[season][league] = remote[season][league];
+                    }
+                });
+            });
+            if (jsonDataBySeason[currentSeason]) {
+                jsonData = jsonDataBySeason[currentSeason];
+                changeLeague();
+            }
+        }, error => {
+            console.error('Lettura dati condivisi fallita:', error);
+        });
+        sharedLeagueListenerStarted = true;
+    }
+
+    async function syncChangedLeagueData() {
+        if (sharedLeagueChanges.size === 0) return;
+        const auth = await ensureFirebaseAuth();
+        const db = await ensureFirebaseDatabase();
+        if (!auth.currentUser) throw new Error('Serve un accesso Firebase valido per sincronizzare i dati.');
+        const paths = Array.from(sharedLeagueChanges);
+        for (const path of paths) {
+            const parts = path.split('/');
+            const season = parts[0], league = parts[1];
+            const leagueData = jsonDataBySeason[season] && jsonDataBySeason[season][league];
+            if (!leagueData) continue;
+            await db.ref('leagueData').child(season).child(league).set(leagueData);
+            sharedLeagueChanges.delete(path);
+        }
+    }
+
+    async function signInCosenzaUser(username, password) {
+        const auth = await ensureFirebaseAuth();
+        const email = usernameToFirebaseEmail(username);
+        if (!email) throw new Error('Usa il nome utente originale (lettere, numeri, punto, trattino o underscore).');
+        return auth.signInWithEmailAndPassword(email, password);
+    }
+
     // Login functionality
-    function handleLogin(event) {
+    async function handleLogin(event) {
         event.preventDefault();
-        
         const username = document.getElementById('username').value.trim();
-        const password = document.getElementById('password').value.trim();
-        
-        // Enhanced validation
+        const password = document.getElementById('password').value;
         if (!username) {
             showNotification('Inserisci il nome utente', 'error');
             shakeField('username');
             return;
         }
-        
         if (!password) {
             showNotification('Inserisci la password', 'error');
             shakeField('password');
             return;
         }
-        
         if (!loginCredentials) {
             showNotification('Credenziali non disponibili, riprova', 'error');
             return;
         }
-        
-        // Check credentials
-        const user = resolveAccount(username, password);
-        if (!user) {
+        const canonicalUser = loginCredentials.users.find(u => String(u.username).toLowerCase() === username.toLowerCase());
+        if (!canonicalUser) {
             showNotification('Nome utente o password errati', 'error');
-            shakeField('username');
-            shakeField('password');
+            shakeField('username'); shakeField('password');
             return;
         }
-        
-        // Store login info
+        let credential;
+        try {
+            credential = await signInCosenzaUser(canonicalUser.username, password);
+        } catch (error) {
+            console.error('Firebase Auth login failed:', error && error.code);
+            const code = error && error.code;
+            const message = code === 'auth/invalid-credential' || code === 'auth/wrong-password' || code === 'auth/user-not-found'
+                ? 'Nome utente o password errati'
+                : code === 'auth/too-many-requests'
+                    ? 'Troppi tentativi. Riprova più tardi.'
+                    : 'Accesso Firebase non pronto: gli account devono essere migrati prima di attivare questo login.';
+            showNotification(message, 'error');
+            shakeField('username'); shakeField('password');
+            return;
+        }
+        const user = canonicalUser;
         localStorage.setItem('accessoRiuscito', 'true');
-        localStorage.setItem('username', user.name);
-        localStorage.setItem('accountId', user.id);
+        localStorage.setItem('username', user.username);
+        localStorage.setItem('accountId', user.username);
+        localStorage.setItem('firebaseUid', credential.user.uid);
         localStorage.setItem('loginTime', Date.now().toString());
-        
-        // Log access
-        logAccess(username);
-        
-        // Add success animation
+        startSharedLeagueSync().catch(error => console.error('Shared league sync unavailable:', error));
+        logAccess(user.username);
         const container = document.querySelector('.login-container');
-        container.style.animation = 'successPulse 0.6s';
-        
+        if (container) container.style.animation = 'successPulse 0.6s';
         setTimeout(() => {
-            // Hide login screen and show main app
             document.getElementById('loginScreen').classList.add('hidden');
             document.getElementById('mainApp').classList.add('active');
-            
-            console.log('Login successful for:', username);
-            
-            // Force update user display after login
-            setTimeout(() => {
-                updateUserDisplay();
-                console.log('Forced user display update after login');
-            }, 100);
-            
-            // Initialize the app after login
+            setTimeout(() => updateUserDisplay(), 100);
             loadJSONFromStorage();
             changeLeague();
             startAutoRefreshJSON();
-            
-            showNotification(`Benvenuto, ${username}!`, 'success');
+            showNotification(`Benvenuto, ${user.username}!`, 'success');
         }, 300);
     }
-    
-    // Change password functionality
-    function changePassword(oldPassword, newPassword) {
-        if (!loginCredentials || !loginCredentials.settings.allowPasswordChange) {
-            showNotification('Cambio password non consentito', 'error');
+    // Cambio password tramite Firebase Auth; nessuna password viene salvata nel browser o in un file pubblico.
+    async function changePassword(oldPassword, newPassword) {
+        const username = localStorage.getItem('accountId') || localStorage.getItem('username') || '';
+        const minLength = Math.max(6, Number(loginCredentials && loginCredentials.settings && loginCredentials.settings.minPasswordLength) || 0);
+        if (newPassword.length < minLength) {
+            showNotification(`La password deve contenere almeno ${minLength} caratteri`, 'error');
             return false;
         }
-        
-        const username = localStorage.getItem('username');
-        const userIndex = loginCredentials.users.findIndex(u => 
-            u.username.toLowerCase() === username.toLowerCase()
-        );
-        
-        if (userIndex === -1) {
-            showNotification('Utente non trovato', 'error');
+        try {
+            const auth = await ensureFirebaseAuth();
+            const current = auth.currentUser;
+            if (!current) {
+                showNotification('Accedi di nuovo prima di cambiare password', 'error');
+                return false;
+            }
+            const email = usernameToFirebaseEmail(username);
+            const credential = firebase.auth.EmailAuthProvider.credential(email, oldPassword);
+            await current.reauthenticateWithCredential(credential);
+            await current.updatePassword(newPassword);
+            showNotification('Password aggiornata su Firebase', 'success');
+            return true;
+        } catch (error) {
+            console.error('Firebase password change failed:', error && error.code);
+            const message = error && (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential')
+                ? 'La password attuale non è corretta.'
+                : error && error.code === 'auth/weak-password'
+                    ? 'La nuova password è troppo debole.'
+                    : 'Non sono riuscito a cambiare la password. Accedi di nuovo e riprova.';
+            showNotification(message, 'error');
             return false;
         }
-        
-        if (loginCredentials.users[userIndex].password !== oldPassword) {
-            showNotification('Password attuale errata', 'error');
-            return false;
-        }
-        
-        if (newPassword.length < loginCredentials.settings.minPasswordLength) {
-            showNotification(`La password deve contenere almeno ${loginCredentials.settings.minPasswordLength} caratteri`, 'error');
-            return false;
-        }
-        
-        // Update password
-        loginCredentials.users[userIndex].password = newPassword;
-        localStorage.setItem('loginCredentials', JSON.stringify(loginCredentials));
-        
-        // Save to JSON file (if possible)
-        saveCredentialsToFile();
-        
-        showNotification('Password cambiata con successo', 'success');
-        return true;
     }
-    
-    // Save credentials to JSON file
+
+    // Download only public username metadata, never passwords.
     function saveCredentialsToFile() {
         const dataStr = JSON.stringify(loginCredentials, null, 2);
         const blob = new Blob([dataStr], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'login_credentials.json';
+        a.download = 'login_users.json';
         a.click();
         URL.revokeObjectURL(url);
-        
-        showNotification('File credenziali scaricato, sostituiscilo nella cartella', 'info');
+        showNotification('Scaricato il file pubblico con i nomi utente, senza password.', 'info');
     }
     
     // Shake specific field
@@ -11274,7 +11355,7 @@ function showFullscreenMatch(score, hScorers, aScorers) {
     }
     
     // Show password change dialog
-    function showPasswordChangeDialog() {
+    async function showPasswordChangeDialog() {
         const oldPassword = prompt('Inserisci la password attuale:');
         if (!oldPassword) return;
         
@@ -11289,7 +11370,7 @@ function showFullscreenMatch(score, hScorers, aScorers) {
             return;
         }
         
-        if (changePassword(oldPassword, newPassword)) {
+        if (await changePassword(oldPassword, newPassword)) {
             // Password changed successfully
             setTimeout(() => {
                 if (confirm('Password cambiata! Vuoi fare il logout per testare le nuove credenziali?')) {
@@ -11301,22 +11382,26 @@ function showFullscreenMatch(score, hScorers, aScorers) {
     
     // Logout function
     function logout() {
-        if (confirm('Sei sicuro di voler fare il logout?')) {
-            // Clear login data
+        if (!confirm('Sei sicuro di voler fare il logout?')) return;
+        const finishLogout = () => {
             localStorage.removeItem('accessoRiuscito');
             localStorage.removeItem('username');
             localStorage.removeItem('accountId');
+            localStorage.removeItem('firebaseUid');
             localStorage.removeItem('loginTime');
-            
-            // Show login screen
             document.getElementById('loginScreen').classList.remove('hidden');
             document.getElementById('mainApp').classList.remove('active');
-            
-            // Clear form
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
-            
             showNotification('Logout effettuato', 'info');
+        };
+        if (window.firebase && firebase.auth && firebase.auth().currentUser) {
+            firebase.auth().signOut().then(finishLogout).catch(error => {
+                console.error('Firebase sign-out failed:', error);
+                finishLogout();
+            });
+        } else {
+            finishLogout();
         }
     }
     
@@ -11581,33 +11666,48 @@ function showFullscreenMatch(score, hScorers, aScorers) {
         }
     }
 
-    // Check if already logged in
-    function checkLoginStatus() {
-        const isLoggedIn = localStorage.getItem('accessoRiuscito') === 'true';
-        if (isLoggedIn) {
-            // Check session timeout
-            const loginTime = localStorage.getItem('loginTime');
-            if (loginTime && loginCredentials && loginCredentials.settings.sessionTimeout) {
-                const elapsed = Date.now() - parseInt(loginTime);
-                if (elapsed > loginCredentials.settings.sessionTimeout) {
-                    logout();
-                    showNotification('Sessione scaduta, fai login di nuovo', 'info');
-                    return;
-                }
-            }
-            
-            // Skip login screen
-            document.getElementById('loginScreen').classList.add('hidden');
-            document.getElementById('mainApp').classList.add('active');
-            
-            // Update user display
-            updateUserDisplay();
-            
-            // Initialize app
-            loadJSONFromStorage();
-            changeLeague();
-            startAutoRefreshJSON();
+    // Check login status against Firebase Auth, not only editable localStorage.
+    async function checkLoginStatus() {
+        const hadLocalSession = localStorage.getItem('accessoRiuscito') === 'true';
+        if (!hadLocalSession) return;
+        let authUser = null;
+        try {
+            const auth = await ensureFirebaseAuth();
+            authUser = await new Promise(resolve => {
+                let unsubscribe = null;
+                unsubscribe = auth.onAuthStateChanged(user => {
+                    if (unsubscribe) unsubscribe();
+                    resolve(user || null);
+                }, () => resolve(null));
+            });
+        } catch (error) {
+            console.error('Could not restore Firebase session:', error);
         }
+        if (!authUser) {
+            localStorage.removeItem('accessoRiuscito');
+            localStorage.removeItem('username');
+            localStorage.removeItem('accountId');
+            localStorage.removeItem('firebaseUid');
+            localStorage.removeItem('loginTime');
+            return;
+        }
+        const loginTime = localStorage.getItem('loginTime');
+        if (loginTime && loginCredentials && loginCredentials.settings.sessionTimeout) {
+            const elapsed = Date.now() - parseInt(loginTime, 10);
+            if (elapsed > loginCredentials.settings.sessionTimeout) {
+                logout();
+                showNotification('Sessione scaduta, fai login di nuovo', 'info');
+                return;
+            }
+        }
+        localStorage.setItem('firebaseUid', authUser.uid);
+        startSharedLeagueSync().catch(error => console.error('Shared league sync unavailable:', error));
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('mainApp').classList.add('active');
+        updateUserDisplay();
+        loadJSONFromStorage();
+        changeLeague();
+        startAutoRefreshJSON();
     }
     
     // Add animations
@@ -11654,7 +11754,7 @@ function showFullscreenMatch(score, hScorers, aScorers) {
         loginCredentials = null; // Reset variable
         
         // Force reload with timestamp
-        fetch('login_credentials.json?t=' + Date.now())
+        fetch('login_users.json?t=' + Date.now())
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -11674,16 +11774,14 @@ function showFullscreenMatch(score, hScorers, aScorers) {
                 console.error('Error reloading credentials:', error);
                 showNotification('Errore nel caricamento delle credenziali', 'error');
                 
-                // Use fallback
+                // Fallback metadata only; never embed passwords in the public HTML.
                 loginCredentials = {
-                    users: [
-                        { username: "Andre", password: "Everybody viva il Forest" },
-                        { username: "Dido", password: "Everybody viva il Forest" }
-                    ],
+                    users: [{ username: "Andre" }, { username: "Dido" }],
                     settings: {
                         allowPasswordChange: true,
-                        minPasswordLength: 3,
-                        sessionTimeout: 86400000
+                        minPasswordLength: 6,
+                        sessionTimeout: 86400000,
+                        adminUsers: ["Andre"]
                     }
                 };
             });
@@ -12089,9 +12187,7 @@ const DATI_URL = "https://andre197665.github.io/cosenzas/dati.json";
    5. Copia l'oggetto firebaseConfig che ti mostra e incollalo qui sotto al posto di null.
       Deve avere anche "databaseURL" (es. "https://cosenza-app-default-rtdb.europe-west1.firebasedatabase.app").
    Finche resta null la chat mostra solo un messaggio di configurazione, il resto dell'app funziona uguale. */
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// Firebase viene inizializzato tramite SDK compat caricato sotto, adatto a questa pagina HTML senza moduli.
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -12108,15 +12204,15 @@ const firebaseConfig = {
   measurementId: "G-6WVSC3C6M9"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-// const FIREBASE_CONFIG = { apiKey: "...", authDomain: "...", databaseURL: "...", projectId: "...", storageBucket: "...", messagingSenderId: "...", appId: "..." };
+// La chat usa l'API compat caricata dinamicamente più sotto.
+const FIREBASE_CONFIG = firebaseConfig;
+window.COSENZA_FIREBASE_CONFIG = FIREBASE_CONFIG;
 
 (function(){
   const ONLINE_WINDOW_MS = 70000;
   const HEARTBEAT_MS = 25000;
   let db = null, myId = null, myName = null, presenceRef = null, chatReady = false, unreadCount = 0;
+  let connectedListenerStarted = false, presenceListenerStarted = false, heartbeatTimer = null;
 
   function loadScript(src){
     return new Promise((resolve, reject) => {
@@ -12127,16 +12223,11 @@ const analytics = getAnalytics(app);
   }
 
   function currentUser(){
-    let id = null, name = null;
-    try { id = localStorage.getItem('accountId') || localStorage.getItem('username'); name = localStorage.getItem('username'); } catch(e) {}
-    if (!id) {
-      try { id = sessionStorage.getItem('chatGuestId'); } catch(e) {}
-      if (!id) {
-        id = 'ospite-' + Math.random().toString(36).slice(2, 8);
-        try { sessionStorage.setItem('chatGuestId', id); } catch(e) {}
-      }
-    }
-    return { id: String(id), name: name || 'Ospite' };
+    let name = null;
+    try { name = localStorage.getItem('username'); } catch(e) {}
+    const authUser = window.firebase && firebase.auth ? firebase.auth().currentUser : null;
+    if (!authUser) return null;
+    return { id: String(authUser.uid), name: name || authUser.displayName || 'Utente' };
   }
 
   function renderChatShell(){
@@ -12192,27 +12283,37 @@ const analytics = getAnalytics(app);
   }
 
   function setupPresence(){
-    const u = currentUser(); myId = u.id; myName = u.name;
+    const u = currentUser();
+    if (!u) return;
+    myId = u.id; myName = u.name;
     presenceRef = db.ref('presence/' + myId);
-    db.ref('.info/connected').on('value', snap => {
-      if (snap.val() === true) {
-        presenceRef.onDisconnect().remove();
-        presenceRef.set({ name: myName, lastSeen: firebase.database.ServerValue.TIMESTAMP });
+    if (!connectedListenerStarted) {
+      db.ref('.info/connected').on('value', snap => {
+        if (snap.val() === true && presenceRef) {
+          presenceRef.onDisconnect().remove();
+          presenceRef.set({ name: myName, lastSeen: firebase.database.ServerValue.TIMESTAMP });
+        }
+      });
+      connectedListenerStarted = true;
+    }
+    if (heartbeatTimer) clearInterval(heartbeatTimer);
+    heartbeatTimer = setInterval(() => {
+      if (presenceRef && firebase.auth().currentUser) {
+        presenceRef.update({ name: myName, lastSeen: firebase.database.ServerValue.TIMESTAMP });
       }
-    });
-    setInterval(() => {
-      if (presenceRef) presenceRef.update({ name: myName, lastSeen: firebase.database.ServerValue.TIMESTAMP });
     }, HEARTBEAT_MS);
-    db.ref('presence').on('value', snap => {
-      const data = snap.val() || {};
-      const now = Date.now();
-      const online = Object.keys(data)
-        .filter(id => data[id] && (now - (data[id].lastSeen || 0)) < ONLINE_WINDOW_MS)
-        .map(id => ({ id, name: data[id].name || id }));
-      renderOnlineUsers(online);
-    });
+    if (!presenceListenerStarted) {
+      db.ref('presence').on('value', snap => {
+        const data = snap.val() || {};
+        const now = Date.now();
+        const online = Object.keys(data)
+          .filter(id => data[id] && (now - (data[id].lastSeen || 0)) < ONLINE_WINDOW_MS)
+          .map(id => ({ id, name: data[id].name || id }));
+        renderOnlineUsers(online);
+      });
+      presenceListenerStarted = true;
+    }
   }
-
   function setupChatListeners(){
     db.ref('chat/messages').limitToLast(150).on('child_added', snap => appendMessage(snap.val()));
   }
@@ -12231,19 +12332,37 @@ const analytics = getAnalytics(app);
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChatMessage(); }
   };
 
+  let chatListenersStarted = false;
   async function initChat(){
     renderChatShell();
     if (!FIREBASE_CONFIG) return;
     try {
       if (!window.firebase) {
         await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js');
+      }
+      if (!firebase.database) {
         await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js');
       }
-      firebase.initializeApp(FIREBASE_CONFIG);
+      if (!firebase.auth) {
+        await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js');
+      }
+      if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
       db = firebase.database();
-      setupPresence();
-      setupChatListeners();
-      chatReady = true;
+      firebase.auth().onAuthStateChanged(user => {
+        chatReady = false;
+        if (!user) {
+          const body = document.getElementById('chatBody');
+          if (body) body.innerHTML = '<div class="chat-setup-msg">Accedi con il tuo account per usare la chat e vedere chi è online.</div>';
+          return;
+        }
+        renderChatShell();
+        setupPresence();
+        if (!chatListenersStarted) {
+          setupChatListeners();
+          chatListenersStarted = true;
+        }
+        chatReady = true;
+      });
     } catch (e) {
       console.error('Chat non disponibile', e);
       const body = document.getElementById('chatBody');
@@ -12294,7 +12413,7 @@ const analytics = getAnalytics(app);
       <div class="acct-sep"></div>
       <div class="acct-lab">Cambia password</div>
       <input id="acctOld" type="password" placeholder="Password attuale" autocomplete="current-password">
-      <input id="acctNew" type="password" placeholder="Nuova password (min. 4 caratteri)" autocomplete="new-password">
+      <input id="acctNew" type="password" placeholder="Nuova password (min. 6 caratteri)" autocomplete="new-password">
       <input id="acctNew2" type="password" placeholder="Ripeti la nuova password" autocomplete="new-password">
       <button type="button" class="acct-btn" id="acctPassBtn">Salva password</button><div class="acct-msg" id="acctPassMsg"></div>
       <div class="acct-sep"></div>
@@ -12332,19 +12451,34 @@ const analytics = getAnalytics(app);
     try{updateUserDisplay()}catch(e){}
     msg('acctNameMsg','Nome cambiato in "'+v+'" ✅',true);
   }
-  function savePass(){
+  async function savePass(){
     if(!loginCredentials)return msg('acctPassMsg','Riprova tra un attimo.');
-    const id=myId(),u=loginCredentials.users.find(x=>x.username===id);
+    const id=myId(),u=loginCredentials.users.find(x=>x.username.toLowerCase()===String(id).toLowerCase());
     if(!u)return msg('acctPassMsg','Utente non trovato.');
     const a=$('acctOld').value,b=$('acctNew').value,c=$('acctNew2').value;
-    const min=Math.max(4,(loginCredentials.settings&&loginCredentials.settings.minPasswordLength)||0);
-    if(eff(u).pass!==a)return msg('acctPassMsg','La password attuale non è corretta.');
+    const min=Math.max(6,(loginCredentials.settings&&loginCredentials.settings.minPasswordLength)||0);
     if(b.length<min)return msg('acctPassMsg','La nuova password deve avere almeno '+min+' caratteri.');
     if(b!==c)return msg('acctPassMsg','Le due nuove password non coincidono.');
     if(b===a)return msg('acctPassMsg','La nuova password è uguale alla vecchia.');
-    const o=get(),k=id.toLowerCase();o[k]=Object.assign(o[k]||{},{password:b});set(o);
-    ['acctOld','acctNew','acctNew2'].forEach(i=>$(i).value='');
-    msg('acctPassMsg','Password cambiata ✅',true);
+    const auth=window.firebase&&firebase.auth?firebase.auth():null;
+    const current=auth&&auth.currentUser;
+    if(!current)return msg('acctPassMsg','Devi accedere con Firebase per cambiare password.');
+    try{
+      const email=String(u.username).toLowerCase()+'@cosenza-app.firebaseapp.com';
+      const credential=firebase.auth.EmailAuthProvider.credential(email,a);
+      await current.reauthenticateWithCredential(credential);
+      await current.updatePassword(b);
+      ['acctOld','acctNew','acctNew2'].forEach(i=>$(i).value='');
+      msg('acctPassMsg','Password aggiornata su Firebase ✅',true);
+    }catch(e){
+      console.error('Firebase password update failed:',e&&e.code);
+      const message=e&&e.code==='auth/wrong-password'||e&&e.code==='auth/invalid-credential'
+        ?'La password attuale non è corretta.'
+        :e&&e.code==='auth/weak-password'
+          ?'La nuova password è troppo debole.'
+          :'Non sono riuscito ad aggiornare la password. Riprova accedendo di nuovo.';
+      msg('acctPassMsg',message);
+    }
   }
   const _open=window.openSettings;
   window.openSettings=function(){const r=_open.apply(this,arguments);fill();return r};

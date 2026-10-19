@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "username": "Andre"
+    },
+    {
+      "username": "Dido"
+    },
+    {
+      "username": "Rega"
+    },
+    {
+      "username": "Ferreri"
+    },
+    {
+      "username": "Etien"
+    },
+    {
+      "username": "Erbacci"
+    },
+    {
+      "username": "Zagnoni"
+    },
+    {
+      "username": "Longo"
+    }
+  ],
+  "settings": {
+    "allowPasswordChange": true,
+    "minPasswordLength": 6,
+    "sessionTimeout": 86400000,
+    "enableAccessLog": true,
+    "adminUsers": [
+      "Andre"
+    ]
+  }
+}
