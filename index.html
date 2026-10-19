@@ -11017,7 +11017,7 @@ function showFullscreenMatch(score, hScorers, aScorers) {
     function loadLoginCredentials() {
         loginCredentials = null;
         const timestamp = Date.now();
-        const url = `login_credentials.json?t=${timestamp}`;
+        const url = `login_users.json?t=${timestamp}`;
         
         fetch(url, { cache: 'no-cache' })
             .then(response => {
@@ -11236,56 +11236,50 @@ function showFullscreenMatch(score, hScorers, aScorers) {
             showNotification(`Benvenuto, ${user.username}!`, 'success');
         }, 300);
     }
-    // Change password functionality
-    function changePassword(oldPassword, newPassword) {
-        if (!loginCredentials || !loginCredentials.settings.allowPasswordChange) {
-            showNotification('Cambio password non consentito', 'error');
+    // Cambio password tramite Firebase Auth; nessuna password viene salvata nel browser o in un file pubblico.
+    async function changePassword(oldPassword, newPassword) {
+        const username = localStorage.getItem('accountId') || localStorage.getItem('username') || '';
+        const minLength = Math.max(6, Number(loginCredentials && loginCredentials.settings && loginCredentials.settings.minPasswordLength) || 0);
+        if (newPassword.length < minLength) {
+            showNotification(`La password deve contenere almeno ${minLength} caratteri`, 'error');
             return false;
         }
-        
-        const username = localStorage.getItem('username');
-        const userIndex = loginCredentials.users.findIndex(u => 
-            u.username.toLowerCase() === username.toLowerCase()
-        );
-        
-        if (userIndex === -1) {
-            showNotification('Utente non trovato', 'error');
+        try {
+            const auth = await ensureFirebaseAuth();
+            const current = auth.currentUser;
+            if (!current) {
+                showNotification('Accedi di nuovo prima di cambiare password', 'error');
+                return false;
+            }
+            const email = usernameToFirebaseEmail(username);
+            const credential = firebase.auth.EmailAuthProvider.credential(email, oldPassword);
+            await current.reauthenticateWithCredential(credential);
+            await current.updatePassword(newPassword);
+            showNotification('Password aggiornata su Firebase', 'success');
+            return true;
+        } catch (error) {
+            console.error('Firebase password change failed:', error && error.code);
+            const message = error && (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential')
+                ? 'La password attuale non è corretta.'
+                : error && error.code === 'auth/weak-password'
+                    ? 'La nuova password è troppo debole.'
+                    : 'Non sono riuscito a cambiare la password. Accedi di nuovo e riprova.';
+            showNotification(message, 'error');
             return false;
         }
-        
-        if (loginCredentials.users[userIndex].password !== oldPassword) {
-            showNotification('Password attuale errata', 'error');
-            return false;
-        }
-        
-        if (newPassword.length < loginCredentials.settings.minPasswordLength) {
-            showNotification(`La password deve contenere almeno ${loginCredentials.settings.minPasswordLength} caratteri`, 'error');
-            return false;
-        }
-        
-        // Update password
-        loginCredentials.users[userIndex].password = newPassword;
-        localStorage.setItem('loginCredentials', JSON.stringify(loginCredentials));
-        
-        // Save to JSON file (if possible)
-        saveCredentialsToFile();
-        
-        showNotification('Password cambiata con successo', 'success');
-        return true;
     }
-    
-    // Save credentials to JSON file
+
+    // Download only public username metadata, never passwords.
     function saveCredentialsToFile() {
         const dataStr = JSON.stringify(loginCredentials, null, 2);
         const blob = new Blob([dataStr], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'login_credentials.json';
+        a.download = 'login_users.json';
         a.click();
         URL.revokeObjectURL(url);
-        
-        showNotification('File credenziali scaricato, sostituiscilo nella cartella', 'info');
+        showNotification('Scaricato il file pubblico con i nomi utente, senza password.', 'info');
     }
     
     // Shake specific field
@@ -11299,7 +11293,7 @@ function showFullscreenMatch(score, hScorers, aScorers) {
     }
     
     // Show password change dialog
-    function showPasswordChangeDialog() {
+    async function showPasswordChangeDialog() {
         const oldPassword = prompt('Inserisci la password attuale:');
         if (!oldPassword) return;
         
@@ -11314,7 +11308,7 @@ function showFullscreenMatch(score, hScorers, aScorers) {
             return;
         }
         
-        if (changePassword(oldPassword, newPassword)) {
+        if (await changePassword(oldPassword, newPassword)) {
             // Password changed successfully
             setTimeout(() => {
                 if (confirm('Password cambiata! Vuoi fare il logout per testare le nuove credenziali?')) {
@@ -11697,7 +11691,7 @@ function showFullscreenMatch(score, hScorers, aScorers) {
         loginCredentials = null; // Reset variable
         
         // Force reload with timestamp
-        fetch('login_credentials.json?t=' + Date.now())
+        fetch('login_users.json?t=' + Date.now())
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
