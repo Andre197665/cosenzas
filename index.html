@@ -8232,6 +8232,11 @@
         }
     }
 
+    // Percorsi delle leghe modificati da un'importazione, da sincronizzare dopo il parsing.
+    const sharedLeagueChanges = new Set();
+    let sharedLeagueDb = null;
+    let sharedLeagueListenerStarted = false;
+
     // Applica dati importati (JSON o TXT) alla stagione/lega corretta.
     // partite / goals / assists: aggiunge le nuove voci o aggiorna quelle esistenti (stesso match / stesso giocatore).
     // classifica: sostituisce l'intera tabella (è sempre una foto completa).
@@ -8273,6 +8278,7 @@
         if (seasonKey === currentSeason) {
             jsonData = jsonDataBySeason[currentSeason];
         }
+        sharedLeagueChanges.add(seasonKey + '/' + league);
     }
 
     // Parsing di un file .txt per aggiungere/modificare dati con un formato semplice.
@@ -10955,7 +10961,12 @@ function showFullscreenMatch(score, hScorers, aScorers) {
             });
 
             changeLeague();
-            showNotification('Dati caricati con successo', 'success');
+            syncChangedLeagueData().then(() => {
+                showNotification('Dati importati e sincronizzati con la lega condivisa', 'success');
+            }).catch(syncError => {
+                console.error('Sincronizzazione lega fallita:', syncError);
+                showNotification('Dati importati su questo dispositivo, ma non sincronizzati. Controlla accesso e regole Firebase.', 'error');
+            });
         }).catch(error => {
             console.error('Errore nel caricamento dati:', error);
             showNotification('Errore nel caricamento dei file', 'error');
@@ -11153,6 +11164,71 @@ function showFullscreenMatch(score, hScorers, aScorers) {
         if (!firebase.auth) await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js');
         if (!firebase.apps.length) firebase.initializeApp(config);
         return firebase.auth();
+    }
+
+    async function ensureFirebaseDatabase() {
+        await ensureFirebaseAuth();
+        if (!firebase.database) {
+            const src = 'https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js';
+            await new Promise((resolve, reject) => {
+                const existing = Array.from(document.scripts).find(s => s.src === src);
+                if (existing) {
+                    if (firebase.database) return resolve();
+                    existing.addEventListener('load', resolve, { once: true });
+                    existing.addEventListener('error', reject, { once: true });
+                    return;
+                }
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+        sharedLeagueDb = firebase.database();
+        return sharedLeagueDb;
+    }
+
+    async function startSharedLeagueSync() {
+        const auth = await ensureFirebaseAuth();
+        const db = await ensureFirebaseDatabase();
+        if (!auth.currentUser || sharedLeagueListenerStarted) return;
+        db.ref('leagueData').on('value', snapshot => {
+            const remote = snapshot.val();
+            if (!remote || typeof remote !== 'object') return;
+            Object.keys(remote).forEach(season => {
+                if (!remote[season] || typeof remote[season] !== 'object') return;
+                if (!jsonDataBySeason[season]) jsonDataBySeason[season] = {};
+                Object.keys(remote[season]).forEach(league => {
+                    if (remote[season][league] && typeof remote[season][league] === 'object') {
+                        jsonDataBySeason[season][league] = remote[season][league];
+                    }
+                });
+            });
+            if (jsonDataBySeason[currentSeason]) {
+                jsonData = jsonDataBySeason[currentSeason];
+                changeLeague();
+            }
+        }, error => {
+            console.error('Lettura dati condivisi fallita:', error);
+        });
+        sharedLeagueListenerStarted = true;
+    }
+
+    async function syncChangedLeagueData() {
+        if (sharedLeagueChanges.size === 0) return;
+        const auth = await ensureFirebaseAuth();
+        const db = await ensureFirebaseDatabase();
+        if (!auth.currentUser) throw new Error('Serve un accesso Firebase valido per sincronizzare i dati.');
+        const paths = Array.from(sharedLeagueChanges);
+        for (const path of paths) {
+            const parts = path.split('/');
+            const season = parts[0], league = parts[1];
+            const leagueData = jsonDataBySeason[season] && jsonDataBySeason[season][league];
+            if (!leagueData) continue;
+            await db.ref('leagueData').child(season).child(league).set(leagueData);
+            sharedLeagueChanges.delete(path);
+        }
     }
 
     async function signInCosenzaUser(username, password) {
