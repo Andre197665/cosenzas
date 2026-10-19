@@ -32,8 +32,8 @@ Only after the accounts are imported and login is tested, replace the current Re
     ".read": false,
     ".write": false,
     "presence": {
+      ".read": "auth != null",
       "$uid": {
-        ".read": "auth != null",
         ".write": "auth != null && auth.uid === $uid"
       }
     },
