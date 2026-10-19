@@ -11149,7 +11149,7 @@ function showFullscreenMatch(score, hScorers, aScorers) {
         return key + '@cosenza-app.firebaseapp.com';
     }
 
-    async function signInCosenzaUser(username, password) {
+    async function ensureFirebaseAuth() {
         const config = window.COSENZA_FIREBASE_CONFIG;
         if (!config) throw new Error('Firebase non è ancora inizializzato.');
         const loadScript = src => new Promise((resolve, reject) => {
@@ -11167,9 +11167,14 @@ function showFullscreenMatch(score, hScorers, aScorers) {
         if (!window.firebase) await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js');
         if (!firebase.auth) await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js');
         if (!firebase.apps.length) firebase.initializeApp(config);
+        return firebase.auth();
+    }
+
+    async function signInCosenzaUser(username, password) {
+        const auth = await ensureFirebaseAuth();
         const email = usernameToFirebaseEmail(username);
         if (!email) throw new Error('Usa il nome utente originale (lettere, numeri, punto, trattino o underscore).');
-        return firebase.auth().signInWithEmailAndPassword(email, password);
+        return auth.signInWithEmailAndPassword(email, password);
     }
 
     // Login functionality
@@ -11605,33 +11610,47 @@ function showFullscreenMatch(score, hScorers, aScorers) {
         }
     }
 
-    // Check if already logged in
-    function checkLoginStatus() {
-        const isLoggedIn = localStorage.getItem('accessoRiuscito') === 'true';
-        if (isLoggedIn) {
-            // Check session timeout
-            const loginTime = localStorage.getItem('loginTime');
-            if (loginTime && loginCredentials && loginCredentials.settings.sessionTimeout) {
-                const elapsed = Date.now() - parseInt(loginTime);
-                if (elapsed > loginCredentials.settings.sessionTimeout) {
-                    logout();
-                    showNotification('Sessione scaduta, fai login di nuovo', 'info');
-                    return;
-                }
-            }
-            
-            // Skip login screen
-            document.getElementById('loginScreen').classList.add('hidden');
-            document.getElementById('mainApp').classList.add('active');
-            
-            // Update user display
-            updateUserDisplay();
-            
-            // Initialize app
-            loadJSONFromStorage();
-            changeLeague();
-            startAutoRefreshJSON();
+    // Check login status against Firebase Auth, not only editable localStorage.
+    async function checkLoginStatus() {
+        const hadLocalSession = localStorage.getItem('accessoRiuscito') === 'true';
+        if (!hadLocalSession) return;
+        let authUser = null;
+        try {
+            const auth = await ensureFirebaseAuth();
+            authUser = await new Promise(resolve => {
+                let unsubscribe = null;
+                unsubscribe = auth.onAuthStateChanged(user => {
+                    if (unsubscribe) unsubscribe();
+                    resolve(user || null);
+                }, () => resolve(null));
+            });
+        } catch (error) {
+            console.error('Could not restore Firebase session:', error);
         }
+        if (!authUser) {
+            localStorage.removeItem('accessoRiuscito');
+            localStorage.removeItem('username');
+            localStorage.removeItem('accountId');
+            localStorage.removeItem('firebaseUid');
+            localStorage.removeItem('loginTime');
+            return;
+        }
+        const loginTime = localStorage.getItem('loginTime');
+        if (loginTime && loginCredentials && loginCredentials.settings.sessionTimeout) {
+            const elapsed = Date.now() - parseInt(loginTime, 10);
+            if (elapsed > loginCredentials.settings.sessionTimeout) {
+                logout();
+                showNotification('Sessione scaduta, fai login di nuovo', 'info');
+                return;
+            }
+        }
+        localStorage.setItem('firebaseUid', authUser.uid);
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('mainApp').classList.add('active');
+        updateUserDisplay();
+        loadJSONFromStorage();
+        changeLeague();
+        startAutoRefreshJSON();
     }
     
     // Add animations
