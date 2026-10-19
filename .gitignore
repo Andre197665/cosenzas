@@ -1,0 +1,11 @@
+# Local-only account/password source for the one-time Firebase import
+login_credentials.json
+login_credentials.local.json
+
+# Firebase Admin credentials must never be committed
+service-account*.json
+firebase-adminsdk*.json
+*service-account*.json
+
+# Node dependencies
+node_modules/
