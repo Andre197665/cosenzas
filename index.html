@@ -11321,22 +11321,26 @@ function showFullscreenMatch(score, hScorers, aScorers) {
     
     // Logout function
     function logout() {
-        if (confirm('Sei sicuro di voler fare il logout?')) {
-            // Clear login data
+        if (!confirm('Sei sicuro di voler fare il logout?')) return;
+        const finishLogout = () => {
             localStorage.removeItem('accessoRiuscito');
             localStorage.removeItem('username');
             localStorage.removeItem('accountId');
+            localStorage.removeItem('firebaseUid');
             localStorage.removeItem('loginTime');
-            
-            // Show login screen
             document.getElementById('loginScreen').classList.remove('hidden');
             document.getElementById('mainApp').classList.remove('active');
-            
-            // Clear form
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
-            
             showNotification('Logout effettuato', 'info');
+        };
+        if (window.firebase && firebase.auth && firebase.auth().currentUser) {
+            firebase.auth().signOut().then(finishLogout).catch(error => {
+                console.error('Firebase sign-out failed:', error);
+                finishLogout();
+            });
+        } else {
+            finishLogout();
         }
     }
     
@@ -12362,19 +12366,34 @@ window.COSENZA_FIREBASE_CONFIG = FIREBASE_CONFIG;
     try{updateUserDisplay()}catch(e){}
     msg('acctNameMsg','Nome cambiato in "'+v+'" ✅',true);
   }
-  function savePass(){
+  async function savePass(){
     if(!loginCredentials)return msg('acctPassMsg','Riprova tra un attimo.');
-    const id=myId(),u=loginCredentials.users.find(x=>x.username===id);
+    const id=myId(),u=loginCredentials.users.find(x=>x.username.toLowerCase()===String(id).toLowerCase());
     if(!u)return msg('acctPassMsg','Utente non trovato.');
     const a=$('acctOld').value,b=$('acctNew').value,c=$('acctNew2').value;
-    const min=Math.max(4,(loginCredentials.settings&&loginCredentials.settings.minPasswordLength)||0);
-    if(eff(u).pass!==a)return msg('acctPassMsg','La password attuale non è corretta.');
+    const min=Math.max(6,(loginCredentials.settings&&loginCredentials.settings.minPasswordLength)||0);
     if(b.length<min)return msg('acctPassMsg','La nuova password deve avere almeno '+min+' caratteri.');
     if(b!==c)return msg('acctPassMsg','Le due nuove password non coincidono.');
     if(b===a)return msg('acctPassMsg','La nuova password è uguale alla vecchia.');
-    const o=get(),k=id.toLowerCase();o[k]=Object.assign(o[k]||{},{password:b});set(o);
-    ['acctOld','acctNew','acctNew2'].forEach(i=>$(i).value='');
-    msg('acctPassMsg','Password cambiata ✅',true);
+    const auth=window.firebase&&firebase.auth?firebase.auth():null;
+    const current=auth&&auth.currentUser;
+    if(!current)return msg('acctPassMsg','Devi accedere con Firebase per cambiare password.');
+    try{
+      const email=String(u.username).toLowerCase()+'@cosenza-app.firebaseapp.com';
+      const credential=firebase.auth.EmailAuthProvider.credential(email,a);
+      await current.reauthenticateWithCredential(credential);
+      await current.updatePassword(b);
+      ['acctOld','acctNew','acctNew2'].forEach(i=>$(i).value='');
+      msg('acctPassMsg','Password aggiornata su Firebase ✅',true);
+    }catch(e){
+      console.error('Firebase password update failed:',e&&e.code);
+      const message=e&&e.code==='auth/wrong-password'||e&&e.code==='auth/invalid-credential'
+        ?'La password attuale non è corretta.'
+        :e&&e.code==='auth/weak-password'
+          ?'La nuova password è troppo debole.'
+          :'Non sono riuscito ad aggiornare la password. Riprova accedendo di nuovo.';
+      msg('acctPassMsg',message);
+    }
   }
   const _open=window.openSettings;
   window.openSettings=function(){const r=_open.apply(this,arguments);fill();return r};
