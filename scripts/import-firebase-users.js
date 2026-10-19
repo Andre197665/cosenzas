@@ -13,7 +13,7 @@ const { initializeApp, applicationDefault } = require('firebase-admin/app');
 const { getAuth } = require('firebase-admin/auth');
 
 const projectId = 'cosenza-app';
-const credentialsPath = path.resolve(__dirname, '..', 'login_credentials.json');
+const credentialsPath = path.resolve(__dirname, '..', 'login_credentials.local.json');
 const source = JSON.parse(fs.readFileSync(credentialsPath, 'utf8'));
 
 if (!process.env.GOOGLE_APPLICATION_CREDENTIALS) {
@@ -21,7 +21,7 @@ if (!process.env.GOOGLE_APPLICATION_CREDENTIALS) {
   process.exit(1);
 }
 if (!Array.isArray(source.users) || source.users.length === 0) {
-  console.error('login_credentials.json non contiene una lista users valida.');
+  console.error('login_credentials.local.json non contiene una lista users valida.');
   process.exit(1);
 }
 
