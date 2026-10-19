@@ -12144,16 +12144,11 @@ window.COSENZA_FIREBASE_CONFIG = FIREBASE_CONFIG;
   }
 
   function currentUser(){
-    let id = null, name = null;
-    try { id = localStorage.getItem('accountId') || localStorage.getItem('username'); name = localStorage.getItem('username'); } catch(e) {}
-    if (!id) {
-      try { id = sessionStorage.getItem('chatGuestId'); } catch(e) {}
-      if (!id) {
-        id = 'ospite-' + Math.random().toString(36).slice(2, 8);
-        try { sessionStorage.setItem('chatGuestId', id); } catch(e) {}
-      }
-    }
-    return { id: String(id), name: name || 'Ospite' };
+    let name = null;
+    try { name = localStorage.getItem('username'); } catch(e) {}
+    const authUser = window.firebase && firebase.auth ? firebase.auth().currentUser : null;
+    if (!authUser) return null;
+    return { id: String(authUser.uid), name: name || authUser.displayName || 'Utente' };
   }
 
   function renderChatShell(){
@@ -12248,6 +12243,7 @@ window.COSENZA_FIREBASE_CONFIG = FIREBASE_CONFIG;
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChatMessage(); }
   };
 
+  let chatListenersStarted = false;
   async function initChat(){
     renderChatShell();
     if (!FIREBASE_CONFIG) return;
@@ -12258,11 +12254,26 @@ window.COSENZA_FIREBASE_CONFIG = FIREBASE_CONFIG;
       if (!firebase.database) {
         await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js');
       }
+      if (!firebase.auth) {
+        await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js');
+      }
       if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
       db = firebase.database();
-      setupPresence();
-      setupChatListeners();
-      chatReady = true;
+      firebase.auth().onAuthStateChanged(user => {
+        chatReady = false;
+        if (!user) {
+          const body = document.getElementById('chatBody');
+          if (body) body.innerHTML = '<div class="chat-setup-msg">Accedi con il tuo account per usare la chat e vedere chi è online.</div>';
+          return;
+        }
+        renderChatShell();
+        setupPresence();
+        if (!chatListenersStarted) {
+          setupChatListeners();
+          chatListenersStarted = true;
+        }
+        chatReady = true;
+      });
     } catch (e) {
       console.error('Chat non disponibile', e);
       const body = document.getElementById('chatBody');
