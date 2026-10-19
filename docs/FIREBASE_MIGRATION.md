@@ -1,30 +1,37 @@
 # Firebase Auth migration (draft)
 
-This repository is a static HTML site. Firebase Auth user creation requires a trusted Admin SDK credential, which must stay on the owner's computer and must never be uploaded to GitHub.
+This repository is a static HTML site. Firebase Auth account creation requires a trusted Admin SDK credential, which must stay on the owner's computer and must never be uploaded to GitHub.
 
-## 1. Import the existing accounts
+## Important: protect the old password file
 
-1. In Firebase Console, open project **cosenza-app** → Project settings → Service accounts → generate a private key.
-2. Save the JSON file **outside this repository**. Do not send it in chat and do not commit it.
-3. On a computer with Node.js installed, open a terminal in the repository folder and run:
+The previous public `login_credentials.json` contains passwords. Treat those passwords as exposed because the repository is public and Git history can retain earlier copies. The branch replaces that public file with `login_users.json`, which contains usernames and settings only. Removing the file from the latest version does not erase copies from Git history; rotate account passwords after the new login is tested.
+
+Before switching to this branch, keep your existing `login_credentials.json` backup somewhere private. For the one-time importer, place a private copy in the repository root named `login_credentials.local.json`. That filename is ignored by Git and must never be committed. Do not send it in chat.
+
+## 1. Import existing accounts
+
+1. Keep the local `login_credentials.local.json` copy private and confirm it contains the usernames/passwords you intend to import.
+2. In Firebase Console, open project **cosenza-app** → Project settings → Service accounts → generate a private key.
+3. Save the service-account JSON outside this repository. Do not send it in chat and do not commit it.
+4. On a computer with Node.js installed, open a terminal in the repository folder and run:
 
    ```sh
    npm install firebase-admin
    ```
 
-4. Set `GOOGLE_APPLICATION_CREDENTIALS` to the full local path of that JSON file, then run:
+5. Set `GOOGLE_APPLICATION_CREDENTIALS` to the full local path of that service-account JSON, then run:
 
    ```sh
    node scripts/import-firebase-users.js
    ```
 
-The script reads the existing `login_credentials.json`, uses each existing username and password to create a Firebase Auth account, and never prints passwords. Usernames map to a technical email like `dido@cosenza-app.firebaseapp.com`; people still type only their username in the app. Existing Firebase users are skipped and their passwords are not overwritten.
+The script reads `login_credentials.local.json`, uses each username/password to create a Firebase Auth account, and never prints passwords. Usernames map to a technical email like `dido@cosenza-app.firebaseapp.com`; people still type only their username in the app. Existing Firebase users are skipped and their passwords are not overwritten.
 
-**Important:** passwords changed through the old account settings were saved only in that specific device's localStorage. They are not in `login_credentials.json` and cannot be imported by this script. The importer also uses the usernames and passwords currently in that JSON file.
+**Important:** passwords changed through the old account settings were saved only in that specific device's localStorage. They are not in the original JSON and cannot be imported by this script. The importer uses the credentials in the private local file.
 
 ## 2. Realtime Database rules for authenticated chat/presence
 
-Only after the accounts are imported and login is tested, replace the current Realtime Database rules with:
+Only after accounts are imported and login is tested, replace the current Realtime Database rules with:
 
 ```json
 {
@@ -54,7 +61,8 @@ These rules are for the chat/presence paths used by the current page. Do not pub
 ## Current limitations
 
 - The HTML changes on this branch are **draft and not deployed**.
-- The login code expects the Firebase Auth accounts to exist first.
-- The chat/presence code is being tied to authenticated Firebase UIDs.
-- League data and other localStorage settings are **not yet migrated to Firestore**.
-- Test on a separate branch and keep the current main branch as the working version until all tests pass.
+- Firebase Auth accounts must be provisioned using the importer before the new login can work.
+- Realtime Database rules still deny access and must be updated in Firebase Console only after login testing.
+- Password overrides previously stored only in individual devices' localStorage are not included in the original JSON and are not migrated.
+- League tables, scores, matches, and other league data are still embedded in `index.html`; **they are not yet synchronized through Firestore/Realtime Database**.
+- Test on a separate branch and keep `main` unchanged until end-to-end testing succeeds.
