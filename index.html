@@ -11284,6 +11284,7 @@ function showFullscreenMatch(score, hScorers, aScorers) {
         localStorage.setItem('accountId', user.username);
         localStorage.setItem('firebaseUid', credential.user.uid);
         localStorage.setItem('loginTime', Date.now().toString());
+        startSharedLeagueSync().catch(error => console.error('Shared league sync unavailable:', error));
         logAccess(user.username);
         const container = document.querySelector('.login-container');
         if (container) container.style.animation = 'successPulse 0.6s';
@@ -11700,6 +11701,7 @@ function showFullscreenMatch(score, hScorers, aScorers) {
             }
         }
         localStorage.setItem('firebaseUid', authUser.uid);
+        startSharedLeagueSync().catch(error => console.error('Shared league sync unavailable:', error));
         document.getElementById('loginScreen').classList.add('hidden');
         document.getElementById('mainApp').classList.add('active');
         updateUserDisplay();
